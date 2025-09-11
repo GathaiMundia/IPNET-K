@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12th IPNET-K Scientific Conference 2025</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Global CSS -->
+    <style>
+        :root {
+            --bs-primary: #0D698B; /* New Brand Blue */
+            --bs-secondary: #0A506B; /* Darker Brand Blue */
+            --bs-light: #E7F0F3; /* Light Brand Blue */
+            --bs-dark: #263238; /* Blue Grey */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
+            scroll-padding-top: 70px;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: #f8f9fa;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('beach.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            min-height: 90vh;
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-weight: 700;
+        }
+
+        /* Program Section */
+        .program-session {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            overflow: hidden; /* To contain the title background */
+        }
+        .program-session-title {
+            background-color: var(--bs-primary);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        .program-session-title p {
+            margin-bottom: 0;
+        }
+        .program-content {
+            padding: 0 2rem 1rem 2rem;
+        }
+        .program-entry {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            align-items: flex-start; /* Align to top */
+        }
+        .program-entry + .program-entry {
+            border-top: 1px solid #f0f0f0;
+        }
+        .program-time {
+            font-weight: 700;
+            color: var(--bs-primary);
+            font-size: 0.9rem;
+        }
+        .program-topic {
+            font-weight: 500;
+        }
+        .program-speaker {
+            color: #6c757d;
+            font-style: italic;
+            font-size: 0.9rem;
+            grid-column: 2 / 3;
+        }
+        .program-entry.break {
+            text-align: center;
+            background-color: var(--bs-light);
+            margin: 1rem -2rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            color: var(--bs-secondary);
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .program-entry {
+                grid-template-columns: 120px 1fr 250px;
+                gap: 1.5rem;
+            }
+             .program-speaker {
+                grid-column: 3 / 4;
+                text-align: right;
+            }
+        }
+
+        /* Abstract Cards */
+        .abstract-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align to top */
+        }
+        .abstract-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .abstract-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bs-secondary);
+            flex-grow: 1;
+        }
+        .abstract-card-author {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 1rem;
+        }
+        
+        /* Modal */
+        .modal-header {
+            background-color: var(--bs-primary);
+            color: white;
+        }
+        .modal-body h6 {
+            color: var(--bs-secondary);
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Flip Cards (Messages) */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            min-height: 420px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: .375rem;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: .375rem;
+        }
+        .flip-card-front {
+            background-color: white;
+            justify-content: flex-start; /* Align to top */
+            padding-top: 2.5rem;
+        }
+        .flip-card-back {
+            background-color: var(--bs-primary);
+            color: white;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            text-align: left;
+            justify-content: flex-start;
+        }
+        .flip-card-front img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--bs-light);
+        }
+        .flip-card-back p { font-size: 0.85rem; }
+
+        /* Speaker Cards */
+        .speaker-card {
+            background: #fff;
+            border-radius: 8px;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex; /* Flexbox for alignment */
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align to top */
+        }
+        .speaker-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--bs-primary);
+        }
+        .speaker-card .topic {
+            font-weight: 500;
+            color: var(--bs-primary);
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        #about .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        #about .sidebar h5 { color: var(--bs-primary); }
+        #about .sidebar ul { padding-left: 1.2rem; }
+
+        /* Awards Section */
+        #awards {
+            background-color: var(--bs-secondary);
+            color: white;
+        }
+        #awards .icon {
+            font-size: 4rem;
+            color: #ffc107;
+        }
+        
+        /* Partners Section */
+        .partner-logo {
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .partner-logo img {
+            max-height: 60px;
+            max-width: 150px;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .partner-logo img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* FOOTER STYLES */
+        .footer-section {
+            background-color: #212529; /* Dark background */
+            color: rgba(255, 255, 255, 0.85); /* Light text for readability */
+            padding: 60px 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .footer-section h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        .footer-section .list-unstyled li {
+            padding-bottom: 0.75rem; /* Spacing between committee members */
+        }
+        .footer-section .info-item {
+            margin-bottom: 1rem;
+        }
+        .footer-section .info-item strong {
+            color: #ffffff; /* Make labels stand out */
+        }
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+        }
+        .footer-section a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        .footer-section .partner-logo img {
+            background-color: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="71">
+
+    <!-- Header & Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="https://ipnetkenya.org/" target="_blank"><img src="ipnet-k-logo.png" alt="IPNET-K Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#messages">Messages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#info">Info & Venue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#abstracts">Abstracts</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="https://ipnetkenya.org/register.php" target="_blank">Register Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="container text-center">
+            <p class="text-uppercase">September 15th - 17th, 2025 • Mombasa, Kenya</p>
+            <h1 class="hero-title">12th Infection Prevention and Control (IPC) Scientific Conference</h1>
+            <p class="lead mt-3 fst-italic">"Building Resilience Through Integrated Approaches to Infection Prevention and Control."</p>
+            <a href="https://ipnetkenya.org/register.php" class="btn btn-light btn-lg mt-4" target="_blank">Register Now</a>
+        </div>
+    </section>
+
+    <!-- WELCOME MESSAGES SECTION -->
+    <section id="messages" class="section-padding bg-light">
+         <div class="container">
+            <div class="section-title">
+                <h2>Welcome Messages</h2>
+                <p class="lead">Words from our leadership. Click on a card to read the full message.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="flip-card" onclick="this.querySelector('.flip-card-inner').style.transform = this.querySelector('.flip-card-inner').style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)'">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="revathi.jpg" alt="Prof. Gunturu Revathi">
+                                <h5>Prof. Gunturu Revathi</h5>
+                                <p class="text-muted">IPNET-Kenya Chair</p>
+                                <p class="fw-bold mt-2">Message from the IPNET-Kenya Chair</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h5>Message from the Chair</h5>
+                                <p>Dear professional colleagues, our distinguished guests, delegates, IPC champions, I am pleased to welcome you to the 12thAnnualIPNET-KConference 2025 and the pristine surroundings of this beautiful venue in Naivasha. I am delighted and proud to state that over the past 10 years, IPNT Kenya Annual Conference has become an established event in Kenya, with more than 250 delegates including a substantial international participation from 10 - 15 different countries. When it comes to whole some education and vibrant discussions on a variety of topics and recent advances related to the profession of Infection Prevention and Control in Health Care Setting, IPNET Kenya conference is the event one would turn to. The conference offers a unique platform for participants to exchange UpToDate knowledge and real-life experiences in the prevention of healthcare-associated infections and control of antimicrobial resistance from around the world. Pursuing its mission of improving patient care and safety across Kenya though IPC advocacy and education, IPNET Kenya has once again put together an academic garland of important topics well-chosen by our scientific committee composed of experts in the field. The Keynote talks, symposia, workshops, free papers, and poster sessions are all in the rich program content in the same fashion that made all the past IPNET conferences a grand success. The 11th conference has a theme that resonates with the current life and times of the global community - Building Resilience Through Integrated Approaches to Infection Prevention andControl. Dear Colleagues, the global community is immediately faced with outbreaks of emerging infectious diseases and novel pathogens and old pathogens with novel pathogenicity. Mpox virusvariant, Clade IIb, is a recent example with pandemic potential. A new variant is detected in the Democratic Republic of Congo recently which is much more transmissible among children than the previous strain spreading very fast like wildfire. We are just trying to put COVID 19 behind and move on but Avian influenza (AH5N2) has been marching across the globe for some time with serious implications of antigenic shift and drift to produce novel variants. On 31st July, WHO publishes a news flash on Antimicrobial Resistance in Hypervirulent Klebsiella pneumoniae hvKp ST23 Global situation. On the same day, (31st July) Kenya confirmed its first case of Mpox at the Taita Taveta border post with Tanzania. The virus was detected in a person travelling from Uganda to Rwanda through Kenya. The Democratic Republic of Congo is currently experiencing the largest outbreak of the viral disease ever recorded, with tens of thousands of people infected as of June. Our conference is timely and very much required at this time. I look forward to your active participation and wish you exciting, fruitful, and highly enjoyable networking and collaborations during this conference.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="flip-card" onclick="this.querySelector('.flip-card-inner').style.transform = this.querySelector('.flip-card-inner').style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)'">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="linus.jpg" alt="Ndegwa Linus">
+                                <h5>Ndegwa Linus, MPHE, PhD</h5>
+                                <p class="text-muted" style="font-size: 0.75rem;">
+                                    Team lead, Health quality promotion, Division of Global Health Protection (DGHP), U.S. Centers for Disease Control and Prevention, Kenya<br>
+                                    Founder, Infection prevention network-Kenya (IPNET-K)<br>
+                                    Board member Alliance for the Prudent Use of Antibiotics (APUA) of international Society of Antimicrobial Chemotherapy (ISAC)<br>
+                                    Former, Board member: International Federation of infection control (IFIC) and Infection Control African Network (ICAN)
+                                </p>
+                                <p class="fw-bold mt-2">Message from the IPNET-Kenya founder</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h5>Message from the Founder</h5>
+                                <p>Dear Colleagues and Friends, On behalf of the Conference organizing committee, it is my great pleasure to welcome you to the 12th IPNET-Kenya conference, to be held at Pride Inn Convention center, Kenya, on September 15th -17th, 2025. Over the past one and half decade IPNET-Kenya has grown and become the voice of infection prevention and control (IPC) in Kenya with over 400 registered members. Since the inception of IPNET-Kenya in 2009 we have been organizing conferences to support members and partners to have a forum to share their practices and experiences through science-based evidence. Society has endeavored to build capacity amongst members to utilize their data and make informed decisions, through various forums like science writing workshops. This year conference engages broad subject matter expertise from within and across the borders... Please join IPNET-KENYA in the fight against HAIs and antimicrobial resistance by improving IPC practices in Kenya and the region. Enjoy the conference and experience the wonderful sceneries of Naivasha, and many places to enjoy like Hells gate national park, Giraffe centre, Lake Naivasha Crescent Island, Kitaru, Olkaria geothermal Spa, Crater Lake and Mt Longonot & Longonot national park and many more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="flip-card" onclick="this.querySelector('.flip-card-inner').style.transform = this.querySelector('.flip-card-inner').style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)'">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="rachel.jpg" alt="Dr. Rachel Kamau and Frankline O. Mboya">
+                                <h5>Dr. Rachel Kamau & Frankline O. Mboya</h5>
+                                <p class="text-muted">Co-Chairs, Scientific Committee</p>
+                                <p class="fw-bold mt-2">Remarks from the Scientific Committee</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h5>Remarks from the Scientific Committee</h5>
+                                <p>Dear Delegates, Welcome to the 11th Infection Prevention Network Kenya (IPNET K) Conference 2024! This event provides a unique forum for participants to connect, exchange knowledge, and share experiences in infection prevention and control practices and the global fight against antimicrobial resistance. This years theme focuses on Integrated and Innovative Approaches to Infection Prevention and Control combined with Antimicrobial Resistance (AMR) Mitigation. These crucial strategies include improved hygiene practices, rapid diagnostics, antibiotic stewardship programs, and new treatment developments. In 2024, we introduced the use of geospatial mapping and artificial intelligence (AI) in infection prevention and control (IPC). These tools help track disease spread, identify hotspots for targeted interventions, and enhance predictive analytics, improving outbreak forecasting and resource allocation. They optimize surveillance, streamline responses, and enhance the effectiveness of IPC strategies, ultimately reducing infection rates and healthcare costs. The conference will cover a wide range of topics with expert guest speakers who will share their knowledge and experiences on practical IPC and AMR applications designed for all healthcare settings. The program follows the tradition of oral presentations, poster sessions, keynote speeches, and roundtable symposia. We are delighted to have you here and wish you a successful and fruitful experience. Enjoy!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="container">
+             <div class="section-title">
+                <h2>About IPNET-Kenya</h2>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <h4>Background</h4>
+                    <p>Infection Prevention and Control Network, Kenya (IPNET-K) is the leading society for healthcare professionals with an interest in Infection Prevention and Control (IPC) and Antimicrobial Resistance (AMR). For more than 10 years, IPNET- K has been capacity building, advocating and championing for patient safety by actively ensuring that IPC and AMR are core/priority programs at all levels of healthcare as well as at the medical training institutions. It has a membership of health professionals (doctors, nurses, pharmacists, dentists, laboratory scientists, public health officers, epidemiologists, IPC practitioners etc) from all levels of healthcare who serve IPNET-K as educators and consultants in IPC/AMR. Its members are also involvedin providing technical support to the Ministry of Health IPC and AMR programs. An increasing number of members are IPC focal persons at the county and hospital level where they direct programs on AMR and IPC.</p>
+                    <h4>Mission</h4>
+                    <p>The association/ Society mission is to promote patient and staff safety in the healthcare settings by promoting infection control measures and advance the field of healthcare epidemiology.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <h5>Objectives</h5>
+                        <ul>
+                            <li>To raise the scale of awareness of IPC issues nationally and regionally.</li>
+                            <li>To educate stakeholders on best practices of IPC.</li>
+                            <li>To provide a forum for regular exchange of information on IPC issues.</li>
+                            <li>To prepare and circulate SOPs for IPC issues, to meet JCI standards.</li>
+                            <li>Recognition and certification of IPC professionals.</li>
+                            <li>To facilitate the creation of an IPC database.</li>
+                            <li>Mentor, train and promote professional development in healthcare epidemiology.</li>
+                        </ul>
+                        <h5 class="mt-4">Membership</h5>
+                        <p><strong>Individual:</strong> persons working in or related to infection prevention and control.</p>
+                        <p><strong>Corporates:</strong> employed in a business or industry related to the field of healthcare.</p>
+                        <p><strong>Students:</strong> enrolled in a institution of higher learning in a related field.</p>
+                        <p><strong>Emeritus:</strong> a current member in good standing who has fully retired.</p>
+                        <p><strong>Patron firms:</strong> companies with an interest in healthcare epidemiology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- INFO & VENUE SECTION -->
+    <section id="info" class="section-padding bg-light">
+         <div class="container">
+            <div class="section-title">
+                <h2>Venue & General Information</h2>
+            </div>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h3>Pride Inn Conference Centre, Mombasa</h3>
+                    <p>The conference will be held at the prestigious Pride Inn conference centre in Mombasa, Kenya. Known for its beautiful surroundings and excellent facilities, it provides the perfect backdrop for learning and networking.</p>
+                    <img src="prideinn.jpg" class="img-fluid rounded shadow-sm" alt="Pride Inn Mombasa">
+                </div>
+                <div class="col-lg-6">
+                    <div class="accordion" id="infoAccordion">
+                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#info1">Language & Badges</button></h2><div id="info1" class="accordion-collapse collapse show" data-bs-parent="#infoAccordion"><div class="accordion-body">The official language is English. No simultaneous translation will be provided. It is mandatory to always wear your name badge during the conference sessions.</div></div></div>
+                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info2">Safety & Insurance</button></h2><div id="info2" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">The organizers are not liable for any personal injuries, loss or damage of property. It is advisable for all participants to ensure the validity of their own insurance. Please comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended.</div></div></div>
+                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info3">Registration</button></h2><div id="info3" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">Onsite registration will take place outside the conference hall. The registration fee covers the program book, access to all sessions and exhibition areas, as well as morning and afternoon tea/coffee and lunch. <br><strong>Registration hours:</strong><br>Sunday 14th: 16:00-18:00<br>Monday 15th: 8:15-17:30<br>Tuesday 16th: 8:15-17:30<br>Wednesday 17th: 8:15-12:30</div></div></div>
+                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info4">Presenters & Devices</button></h2><div id="info4" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Presenters are also required to arrive 15 minutes prior to the start of their session. During educational sessions, electronic devices must be set to silent or vibrate mode.</div></div></div>
+                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info5">Exhibitions & More</button></h2><div id="info5" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body"><strong>Exhibition:</strong> Will be held outside the conference hall. All delegates are invited. <br><strong>Lost and found:</strong> Please return any items found to the registration desk. <br><strong>Currency:</strong> The currency will be Kenya Shillings (KES).</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM SECTION -->
+    <section id="program" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conference Program</h2>
+                <p class="lead">Explore the schedule of sessions, presentations, and events.</p>
+            </div>
+            
+            <div class="program-session">
+                <div class="program-session-title">
+                    <h4 class="mb-0">Conference Opening Ceremony</h4>
+                    <p class="text-white-50">Sunday 14th September 2025 | 16:00 - 19:30</p>
+                </div>
+            </div>
+            
+            <!-- Day Tabs -->
+            <ul class="nav nav-tabs nav-fill mb-4" id="programTab" role="tablist">
+                <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day1" type="button">Day 1: Sept 15</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day2" type="button">Day 2: Sept 16</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day3" type="button">Day 3: Sept 17</button></li>
+            </ul>
+            
+            <!-- Tab Content -->
+            <div class="tab-content" id="programTabContent">
+                <!-- DAY 1 CONTENT -->
+                <div class="tab-pane fade show active" id="day1" role="tabpanel">
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 1: Antimicrobial resistant (AMR)</h4>
+                            <p class="text-white-50">Chair: Frankline Mboya / Stephen Maina</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Evelyn Wesangula-ESA</div></div>
+                            <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Recent Developments in Medical Device related IPC practices</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
+                            <div class="program-entry"><div class="program-time">9:10-9:20</div><div class="program-topic">AMR Surveillance Information System Challenges</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Josiah Mwenda, UoN</div></div>
+                            <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital –Adult Hospital, Zambia</div><div class="program-speaker">Linda Musonda</div></div>
+                            <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya</div><div class="program-speaker">Silas O. Awuor</div></div>
+                            <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Improved Microbiology Lab Utilization: A Strategy to Integrate Antimicrobial Resistance Surveillance into Infection Prevention and Control Practice</div><div class="program-speaker">Lucy Ochola</div></div>
+                            <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at Nakuru County Referral and Teaching Hospital, Kenya</div><div class="program-speaker">Lydia Momanyi</div></div>
+                            <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Molecular Characterization of β-Lactamase and Carbapenemase-Producing Enterobacterales in Children Under Five in Kibera, Nairobi Kenya</div><div class="program-speaker">Beatrice Oduor</div></div>
+                            <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            <div class="program-entry break">10:30-11:00 | Health Break: Poster viewing/ Exhibition</div>
+                        </div>
+                    </div>
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 2: Antimicrobial resistant (AMR) and Infection control</h4>
+                            <p class="text-white-50">Chair: Veronica Kamau</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Antibiotic susceptibility patterns of bacterial communities in urine at Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
+                            <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at AAR Hospital (PRIVATE FACILITY), Kenya: Findings from the ASPIRE Project</div><div class="program-speaker">Dr Diana Kariuki</div></div>
+                            <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Hand Hygiene Knowledge, Attitudes, and Practices Among Clinical-Year Medical Students in a Kenyan Level 5 Hospital</div><div class="program-speaker">Mercy Chepkoech</div></div>
+                            <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Reducing turnaround time (TAT) for social health insuarance fund (SHIF) discharge process at Coast general teaching and referral hospital (CGTRH)</div><div class="program-speaker">Ann Mumbua</div></div>
+                            <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Assessment of Infection Prevention and Control Practices at Mother Amadea Mission Hospital Annex, Mikindani Estate, Mombasa City</div><div class="program-speaker">Achiando William Anyiko</div></div>
+                            <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Innovation of Dashboard Using Spreadsheets in Monitoring of Infection Control Indicators</div><div class="program-speaker">Ann Kamuyu</div></div>
+                            <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Beyond donor funding, sustaining Infection Prevention and Control program through domestic resource mobilization; the case of Rachuonyo East Sub-County Hospital</div><div class="program-speaker">Gabriel Kotewas</div></div>
+                            <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya</div><div class="program-speaker">Everlyne Mboga</div></div>
+                            <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Enhancing hand hygiene compliance at Valley Hospital using the World Health Organization multimodal strategy</div><div class="program-speaker">Bonface T. Douglas</div></div>
+                            <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Strengthening Outbreak Preparedness and Response Through Strategic IPC Program Financing: A Multi-Regional Analysis from Ethiopia</div><div class="program-speaker">Dr Robel W. Tefera</div></div>
+                            <div class="program-entry"><div class="program-time">12:40-12:50</div><div class="program-topic">The Use of Contact Precautions to Prevent Transmission of Multidrug-Resistant Organisms: Emerging evidence</div><div class="program-speaker">David Odada</div></div>
+                            <div class="program-entry"><div class="program-time">12:50-13:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            <div class="program-entry break">13:00-14:00 | Lunch Break</div>
+                        </div>
+                    </div>
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 3: Tuberculosis and Infection control</h4>
+                            <p class="text-white-50">Chair: Dr. Josphat Tonui</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">14:00-14:30</div><div class="program-topic">Collaborative Leadership and Culture Change in Delivering Infection Prevention</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr Linus Ndegwa, US CDC</div></div>
+                            <div class="program-entry"><div class="program-time">14:30-15:00</div><div class="program-topic">The role of ECHO in integrating AMR into IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
+                            <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Screening for tuberculosis among clients who accessed HIV Testing Services at Umoja Health Centre, Nairobi, Kenya: a cross-section observational study.</div><div class="program-speaker">Simon Mongare</div></div>
+                            <div class="program-entry"><div class="program-time">15:10-15:20</div><div class="program-topic">Tuberculosis Preventive Therapy efficacy among People Living with HIV (PLHIV) accessing Comprehensive Care Services at Umoja Health Centre, Nairobi, Kenya.</div><div class="program-speaker">Mwajuma Abdullahi Ramadhan</div></div>
+                            <div class="program-entry"><div class="program-time">15:20-15:30</div><div class="program-topic">Early detection of tuberculosis patients to reduce antimicrobial resistance in Homabay county, Kenya.</div><div class="program-speaker">Joan Maina</div></div>
+                            <div class="program-entry"><div class="program-time">15:30-15:40</div><div class="program-topic">OCCUPATIONAL HEALTH RISKS OF WOOD SMOKE EXPOSURE IN HOSPITAL KITCHEN: IMPLICATIONS FOR RESPIRATORY DISEASES AND INFECTION CONTROL</div><div class="program-speaker">Mary Carphew Awuor</div></div>
+                            <div class="program-entry"><div class="program-time">15:40-15:50</div><div class="program-topic">Leveraging on Program quality and Efficiency to increase case Identification and combat Tuberculosis transmission at Matata Hospital, HomaBay County</div><div class="program-speaker">Brian Korir</div></div>
+                            <div class="program-entry"><div class="program-time">15:50-16:00</div><div class="program-topic">A Healthier Future Starts in the Classroom: Integrating Infection Prevention, Antimicrobial Resistance, and One Health in Schools</div><div class="program-speaker">David Frederick Akello</div></div>
+                            <div class="program-entry"><div class="program-time">16:00-16:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- DAY 2 CONTENT -->
+                <div class="tab-pane fade" id="day2" role="tabpanel">
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 4: Healthcare associated infections</h4>
+                            <p class="text-white-50">Chair: Eric Kitangala</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">8:30-9:00</div><div class="program-topic">Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Flavia Nakayima, University of Arizona</div></div>
+                            <div class="program-entry"><div class="program-time">9:00-9:30</div><div class="program-topic">Industry Insight into Infection Prevention and Control and AMR</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Sigei</div></div>
+                            <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Ethiopia's First National Healthcare Associated Infections Point Prevalence Survey</div><div class="program-speaker">Robel W Tefera</div></div>
+                            <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Point Prevalence Survey on Antibiotic Use and Hospital Acquired Infections conducted at KUTRRH</div><div class="program-speaker">Caroline Mwangi</div></div>
+                            <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Incidence rate of bloodstream infection Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
+                            <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Incidence, Microbial Patterns, and Outcomes of External Ventricular Drain Infections: A Three-Year Review at a Kenyan Tertiary Hospital</div><div class="program-speaker">Clara Kesis</div></div>
+                            <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Electronic Surveillance of Carbapenem-Resistant Organisms in the ICU: A Retrospective Analysis from a Tertiary University Hospital</div><div class="program-speaker">David Odada</div></div>
+                            <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Microbiological Evaluation of Generic Ceftriaxone Potency Using Disc Diffusion Assay at Coast General Teaching and Referral Hospital</div><div class="program-speaker">Kassam yusuf</div></div>
+                            <div class="program-entry"><div class="program-time">10:30-10:40</div><div class="program-topic">Antimicrobial Resistance Profile of Acinetobacter species Referred to the National Microbiology Reference Laboratory between 2021-2023</div><div class="program-speaker">George Njau</div></div>
+                            <div class="program-entry"><div class="program-time">10:40-11:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                        </div>
+                    </div>
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 5: Integrating Antimicrobial resistance (AMR) in IPC intervention</h4>
+                            <p class="text-white-50">Chair: Dr. Rachel Kamau</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Integrating One Health and Antimicrobial Resistance into Sustainable Infection Prevention and Control for Universal Health Coverage in Kenya</div><div class="program-speaker">Lucy Walegwa Mghongo</div></div>
+                            <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">One health approach unravels worrying antimicrobial resistance patterns: a cross-sectional study in Kisii, Kenya</div><div class="program-speaker">Briton Kavulavu</div></div>
+                            <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Detection of colonization of patients admitted at JM Kariuki County Hospital in Nyandarua County, Kenya</div><div class="program-speaker">Emma Wanjenga</div></div>
+                            <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Evaluating the impact of decentralizing blood donor replacement in four transfusing sub county Hospital in Homa Bay County</div><div class="program-speaker">Erasic Jerry Osumba</div></div>
+                            <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Factors that influence rise in cases of cervical cancer among youth and adolescence at Kendu Sub- County hospital, Rachuonyo North Sub County, Homa Bay County, Kenya</div><div class="program-speaker">Dr Kevin Mimba</div></div>
+                            <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Case Study: MPOX Infection Prevention Control Bungoma County Referral Hospital Experience</div><div class="program-speaker">Samson Agallo</div></div>
+                            <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Evaluating Drug-Resistant Tuberculosis Patterns in Mvita Sub County: Is There a Need for Post TB Treatment Prophylaxis?</div><div class="program-speaker">Dr Karima Dawoodbha</div></div>
+                            <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Prevalence of advanced HIV disease (AHD) among people living with HIV (PLHIV) attending Umoja health center, Nairobi, Kenya</div><div class="program-speaker">Angeline Ngano</div></div>
+                            <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.</div><div class="program-speaker">Sarah Ngare</div></div>
+                            <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            <div class="program-entry break">12:40-13:40 | Lunch Break</div>
+                        </div>
+                    </div>
+                    <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 6: Closing Ceremony Day 2</h4>
+                            <p class="text-white-50">Chair: Loyce Kihungi</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">13:40-13:50</div><div class="program-topic">Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development</div><div class="program-speaker">Silas O. Awuor</div></div>
+                            <div class="program-entry"><div class="program-time">13:50-15:00</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Michael Ruitururi</div></div>
+                            <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            <div class="program-entry"><div class="program-time">15:10-16:30</div><div class="program-topic">Poster rounds and exhibition</div><div class="program-speaker"></div></div>
+                            <div class="program-entry"><div class="program-time">16:30-15:10</div><div class="program-topic">Coffee and end of day 2</div><div class="program-speaker">Jennifer Njuhigu</div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- DAY 3 CONTENT -->
+                <div class="tab-pane fade" id="day3" role="tabpanel">
+                     <div class="program-session">
+                        <div class="program-session-title">
+                            <h4 class="mb-0">Session 7: World Patient Safety Day & Closing Ceremony</h4>
+                            <p class="text-white-50">Chair: Loyce Kihungi</p>
+                        </div>
+                        <div class="program-content">
+                            <div class="program-entry"><div class="program-time">8:30-9:00</div><div class="program-topic">World Patient Safety Day, 17 September 2025: "Safe care for every newborn and every child" celebration</div><div class="program-speaker"></div></div>
+                            <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development</div><div class="program-speaker">Silas O. Awuor</div></div>
+                            <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Michael Ruitururi</div></div>
+                            <div class="program-entry"><div class="program-time">8:50-9:50</div><div class="program-topic">Sharing of experiences from the county on patient safety</div><div class="program-speaker">Nyeri County</div></div>
+                            <div class="program-entry break">9:50-10:20 | Health Break: Poster viewing/ Exhibition</div>
+                            <div class="program-entry"><div class="program-time">10:20-11:00</div><div class="program-topic">National Action Plan on patient safety</div><div class="program-speaker">Dr.Irungu, KNPHI</div></div>
+                            <div class="program-entry"><div class="program-time">11:00-11:30</div><div class="program-topic">Conference Evaluation Findings</div><div class="program-speaker">Dr. Linus Ndegwa</div></div>
+                            <div class="program-entry"><div class="program-time">11:30-12:00</div><div class="program-topic">Awards Presentation</div><div class="program-speaker">Guest</div></div>
+                            <div class="program-entry"><div class="program-time">12:00-12:20</div><div class="program-topic">Vote of Thanks and official closing</div><div class="program-speaker">Jennifer Njuhigu</div></div>
+                            <div class="program-entry break">12:20 | End of the Conference & Lunch Break</div>
+                            <div class="program-entry break">15:20 | Departure</div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- GUEST SPEAKERS SECTION -->
+    <section id="speakers" class="section-padding bg-light">
+         <div class="container">
+            <div class="section-title">
+                <h2>Guest Speakers</h2>
+                <p class="lead">Learn from leading experts in the field of Infection Prevention and Control.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="evelyn.jpg" alt="Dr. Evelyn Wesangula">
+                        <h5 class="mt-3 mb-1">Dr. Evelyn Wesangula</h5>
+                        <p class="text-muted">ESA</p>
+                        <p class="topic">"Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC"</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="revathi.jpg" alt="Prof. Revathi Gunturu">
+                        <h5 class="mt-3 mb-1">Prof. Revathi Gunturu</h5>
+                        <p class="text-muted">AKUH</p>
+                        <p class="topic">"Recent Developments in Medical Device related IPC practices" & "The role of ECHO in integrating AMR into IPC"</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="josiah.jpg" alt="Josiah Mwenda">
+                        <h5 class="mt-3 mb-1">Josiah Mwenda</h5>
+                        <p class="text-muted">UoN</p>
+                        <p class="topic">"AMR Surveillance Information System Challenges"</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="linus.jpg" alt="Dr. Linus Ndegwa">
+                        <h5 class="mt-3 mb-1">Dr. Linus Ndegwa</h5>
+                        <p class="text-muted">US CDC</p>
+                        <p class="topic">"Collaborative Leadership and Culture Change in Delivering Infection Prevention"</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="flavia.jpg" alt="Dr. Flavia Nakayima">
+                        <h5 class="mt-3 mb-1">Dr. Flavia Nakayima</h5>
+                        <p class="text-muted">University of Arizona</p>
+                        <p class="topic">"Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital"</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="speaker-card">
+                        <img src="sigei.jpg" alt="Dr. Sigei">
+                        <h5 class="mt-3 mb-1">Dr. Sigei</h5>
+                        <p class="text-muted">Industry</p>
+                        <p class="topic">"Industry Insight into Infection Prevention and Control and AMR"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABSTRACTS SECTION -->
+    <section id="abstracts" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conference Abstracts</h2>
+                <p class="lead">Explore the research presented at the conference. Click on any card to read the full abstract.</p>
+            </div>
+            <div class="row g-4" id="abstractsGrid">
+                <!-- Abstract cards will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- AWARDS SECTION -->
+    <section id="awards" class="section-padding">
+        <div class="container text-center">
+            <div class="icon"><i class="bi bi-trophy-fill"></i></div>
+            <h2 class="mt-3">Best Presentation Award</h2>
+            <p class="lead col-lg-8 mx-auto">This award is given to the best oral presentation at the conference, evaluated on Presentation Style, Research Quality, and Layout/Design. It's a unique opportunity to combine visual and oral explanations of your projects.</p>
+        </div>
+    </section>
+    
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row g-5">
+
+                <!-- Column 1: Scientific Committee -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>Scientific Committee</h5>
+                    <ul class="list-unstyled">
+                        <li>Dr. Rachel Kamau - Chair</li>
+                        <li>Frankline O. Mboya</li>
+                        <li>Prof. Gunturu Revathi</li>
+                        <li>Dr. Linus Ndegwa</li>
+                        <li>Dr. Ernest Makokha</li>
+                        <li>Dr. Evelyn Wesangula</li>
+                        <li>Dr. George Agogo</li>
+                        <li>Dr. Paul Musingila</li>
+                        <li>Dr. Josphat Tonui</li>
+                        <li>Evelyne Mboga</li>
+                        <li>Dr. Emanuel Tanui</li>
+                        <li>Lydia Ntisiki</li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Logistics Committee -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>Logistics Committee</h5>
+                     <ul class="list-unstyled">
+                        <li>Veronica Nyawira - Chairing</li>
+                        <li>Erick Kitangala</li>
+                        <li>Stephen Macharia</li>
+                        <li>Mary Ndinda</li>
+                        <li>Erastus Nondi</li>
+                        <li>Loyce Kihungi</li>
+                        <li>Florence Wachira</li>
+                        <li>Felister Kiberenge</li>
+                        <li>Jennifer Njuhigu</li>
+                        <li>Cynthia Adhiambo</li>
+                        <li>Lydia Ntisiki</li>
+                        <li>Timmons Sigo</li>
+                        <li>Dr. Nkatha Gitonga</li>
+                        <li>Dr Rachel Kamau</li>
+                        <li>Dr Irene Muramba</li>
+                        <li>Dr. Linus Ndegwa</li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Partners & Exhibitors -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>Partners</h5>
+                    <div class="d-flex flex-wrap">
+                        <div class="partner-logo p-2"><img src="moh.png" alt="Ministry of Health Logo"></div>
+                        <div class="partner-logo p-2"><img src="mombasa.png" alt="Mombasa County Logo"></div>
+                        <div class="partner-logo p-2"><img src="cdc.png" alt="CDC Logo"></div>
+                        <div class="partner-logo p-2"><img src="ecsach.png" alt="ECSA-HC Logo"></div>
+                        <div class="partner-logo p-2"><img src="reactafrica.jpg" alt="REACT Africa Logo"></div>
+                    </div>
+                    <h5 class="mt-4">Exhibitors</h5>
+                    <div class="d-flex flex-wrap">
+                         <div class="partner-logo p-2"><img src="anios.png" alt="Anios Logo"></div>
+                         <div class="partner-logo p-2"><img src="kemri.jpg" alt="KEMRI Logo"></div>
+                         <div class="partner-logo p-2"><img src="nairobi-ent.png" alt="Nairobi Enterprises Logo"></div>
+                    </div>
+                </div>
+                
+                <!-- Column 4: General Information -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>General Information</h5>
+                    <div class="info-item">
+                        <strong>Venue:</strong>
+                        <p class="mb-0">Pride Inn conference centre, Mombasa, Kenya</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Language:</strong>
+                        <p class="mb-0">English</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>Currency:</strong>
+                        <p class="mb-0">Kenya Shillings (KES)</p>
+                    </div>
+                </div>
+
+            </div>
+            <hr class="my-4">
+             <div class="text-center">
+                 <p class="mb-0">&copy; 2025 Infection Prevention Network-Kenya (IPNET-K). All Rights Reserved.</p>
+                 <p class="mb-0"><small>Website Designed by <a href="https://wa.me/254799172342" target="_blank">Curated Designs</a></small></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Abstract Modal -->
+    <div class="modal fade" id="abstractModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="text-align: justify;">
+                    <p class="text-muted fst-italic" id="modalAuthors"></p>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const abstractsData = [
+                { id: 30, title: "Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital Adult Hospital, Zambia", authors: "Linda Musonda, ZNHRA", content: `<h6>Background</h6><p>Antimicrobial resistance poses a significant threat to public health security globally, particularly in low-resource settings such as Zambia. Nurses, as frontline caregivers, are essential in implementing infection prevention and control strategies. This study examined the role of nursing empowerment in enhancing IPC measures at the University Teaching Hospital in Lusaka.</p><h6>Methods</h6><p>A cross-sectional study design was employed. Structured questionnaires were administered to a sample of 208 nursing staff to evaluate their knowledge, attitudes, and practices related to IPC. The nurses included IPC champions and general ward nurses. The study emphasized nurse-led surveillance, and interdisciplinary collaboration on IPC practices to combat AMR.</p><h6>Results</h6><p>The findings revealed that empowering nurses leads to improved IPC practices, enhanced leadership, and better compliance with antimicrobial stewardship protocols. The results underscore the importance of investing in continuous nursing education and leadership training as a strategy to strengthen IPC and mitigate AMR. Using the core component score the facility managed to score 640/800 going into the advanced level compared to the previous assessment done in 2023 in which the facility scored 362.5/800 representing in basic level.</p><h6>Conclusion</h6><p>Nursing empowerment is a critical enabler of effective IPC and AMR containment. The initiative underscores the pivotal role of nursing empowerment in advancing infection prevention and mitigating antimicrobial resistance.</p>` },
+                { id: 20, title: "Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya", authors: "Silas O. Awuor, JOOTRH-KISUMU", content: `<h6>Background</h6><p>Effective management of Diabetic foot ulcers (DFU) requires timely treatment of infections with appropriate antibiotics based on culture and susceptibility results. This study profiled the prevalent bacteria in Diabetic foot infection (DFI), their antimicrobial susceptibility patterns, and associated resistance genes.</p><h6>Methodology</h6><p>A multi-center cross sectional study was conducted from November 2024-May 2025, involving 117 patients with infected DFU, attending selected referral hospitals (JOOTRH and KCRH). Wound swabs were then pre-enriched prior to inoculation onto Blood, MacConkey and Chocolate Agar to isolate aerobic microorganisms. Bacteria identification was based on Gram stain and conventional biochemical tests. Antibiotic susceptibility testing was performed using Kirby-Bauer disk diffusion method. Methicillin-resistant Staphylococcus aureus (MRSA) and extended-spectrum beta-lactamase-producing Enterobacterales (ESBL-PE) were identified phenotypically. mecA gene in selected MRSA, and blaCTX-M-1 and blaSHV-1 in ESBL-PE were detected using Uniplex PCR and electrophoresed using 1.5% agarose gel. Data was analyzed using MS. Excel version 15 and Stata version 15 (Stata Corp).</p><h6>Results</h6><p>Poly-microbial infections were detected in 23.8% of patients. Gram-positive bacteria accounted for 55.6% (80/144) of isolates. Staphylococcus aureus (36.1% (52/144)) and Proteus spp (13.9% (20/144)) were the most prevalent Gram-positive and Gram-negative bacteria, respectively. Notably, 98.6% (142/144) of the isolates were multidrug-resistant organisms (MDR). Staphylococcus aureus sensitivity was highest for Gentamycin and Ciprofloxacin (48% each) and lowest for Cefoxitin (2%). Proteus spp sensitivity was highest for Imipenem (87%) and lowest for Tetracycline, Ampicillin and Amoxiclav (0%). mecA gene was identified in 56% (5/9) of MRSA. Among the selected MDR Gram-negative isolates, 60% had blaCTX-M-1, 20 % had blaSHV and both blaCTX-M-1 and blaSHV in one Klebsiella pneumoniae.</p><h6>Conclusion</h6><p>The high prevalence of MDR bacteria in DFI underscores culture and sensitivity testing guided treatment. Detection of resistance genes calls for sustained surveillance efforts, stringent infection prevention and control and alternative therapy exploration.</p>` },
+                { id: 38, title: "Improved Microbiology Lab Utilization: A Strategy to Integrate Antimicrobial Resistance Surveillance into Infection Prevention and Control Practice", authors: "Lucy Ochola, Machakos Level 5 Hospital", content: `<h6>Introduction</h6><p>The escalating prevalence of drug-resistant infections necessitates an integrated approach, combining infection prevention and control (IPC) strategies with judicious antimicrobial stewardship (AMS) practices. Diagnostic stewardship facilitates targeted antimicrobial therapy and mitigates antimicrobial resistance (AMR) spread by identification of causative organisms. Blood culture diagnostics, in particular, enhance AMR surveillance systems thus improving infection prevention and control measures. To assess the impact of an integrated AMS intervention in improving blood culture collection practices and its potential impact on reducing antimicrobial resistance rates.</p><h6>Methodology</h6><p>A quasi-experimental design evaluated the effectiveness of an antimicrobial stewardship intervention on blood culture uptake over a 6-month pre- and post-intervention period at a County Referral Hospital. The intervention focused on staff sensitization in departments managing suspected bloodstream infections, including the ICU, Casualty, Newborn Unit, and units with immunosuppressed patients, with a designated phlebotomist for sample collection. Outcomes measured included changes in blood sample collection rates and a detailed description of AMR surveillance data, with all data collected and analyzed using Excel</p><h6>Results</h6><p>Blood culture samples increased from 239 samples (April-September 2024) to 468 samples (January-June 2025), a 95.8% rise. Positive blood cultures increased from 12 to 191 samples. Coagulase-negative staphylococci were most frequently identified, decreasing from 67% (8/12) to 51.31% (98/191) of positive cultures in pre- and post-intervention periods. Post-intervention, common isolates included E. coli (8.38%-16/191), A. baumannii (4.19%-8/191), and K. pneumoniae (3.14%-6/191), compared to pre-intervention where K. pneumoniae was prevalent (50%-2/4). Three Candida isolates were identified post- intervention, with none pre-intervention. Most bacterial isolates post-intervention showed resistant profiles based on antimicrobial susceptibility testing, requiring infection. prevention and control measures including environmental cleaning and standard precautions.</p><h6>Conclusion</h6><p>Integration of AMR surveillance via increased blood culture collection is an effective strategy to enhance IPC interventions. These supports integrating AMR surveillance in IPC interventions to contain resistant isolates through enhanced surveillance strategies.</p>` },
+                { id: 48, title: "Baseline Assessment of Antimicrobial Stewardship Practices at Nakuru County Referral and Teaching Hospital, Kenya", authors: "Lydia Momanyi, Nakuru County Referral & Teaching Hospital Simon Wangia, Nakuru County Referral & Teaching Hospital Professor Mirfin Mpundu, REACT Africa", content: `<h6>INTRODUCTION</h6><p>Antimicrobial resistance is a major public health concern globally, driven by antibiotic misuse in healthcare, agriculture, and over-the-counter sales. Hospitals with weak antimicrobial stewardship (AMS) programs contribute significantly, often relying on empirical prescribing inadequate microbiological testing, and poor adherence to treatment guidelines. The Antibiotic Stewardship Programme through Innovation, Research, and Education (ASPIRE) aims to address this crisis through a phased approach, starting with a baseline assessment of AMS practices at Nakuru County Referral and Teaching Hospital.</p><h6>METHODS</h6><p>A mixed-methods approach was used, including retrospective patient file reviews, healthcare worker knowledge-attitude-practice (KAP) surveys, costing analysis, WHO AMS functionality assessment, and qualitative interviews. Data was digitized and collected via the DHIS2 platform.</p><h6>RESULTS</h6><p>AMS functionality was low (31%), with leadership commitment scoring j28% due to fragmented governance and underfunding. Empirical prescribing dominated, with ceftriaxone most frequently prescribed (29.6%). Surgical prophylaxis was the top indication (35.1%). Microbiological testing was rare (5.3%), with blood cultures requested most (95%) due to an ongoing study. Adherence to treatment guidelines was inconsistent, with only 19.820% of cases undergoing microbiological confirmation before therapy. Antibiotic de- escalation was primarily driven by unknown reasons (78% of cases) rather than laboratory data (4%), indicating gaps in documentation at the facility. Staff showed fair AMS knowledge (mean scores: 6.7/10). Misuse or incorrect administration affected 208 patients, with a total cost of $7,223.05 for the period under review (approx. $34.77 per patient).</p><h6>CONCLUSION</h6><p>Significant AMS gaps exist weak leadership, empirical prescribing, low diagnostic use, and inconsistent guideline adherence, all fueling AMR and unnecessary costs. Despite fair staff knowledge, implementation is poor. Urgent action is requiredstronger governance, investment in diagnostics, and consistent monitoringto optimize antibiotic use and improve outcomes.</p>` },
+                { id: 63, title: "Molecular Characterization of β-Lactamase and Carbapenemase - Producing Enterobacterales in Children Under Five in Kibera, Nairobi Kenya", authors: "Beatrice Oduor, Association of Public Health Laboratories, Kenya. Jully Okonji, Association of Public Health Laboratories, Kenya Godfrey Bigogo, Kenya Medical Research Institute, Kenya Alice Ouma, Kenya Medical Research Institute, Kenya, Isaac Ngere, Washington State University Global Health, Kenya", content: `<h6>Introduction</h6><p>Surveillance for antimicrobial resistance (AMR) is essential for understanding population trends and informing prevention strategies. However, conducting AMR surveillance can be a resource-intensive effort. This project explored the feasibility of incorporating phenotypic and genotypic AMR surveillance into existing childhood disease surveillance platforms to detect colonization prevalence with β-lactamase- and carbapenemase-producing Enterobacterales.</p><h6>Methods</h6><p>Rectal swabs were collected from children under five presenting to a clinic in Kibera, Nairobi during May 2025. Swabs were plated on Chromagar selective for extended- spectrum cephalosporin-resistant Enterobacterales (ESCrE) and carbapenem-resistant Enterobacterales (CRE). Confirmatory identification and susceptibility testing were performed on VITEK 2. Extended-spectrum β-lactamase (ESBL) and carbapenemase genes were detected via real-time PCR using the Streck ARM-D kit, targeting ESBL genes (CMY-2, CTX-M-15, CTX-M-14) and carbapenemase genes (OXA-48, IMP, VIM, DHA, KPC, and NDM). Colonization prevalence was determined based on the percent of enrolled children harboring ESCrE or CRE along with the frequency of molecular targets among recovered isolates.</p><h6>Results</h6><p>Among 120 children enrolled, 73% (87/120) and 4% (5/120) were colonized with ESCrE and CRE, respectively. Among 96 ESCrE isolates, 90% (n=86) were found to be Escherichia coli. ESBL genes were detected in 98% (94/96) of ESCrE isolates; CTX-M-15 only was most frequently detected (82%; 79/96), followed by CTX-M-14 (20%, 19/96). Among 7 CRE isolates, carbapenemase genes were detected in 71% (n=7) of the isolates; NDM was detected in 43% (3/7) and OXA-48 was detected in 29% (2/7).</p><h6>Conclusion</h6><p>These findings highlight the feasibility of incorporating AMR surveillance within existing surveillance platforms and the importance of including phenotypic and genotypic characterization of resistant isolates. The high prevalence of colonization with antimicrobial- resistant bacteria in this population demonstrates the urgent need for ongoing AMR surveillance in community and healthcare settings to inform targeted intervention efforts.</p>` },
+                { id: 66, title: "Antibiotic susceptibility patterns of bacterial communities in urine at Thika Level Five (5) hospital", authors: "JOAN MAINA, NMRL BRIAN MUGWE, TL5H", content: `<h6>Background</h6><p>Antimicrobial resistance (AMR) represents a global health emergency. This has made treating infectious diseases harder, resulting in increased mortalities. The evolution of antibiotic-resistant pathogens has rendered many first-line antibiotics ineffective. Combined and functional AMR surveillance programs have proven to be one of the resolutions towards this emergency. This study described the antibiotic susceptibility patterns of pathogenic bacterial communities from urinary tract infections (UTIs) and established the proportion with AMR at Thika Level 5 Hospital, Kiambu County, Kenya.</p><h6>Methods</h6><p>The retrospective cross-sectional descriptive study design involved the use of structured checklists to obtain demographic data from archived records (2021-2023). Rejuvenated bio-banked isolates with complete records underwent culture and sensitivity analysis for identification and antibiotic resistance detection. Appropriate conventional biochemical tests were done to confirm the identity of the isolated bacterial communities. Antibiotic sensitivity was done on Mueller-Hinton agar using Kirby-Bauer disk diffusion according to the Clinical Laboratory Standards Institute guidelines (CLSI-M100).</p><h6>Results</h6><p>A total of 80 isolates from urine cultures were tested in this study. Of the total, 55 were E. coli (68.75%) and 25 were K. pneumoniae (31.25%). E. coli sensitivity patterns included ceftriaxone (44%), cefuroxime (40%), ampicillin (11%), cotrimoxazole (29%), ciprofloxacin (49%), and nitrofurantoin (81%). K. pneumoniae sensitivity patterns included ceftriaxone (36%), cefuroxime (32%), ampicillin (0%), cotrimoxazole (32%), ciprofloxacin (44%), and nitrofurantoin (39%). 44 of the total isolates (55%) exhibited multi-drug resistance linked to extended-spectrum beta-lactamase (ESBL) production.</p><h6>Conclusion</h6><p>UTIs dominated by E. coli and K. pneumoniae with rising antibiotic resistance may exacerbate treatment failure. The study underscores the need for genomic surveillance and antimicrobial stewardship programs to enforce diagnostic-guided therapy, preserve antibiotic efficacy, and improve public health outcomes.</p>` },
+                { id: 77, title: "Baseline Assessment of Antimicrobial Stewardship Practices at AAR Hospital (PRIVATE FACILITY), Kenya: Findings from the ASPIRE Project", authors: "Dr Diana Kariuki, AAR hospital, PSK", content: `<h6>Background</h6><p>Antimicrobial resistance (AMR) poses a major public health threat in Kenya, with sub- Saharan Africa carrying a disproportionate burden. In Kenya, AMR is driven by antibiotic overuse in healthcare, agriculture, and unregulated over-the-counter sales. Hospitals, especially those lacking antimicrobial stewardship (AMS) programs, contribute through empirical prescribing, limited microbiological testing, and poor guideline adherence. Up to 5090% of patients receive antibiotics before confirmation, leading to inappropriate use and prolonged hospital stays. The Antibiotic Stewardship Program through Innovation, Research, and Education (ASPIRE) seeks to address these issues, starting with a baseline AMS assessment at AAR Hospital.</p><h6>Methods</h6><p>AAR Hospital, a 140-bed private tertiary facility in Nairobi, conducted a mixed-methods study involving: Retrospective reviews of 366 patient files from multiple wards, Knowledge, Attitudes, and Practices (KAP) surveys; AMS assessment using the WHO tool; Economic evaluation; Key informant interviews and focus group discussions. Data collection used digital tools on the DHIS2 platform.</p><h6>Results</h6><p>AMS functionality scored 39%. Empirical prescribing dominated, with amoxicillin- clavulanate (26.9%) most used. Surgical prophylaxis was the top indication (45.9%). Microbiological testing was low (17.5%), with blood cultures most frequent (29.7%). Only 20% of cases had microbiological confirmation before treatment. Antibiotic de-escalation was based on clinical response (74%) over lab data (4%). The lab scored 7577% but used outdated antibiograms. Healthcare workers had moderate AMS knowledge (mean: 6.7/10). 199 patients received misused antibiotics (Irrational drug use), with an average cost of 22.80 USD per patient. Systemic issues included pre-admission antibiotic use, unregulated sales, and hierarchical prescribing practices.</p><h6>Conclusion</h6><p>AARs 39% AMS score mirrors challenges in low- and middle-income countries. Limited testing, empirical prescribing, and poor diagnostics contribute to resistant infections, increased costs, and worse outcomes, especially for low-income patients.</p>` },
+                { id: 43, title: "Hand Hygiene Knowledge, Attitudes, and Practices Among Clinical-Year Medical Students in a Kenyan Level 5 Hospital- Final", authors: "Kelvin Kipkoech, Masinde Muliro University of Science and Technology; Mercy Chepkoech, Masinde Muliro University of Science and Technology; Fredrick Ochieng, Masinde Muliro University of Science and Technology; Antony Sifuna, Masinde Muliro University of Science and Technology; Peter Kuloba, Masinde Muliro University of Science and Technology", content: `<h6>Background</h6><p>Healthcare-associated infections (HCAIs) are a major public health concern resulting from poor infection prevention practices like improper hand hygiene. Clinical Medicine, Nursing, and medical students in rotations may unknowingly spread pathogens. Hand hygiene compliance remains low. This study assessed hand hygiene knowledge, attitudes, and practices among clinical year students at Kakamega County General Teaching and Referral Hospital in Kenya.</p><h6>Methods</h6><p>A cross-sectional study was conducted from 3rd to 13th July 2025 amongst students who were in 3rd -6th years of their medical courses (medicine, clinical medicine and nursing) from Masinde Muliro University on rotation at Kakamega County General Hospital. Convenience sampling was used. Data was collected via a structured, self-administered WHO-adapted online questionnaire in English. Responses were cleaned in Excel and analyzed in SPSS v29 using descriptive statistics and Chi-square tests (p < .05). Ethical approval and informed consent were obtained.</p><h6>Results</h6><p>Of 192 participants, 58.9% were male; 34.9% medicine, 33.9% nursing, and 31.3% clinical medicine. Formal training (65.1%) was linked to better knowledge (p = .018). However, hand hygiene practices were not associated with course, gender, or knowledge. Although 93.2% valued hand hygiene, only 56.3% identified unclean hands as the main transmission route. Adherence was high before patient contact and performing asceptic procedures (89.6%) and after patient contact (88.0%), but only 25.0% consistently used alcohol-based hand rubs. Compliance was lower after glove removal (63.0%) and contact with surroundings (68.2%). Observation of senior staff influenced practices (p < .001). Key barriers included lack of supplies (66.7%), forgetfulness (65.1%), and belief that gloves use alone suffices (39.1%).</p><h6>Conclusion</h6><p>Clinical students demonstrated moderate knowledge and positive attitudes but poor compliance. Training and senior staff influence improved practices. Structured training, resource availability, and behaviour change strategies are essential to improve hand hygiene and infection control.</p>` },
+                { id: 64, title: "REDUCING TURN AROUND TIME (TAT) FOR SOCIAL HEALTH INSURANCE FUND (SHIF) DISCHARGE PROCESS AT COAST GENERAL TEACHING AND REFERRAL HOSPITAL(CGTRH)", authors: "Ann Mumbua, Miriam Kithuka, Lilian Ngugi, Violet Wafula, Erick Otieno, Coast General Teaching and Referral Hospital", content: `<h6>Background</h6><p>Social Health Insurance Fund is a financing scheme aimed at improving access to affordable, quality healthcare covering preventive, promotive, curative, palliative and rehabilitative services. However, delays in SHIF discharge have been noted leading to prolonged hospital stay, reduced patient satisfaction and safety and enhanced the risk of hospital acquired infections. At CGTRH, client interviews highlighted prolonged delays ranging from hours to days. To reduce SHIF discharge TAT from 19 hours in March 2025 to 6 hours by 30th June 2025.</p><h6>Method</h6><p>Root causes analysis done using the fishbone diagram, key issues identified were Lack of prior information on SHIF required documents, Lack of SHIF forms at admissions and clinical areas, also, patients/families are not well informed on SHIF discharge documents. The study was primarily conducted in the maternity wing which accounts for majority of SHIF discharges at the facility</p><h6>Interventions</h6><p>Sensitize stakeholders including doctors, nurses, admission clerks, health information officers, SHIF team and patients, redesign admission process at maternity department and availing required SHIF discharge documents at admission desk and pilot inpatients units</p><h6>Results in Intervention Phase</h6><p>Sensitization and availing of required SHIF discharge Documents at the units reduced SHIF discharge TAT by 50% (from 19 to 9 Hours), Redesigning of maternity Admission process further reduced the SHIF discharge TAT to 3.2 Hours</p><h6>Sustainability measures</h6><p>Workflow Standard Operating Procedure (SOP) to standardize SHIF admission and discharge process across the piloted departments, Scale up SHIF discharge project to all other admitting units and relevant departments. Include SHIF admission and Discharge processes in the new staff on-boarding process and Continuous Monitoring the scale up and implementation of the standardized process.</p><h6>Conclusion</h6><p>Improving the discharge TAT will minimize risks for hospital Acquired Infections, improve patient satisfaction and safety, enhance resource utilization, cost effectiveness, increases staff efficiency and morale and increases bed availability for incoming patients.</p>` },
+                { id: 72, title: "TRANSFORMING Infection Prevention Control (IPC) Indicator Tracking with Innovative Spreadsheet Dashboards in Kenya (FINAL)", authors: "Ann Kamuyu, Aga Khan University Hospital, Nairobi Ruth Thuku, Aga Khan University Hospital, Nairobi", content: `<h6>Introduction</h6><p>Monitoring infection control indicators remains a key challenge in healthcare. To address this, dashboards were developed to improve visibility and track trends in key performance data. This approach supports timely action and strengthens infection prevention and patient safety efforts across the organization.</p><h6>Method</h6><p>To enhance visibility and tracking of Key Performance Indicators (KPIs), Excel-based dashboards were developed in-house due to the absence of suitable pre-existing tools. Each KPI was clearly defined with a numerator, denominator, and target or benchmark. Data collected from units is entered into daily Excel sheets, which feed into unit dashboards. These are further linked to form departmental and ultimately an institutional dashboard, collectively referred to as Quality Variance Reports (QVRs). Traffic light color codes are used to visually represent monthly performance trends against targets. where red represents below target, amber indicates an improvement, green shows performance that met the target and purple shows inadequate samples.</p><h6>Results</h6><p>The implementation of dashboards has significantly enhanced infection control efforts by enabling real-time access to KPI data at unit, departmental, and institutional levels. This has streamlined data entry, improved trend analysis, tracking implementation of actions plans for improvement and supported timely decision-making. The visibility of infection-related indicators has promoted a culture of performance measurement, driving targeted interventions and continuous process improvement. Furthermore, the dashboards have played a key role in sustaining compliance with College of American Pathologist (CAP), and JCI accreditation standards, ultimately contributing to improved infection prevention, quality of care, and patient safety.</p><h6>Conclusion</h6><p>Linked Excel-based dashboards are a practical and effective tool for monitoring infection control indicators, especially in settings without advanced software. They support timely tracking, data visibility, and continuous quality improvement in infection prevention efforts.</p>` },
+                { id: 86, title: "BEYOND donor funding, sustaining Infection Prevention and Control program through domestic resource mobilization; the case of Rachuonyo East Sub-County Hospital.", authors: "Gabriel Kotewas, MoH - Homa Bay County, Kenya; Margaret Aketch, MoH, Homa Bay County, Kenya; Irine Serene, MoH, Homa Bay County, Kenya", content: `<h6>Introduction</h6><p>Adherence to infection prevention and control (IPC) standards and guidelines by healthcare workers is essential for reducing the spread of healthcare- associated infections (HAIs). However, IPC practices among healthcare workers in low- and middle-income countries (LMICs), including Kenya, are generally inadequate and donor dependent. This research aims to identify the barriers and enablers of sustaining IPC practices through domestic resource mobilization.</p><h6>Methods</h6><p>The hospital administration in January 2025 through support of Facility Improvement Fund (FIF) engaged the IPC committee to conduct sustainable capacity assessment using a customized tool from the Infection prevention and control assessment framework (IPCAF) tool. Road maps and action points from these assessments informed of a strategic advocacy to the Hospital administration to improve funding for IPC program. The capacity of IPC program committee members was also built on annual work planning processes, budgeting as well as developing standard operating procedures (SOP) for forecasting, ordering and requesting approving authorities for fund release.</p><h6>Results</h6><p>The assessment identified several barriers to IPC practices, including non- adherence to IPC practice protocols, limited management engagement and support, shortage of resources and budget, lack of orientation and training for new employ, shortages of personal protective equipment and water supply, and inadequate waste management. We also identified some facilitators, including the existence of an IPC committee, IPC training conducted, and availability of IPC Policy guidelines. The IPC program was incorporated in the annual work plan as a distinct department with a budget. SOPs were developed with regular IPC audits conducted and the last IPCAF assessment of the facility was ranked at intermediate level.</p><h6>Conclusion</h6><p>By addressing the identified barriers and leveraging the facilitators, department heads, IPC team leaders, and hospital administration developed targeted strategies and interventions to improve infection control, reduce the spread of HAIs, and ultimately enhance the quality of healthcare services with sustained funding from own source revenue.</p>` },
+                { id: 35, title: "Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025", authors: "Michael Ruitururi, Nurse, IPC Coordinator", content: `<h6>Introduction</h6><p>When infections are prevented through Hand Hygiene (HH), the need for antimicrobial is reduced, which lessens the selective pressure that drives the development of AMR ,Linus Ndegwa et al, 2019.HH with soap and water or using alcohol-based hand rub (ABHR) can significantly decrease the transmission of bacteria, including antibiotic-resistant strains, in healthcare settings and the wider community (Pan American Health Organization). The average level of compliance with recommended HH techniques among healthcare workers was 78%, which is below the benchmark of 90% for critical care areas, Debra A. Golf et al, 2012.WASH and IPC reduce antibiotic demand, use, misuse and waste, and reduce the opportunity for resistant strains to emerge (WHO). A study done in Kenyan hospitals had a compliance of 38%, Linus Ndegwa et al, 2019.HH audit was conducted to assess compliance to HH.</p><h6>Methodology</h6><p>Self-administered questionnaires were used to collect data from health care workers working in JM Hospital in May 2025. Observation of HH was also done during clinical work. Data was analyzed using excel and Epi Info, presented in tables charts and measures of central tendency. Ethical principles were observed.</p><h6>Results</h6><p>A total of 70 responses were collected. Nurses had 60(85.7%) with the majority having worked for over 16 years. Approximately 100% have knowledge of HH, with 56(80%) reporting performing HH after contact to patient/patients surroundings. Only 36(51.3%) moments were done before handling a patient with 9(12.8%) compliance. Only 28(40%) performed HH after contacting patients. Approximately 64(91.4%) HH was by ABHR. Reasons for poor compliance were negative attitude 14(20 %) and lack of paper towels, cold water and use of alternative ABHR having 16(22.8%),40(57%),30(42.8) respectively.</p><h6>Conclusions/recommendations</h6><p>HH practices are below benchmark, this needs an urgent address. More sensitizations to be done to improve HH, agrees with Loise Kihungi et al, April 2022.</p>` },
+                { id: 2, title: "Enhancing hand hygiene compliance at Valley Hospital using the World Health Organization multimodal strategy", authors: "Bonface Thuranira, Valley Hospital", content: `<h6>Background</h6><p>Hand hygiene is a critical factor in prevention infection, yet compliance among healthcare workers often remains suboptimal. This project aims to enhance hand hygiene adherence at Valley Hospital by implementing the World Health Organizations multimodal strategy. Baseline assessments indicated that inconsistent adherence to hand hygiene protocols was related to inadequate training, unavailability of hand hygiene supplies, ineffective monitoring and feedback, and insufficient institutional support. This project aims to enhance hand hygiene adherence at Valley Hospital from a baseline score of 20.6% to 70 % by the end of December 2024, by implementing the WHO 5 multimodal strategy.</p><h6>Methods</h6><p>A quasi-experimental pre-post intervention design approach was employed. Baseline hand hygiene compliance rates were assessed through direct observation using WHOs Hand Hygiene Observation Form. The intervention included system changes, training, reminders, evaluation, and leadership engagement. Data collection included pre- and post-intervention compliance rates and staff surveys.</p><h6>Results</h6><p>The intervention led to a significant improvement in hand hygiene compliance among HCWs from 20.6% to 78.2%. Initial observations showed low adherence, which increased progressively following the implementation of the WHO multimodal strategy. Qualitative feedback from staff highlighted improved awareness and institutional commitment to hand hygiene.</p><h6>Challenges</h6><p>Key challenges included staff resistance to behavior change, resource limitations, monitoring difficulties, and sustainability concerns. Addressing these challenges requires leadership engagement, frequent training sessions, and consistent feedback mechanisms.</p><h6>Conclusion</h6><p>Implementing the WHO multimodal strategy significantly improved hand hygiene compliance and contributed to a reduction in HAIs at Valley Hospital. A structured scale-up plan ensures sustainability and broader adoption across departments. These findings underscore the need for continuous reinforcement, leadership commitment, and ongoing monitoring to maintain high compliance rates and promote patient safety.</p>` },
+                { id: 44, title: "STRENGTHENING Outbreak Preparedness and Response Through Strategic IPC Program Financing: A Multi-REGIONAL ANALYSIS from Ethiopia", authors: "Dr Robel W. Tefera, Ministry of Health- Ethiopia, Resolve to Save Lives", content: `<h6>Introduction</h6><p>Infection Prevention and Control (IPC) is a key component of resilient health systems and a critical enabler of effective outbreak preparedness and response. In Ethiopia, where regular outbreaks consistently undermine public health, the strategic and continuous financing of IPC during outbreak responses is of paramount importance. To this end, Ethiopia secured domestic national level budget with a dedicated line for IPC in 2023 G.C, first of its kind in Sub Sharan Africa.</p><h6>Methods</h6><p>A cross-sectional study was conducted on IPC specific financial resource allocation in 36 public health facilities of South Ethiopia, Sidama, Oromia, and Addis Ababa regions. Quantitative secondary data were sourced from regional finance and economy development bureaus and health care facility level records and IPC inclusive cost calculation was based on relevant budget codes used for IPC and WASH interventions at facility level (6212, 6214, 6218, 6219) for the Ethiopian fiscal year of 2017 (July 2023 to June 2024).</p><h6>Results</h6><p>Findings revealed that budgets for IPC are allocated at a range of 1% to 8% of the total facility budgets, with an overall mean of 4.42%, and standard deviation of 1.71%far less than the 810% suggested for effective IPC and WASH programming. Mean and SD of allocation were lowest for Sidama region (2.82%, SD 0.94%) and highest for Addis Ababa (5.22%, SD 1.47%).</p><h6>Conclusion</h6><p>The lack of a separate budget line for IPC and financial code inconsistency between regions has a negative implication on the effective deployment, utilization, transparency, and accountability of IPC resources during outbreaks. This study suggests the need for immediate policy action to establish dedicated and protected IPC specific financing at sub-national and facility level health budgets. Anchoring IPC funding is not only critical to prevent and rapidly contain outbreaks but also a strategic investment in national and regional health security.</p>` },
+                { id: 46, title: "THE Use of Contact Precautions to Prevent Transmission of Multidrug-Resistant Organisms: Emerging evidence", authors: "David Odada, Aga Khan University Hospital; James Ndai, Aga Khan University Hospital Nairobi", content: `<h6>Background</h6><p>Since the 1980s, contact precautions (CP), including patient isolation and mandatory use of gowns and gloves, have been widely implemented to prevent the transmission of multidrug- resistant organisms (MDROs), with support from CDC guidelines. These measures are credited with reducing healthcare-associated infections in outbreak settings. However, emerging evidence has raised concerns about the effectiveness of these measures in endemic settings, questioning their impact on patient experience, unnecessary resource utilization, and the limited added benefit over standard precautions. This study aims to examine the current evidence on contact precautions for MDROs.</p><h6>Methods</h6><p>We conducted a systematic review of the literature on the effectiveness of contact precautions for MDRO control. We selected nine studies published between 2022 and 2024 that questioned the effectiveness of CP in controlling hospital transmission of resistant organisms and advocated for alternative approaches, including Enhanced Barrier Precautions. Among these, five studies were considered high-quality based on their methodological rigor and use of control groups.</p><h6>Results</h6><p>While CDC and several studies continue to endorse the use of gowns and gloves for CP, recent evidence suggests that CP may not significantly reduce MDRO transmission in healthcare settings. Moreover, these measures have been associated with negative psychological effects on isolated patients and potential compromises in the quality of care delivered. Additional concerns include the unnecessary use of costly resources when CP is applied universally, regardless of patient risk or setting.</p><h6>Conclusions</h6><p>There is a need for a balanced, evidence-informed approach to evaluating the role of CP in modern infection prevention. Rather than universally applying CP for all patients suspected or confirmed to have MDROs, healthcare providers should consider individual case contexts and transmission risks. A more nuanced, targeted strategy, such as Enhanced barrier precautions (EBP), may offer a more effective and patient-centered alternative.</p>` },
+                { id: 8, title: "SCREENING for tuberculosis among clients who accessed HIV Testing Services at Umoja Health Centre, Nairobi, Kenya: a cross-section observational study.", authors: "Simon Mong'are, Umoja Health Centre, Nairobi, Kenya; Mwajuma Abdullahi, Umoja Health Centre, Nairobi, Kenya; Angeline Ngano, Umoja Health Centre, Nairobi, Kenya; George Wairimu, Umoja Health Centre, Nairobi, Kenya; Edinah Mogaka, Umoja Health Centre, Nairobi, Kenya; Dianah Odok, Embakasi West Subcounty, Nairobi, Kenya; Carol Ngunu, Nairobi City County, Kenya.", content: `<h6>Introduction</h6><p>In 2024, estimates shows that 40% of Tuberculosis (TB) cases remain undiagnosed and untreated among the population leading to a burden in Kenya. Integrating TB screening in HIV testing services is a crucial intervention which can enhance early case detection thus reducing transmission. This study aimed to assess the screening rate of TB among clients who accessed HIV Testing Services at Umoja Health Centre.</p><h6>Methods</h6><p>A cross-section observational study was conducted among 17,032 clients who accessed HIV Testing Services between October 2022 and May 2025 at Umoja Health Centre, Nairobi, Kenya. Tuberculosis Screening Assessment Tool was used to screen signs including (Cough of any duration, fever, noticeable weight loss, night sweat) and presumptive DR TB register was used to document those with signs, No TB signs, Presumed TB, TB Confirmed and TB Screening not done. Data collected was analyzed using Microsoft Excel.</p><h6>Results</h6><p>Of the 17,032 clients who were tested for HIV during the study period were screened for TB where, 1,974 (12%) were males and 15,058 (88%) females. Of these screened, 504 (3%) clients were presumed TB among them 240 (48%) males and 264 (52%) females. Of the presumed, a total of 107 (21%) were TB Confirmed of whom, 59 (55%) were males and 48 (45%) females and they were initiated on TB treatment. According to HIV testing among the presumed, 26 (5%) were confirmed HIV positive and 478 (95%) were negative while 22 (21%) of TB Confirmed were HIV positive and 85 (79%) negatives.</p><h6>Conclusion</h6><p>Overall, 21% of presumptive cases were confirmed to have TB with higher proportion of males. Clients with confirmed TB had a higher HIV positivity rate as compared to those who were presumptive. Regular TB screening during HIV testing should be prioritized to enable timely identification and treatment hence improving health outcomes.</p>` },
+                { id: 19, title: "TUBERCULOSIS Preventive Therapy efficacy among People Living with HIV (PLHIV) accessing Comprehensive Care Services at Umoja Health Centre, Nairobi, Kenya.", authors: "Mwajuma Abdullahi Ramadhan, Umoja Health Centre, Nairobi, Kenya; Simon Mong'are, Umoja Health Centre, Nairobi, Kenya; Angeline Ngano, Umoja Health Centre, Nairobi, Kenya; George Wairimu, Umoja Health Centre, Nairobi, Kenya; Joan Nelima, Umoja Health Centre, Nairobi, Kenya; Rioba Nyaosi, Embakasi West Sub-County, Nairobi, Kenya Aggrey Okumu, Embakasi West Sub-County, Nairobi, Kenya Diana Odock, Embakasi West Sub-County, Nairobi, Kenya Elizabeth Mueni, Nairobi City County, Kenya; Carol Ngunu, Nairobi City County, Kenya", content: `<h6>Introduction</h6><p>Tuberculosis Preventive Therapy (TPT) is a combination of anti-TB drugs taken to prevent Tuberculosis (TB) disease and it works well with Antiretroviral Therapy (ART) to reduce TB morbidity and mortality among PLHIV. According to WHO 2017, PLHIV is 30 times more likely to develop active TB and accounts for 30% of AIDS related deaths worldwide. Therefore, TPT is a crucial and cost-effective component of HIV care and is strongly recommended by WHO in treating latent TB. This study aimed to determine the efficacy of TPT among PLHIV in preventing TB disease.</p><h6>Methods</h6><p>A retrospective data of 636 PLHIV clients who had taken TPT and completed was extracted from Kenya EMR and TB4 Register at Umoja Health Centre between January 2020 to August 2024. Data extracted from Kenya EMR system included: gender, age, those who were started on TPT and those who completed and TB4 register had the information of patients who were infected with TB after TPT completion. Data collected was analyzed using Microsoft Excel.</p><h6>Results</h6><p>Of 636 PLHIV clients who received TPT, males were 129 (20%) and female 507 (80%). In terms of age, children <14years were 4 (1%) and >15years 632 (99%). A total of 572/636 (90%) completed TPT, while 64/636 (10%) did not complete due to adverse drug reactions 18/64 (28%), transferred out 32/64 (60%), defaulted 10/64 (16%) and died before completion 4 (6%). Out of those who completed TPT, 12/572 (2%) were infected with TB disease, among them Females were 8/12 (67%) while males were 4/12 (33%). A total of 560 (98%) who completed TPT did not get TB disease.</p><h6>Conclusion</h6><p>The TPT efficacy during the study period was at 98% and this has significantly reduced TB incidence. Therefore, the timely initiation of TPT is very important among PLHIV to reduce TB morbidity and mortality.</p>` },
+                { id: 65, title: "Early detection of tuberculosis patients to reduce antimicrobial resistance in Homabay county, Kenya.", authors: "Vincent Towett, LVCT/EGPAF VUKISHA95 Francis Ngati, LVCT/EGPAF VUKISHA95; Francis Onyango, LVCT/EGPAF VUKISHA95", content: `<h6>Introduction</h6><p>Antimicrobial resistance (AMR) poses a significant threat to public health, leading to an increased need for rapid testing technologies to identify and monitor AMR in tuberculosis (TB) patients essential for managing TB and treatment. Surveillance and testing are key in public health strategies, allocating resources, informing policy decisions, enabling prompt treatment and prevention of proliferation of resistant strains. Existing diagnostic methods for TB are cumbersome, time-consuming and expensive. This study assessed the effectiveness of GeneXpert platforms in detecting and monitoring antimicrobial resistance.</p><h6>Methods</h6><p>We performed a retrospective descriptive study by examining TB culture outcomes and data from the GeneXpert for TB tests in Homabay County from January to December 2024 to identify both drug-susceptible and resistant TB. Data on demographics, HIV status, results, rifampicin resistance, turnaround time, and short message service use for results extracted from GX-LIMS and culture reports into Microsoft Excel, analyzed. A descriptive analysis was conducted, and the findings were presented as percentages.</p><h6>Results</h6><p>A total of 16,495 tests were performed using GeneXpert, with 798 tests (4.8%) positive for Mycobacterium Tuberculosis, the majority, 552 (70%), were males. Susceptibility to Rifampicin, 753 out of 798 (95%), while 45 out of 798 (5%) exhibited resistance. Among resistance to Rifampicin, were HIV-negative (84%, or 38 out of 45) and males (95%, or 43 out of 45). Culture analyses, 36% (4 out of 11) displayed resistance to both rifampicin and isoniazid. A significant 92% (450 out of 490) of results were issued with good turnaround time.</p><h6>Conclusion</h6><p>Rifampicin resistance in tuberculosis shows a greater occurrence in HIV- negative individuals and among males enhancing monitoring to effectively identify patterns of drug resistance in tuberculosis.</p>` },
+                { id: 29, title: "OCCUPATIONAL HEALTH RISKS OF WOOD SMOKE EXPOSURE IN HOSPITAL KITCHEN: IMPLICATIONS FOR RESPIRATORY DISEASES AND INFECTION CONTROL", authors: "Mary Carphew Awuor Oyugi, Ministry of health Homabay county", content: `<h6>BACKGROUND</h6><p>Hospital kitchens are critical environments where strict infection prevention measures must be maintained to safeguard patient safety. In Homabay County Referral Hospital, firewood is commonly used for cooking, generating significant indoor smoke. While the respiratory health risks of wood smoke exposure are well-documented in community settings, there is limited research on its impact within hospital kitchens, particularly on how smoke exposure may compromise infection prevention practices. The study aims to understand how wood smoke exposure affects respiratory health of kitchen staff and how it may compromise infection prevention practises. This gap hinders the development of targeted interventions to protect kitchen staff and ensure food safety in healthcare facilities.</p><h6>METHODOLOGY</h6><p>A cross-sectional study was conducted in the kitchen department of Homabay County Referral Hospital. Air quality monitoring measured particulate matter (PM2.5) and carbon monoxide (CO) levels during cooking hours. Structured questionnaires and clinical assessments documented respiratory symptoms among kitchen staff. Infection prevention practices were evaluated through direct observation and staff interviews. Data were analysed descriptively and compared against World Health Organization (WHO) air quality and infection control standards.</p><h6>RESULTS</h6><p>PM2.5 and CO concentrations in the kitchen consistently exceeded WHO recommended limits by 3 to 5 times during peak cooking periods. Over 70% of kitchen staff reported respiratory symptoms such as coughing, wheezing, and eye irritation. Observations revealed that heavy smoke accumulation impaired cleaning efficiency and food handling practices, increasing the risk of microbial contamination. Staff reported inadequate ventilation and expressed concerns about chronic health effects.</p><h6>CONCLUSION</h6><p>Wood smoke exposure in hospital kitchens presents a dual threat by adversely affecting occupational respiratory health and undermining infection prevention efforts. Addressing this issue is critical to protect kitchen workers and ensure safe food preparation environments in healthcare facilities. Implementation of improved cookstoves or cleaner fuel alternatives, enhanced kitchen ventilation and routine health screening for staff.</p>` },
+                { id: 9, title: "Leveraging on Program quality and Efficiency to increase case Identification and combat Tuberculosis transmission at Matata Hospital, HomaBay County", authors: "Brian Korir, Ministry of health, Homabay county", content: `<h6>Background</h6><p>Tuberculosis (TB) is the leading cause of infectious disease mortality worldwide. Administrative control measures break the chain TB transmission by ensuring rapid diagnosis and rendering them non-infectious through treatment. Homabay County has a high burden of TB with a prevalence of 21.5% as at 2022. However, Matata Hospital only reported 25 TB cases (60% of semiannual target) from April to September 2023. Further analysis revealed a low TB presumption rate of 11%. We aimed to assess the impact of Program Quality and Efficiency (PQE) on TB case identification which he interrupts the infectious chain. The aim was to assess impact of Program Quality and Efficiency on case identification at Matata Hospital</p><h6>Methodology</h6><p>This was a cross-sectional study where retrospective presumptive TB data was collected from presumptive TB registers from April to September 2023. Implementation methodology followed a classical model for improvement pathway where root cause analysis was instituted on low TB presumptive rate using fishbone diagram. Gaps identified included knowledge gap among staffs on TB screening, sub-optimal utilization of TB screening tools and poor documentation of presumptive registers.Change ideas were prioritized using prioritization matrix where sensitization was done to staffs on TB screening tools and point of care documentation of presumptive TB registers.These change ideas were tested through plan do study act and biweekly review meetings to monitor total presumptive cases against respiratory tract infections.</p><h6>Results</h6><p>Between April to September 2023 the facility notified 25 TB cases. During the time of intervention, the facility identified 44 cases. Across all the months the increment was significant with September 2024 reporting 9 TB cases compared to 1 case identified during same period the previous year. Presumptive TB rate between April to September 2023 was 11%, during the period of intervention presumptive TB rate reached 32%.</p><h6>Conclusion</h6><p>TB PQE strategy could be cascaded to facilities to increase case identification hence breaking the chain of TB transmission in the community.</p>` },
+                { id: 11, title: "A Healthier Future Starts in the Classroom: Integrating Infection Prevention, Antimicrobial Resistance, and One Health in Schools", authors: "David Frederick Akello, Malindi Sub-County Hospital", content: `<h6>Introduction</h6><p>Antimicrobial resistance (AMR) represents a critical global health emergency, responsible for millions of deaths each year as drug-resistant infections render standard treatments ineffective. This crisis is primarily driven by the widespread misuse and overuse of antibiotics across human medicine, animal husbandry, and agriculture, compounded by inadequate hygiene practices and a general lack of public awareness. The threat extends beyond healthcare, jeopardizing global food security and economic stability.</p><h6>Methodology</h6><p>This concept proposes that education is a powerful, underutilized weapon in this fight, with schools serving as a transformative platform for intervention. The strategy involves implementing a multi-level, educational program grounded in the One Health approach, which recognizes the intrinsic connections between human, animal, and environmental health. The methodology is fourfold: Curriculum integration will embed lessons on hygiene and responsible antibiotic use into relevant subjects for students at all levels, from primary to university. Student engagement will be fostered through dedicated AMR Awareness Clubs for peer-to-peer learning and partnerships with health organizations for outreach. WASH (Water, Sanitation, and Hygiene) programs will be promoted to directly combat infection prevention. Innovation and collaboration by supporting student-led projects and building partnerships with local farms to demonstrate responsible practices in agriculture. The anticipated outcome of this conceptual framework is the creation of a knowledgeable generation empowered to become agents of change. We project a significant increase in AMR awareness and improved hygiene compliance within schools, with students influencing their families to reduce antibiotic misuse at home. Ultimately, the goal is to institutionalize AMR education and provide a proven model for policymakers to incorporate One Health strategies into public health plans.</p><h6>Conclusion</h6><p>Investing in this educational initiative is a cost-effective, sustainable strategy to curb the AMR crisis, safeguarding global health and security for the future. Immediate action to scale such efforts is imperative.</p>` },
+                { id: 45, title: "Ethiopias First National Healthcare Associated Infections Point Prevalence Survey", authors: "Robel W Tefera, Markos Paulos, Abas Hassen, Nesredin Nursebo, Kasu Tola Bifa, Health System Innovation & Quality Lead Executive Office: Ministry of Health Ethiopia Resolve to Save Lives (RTSL)", content: `<h6>Introduction</h6><p>Infection prevention and control (IPC) programs are vital to ensure patient safety and addressing antimicrobial resistance. HAIs are now the most common adverse events in healthcare settings. Alarmingly, over half of these infections are resistant to antibiotics. According to WHO, nearly 15 out of 100 patients in healthcare facilities (HCFs) in LMIC are affected by HAIs, and recent estimates based on 94 studies from Africa suggest that HAI prevalence can reach up to 27% in some hospital wards. A 2020 systematic review in Ethiopia found a pooled HAI prevalence of 16%. The objective of the PPS was to estimate the prevalence of HAIs in selected secondary and tertiary HCFs in Ethiopia and identify high-risk wards.</p><h6>Methods</h6><p>A cross-sectional point prevalence study was conducted between February and March 2024. Quantitative data was collected through chart audit to estimate the prevalence of HAI. Descriptive & inferential statistics were used to assess the HAI prevalence in specific wards.</p><h6>Results</h6><p>A total of 1563 patients charts were enrolled in the survey from 10 hospitals where 1281 were eligible for the review. The mean HAI prevalence rate was 16.6 (95 % CI: 12.3% to 20.9%). The highest prevalence was recorded in Adult ICUs (28%) followed by Gynecologic wards (22%) and Pediatric ICU (22%). The commonest HAIs was Healthcare associated pneumonia (15%) followed by Surgical Site Infection (13%). All healthcare facilities under the survey had an approved annual IPC plan and availed the latest Ministry of Heath approved IPC reference manuals.</p><h6>Conclusion</h6><p>The prevalence of HAIs in Ethiopia remains higher than WHOs estimates, despite availability of updated HCF based approved annual IPC plans and national reference manuals. To address this, Ethiopia must implement WHO's recommendations on IPC program implementation at National and HCF level, supported by continuous HAI prevalence monitoring and robust IPC interventions.</p>` },
+                { id: 51, title: "Point Prevalence Survey on Antibiotic Use and Hospital Acquired Infections conducted at Kenyatta University Teaching Research and Referral Hospital", authors: "Caroline Mwangi, Kenyatta University Teaching, Referral & Research Hospital (KUTRRH), Seith Wakhungu, Ann Mercy Wanjiku, Irungu Kamau, Emmanuel Tanui, Jacqueline Safstrom, Carolyn Herzig, Karen Wu, Linus Ndegwa, Joseph Muendo, Doris Odera, Yael Hirsch-Moverman", content: `<h6>Introduction</h6><p>Antimicrobial resistance (AMR) is a growing global health threat that makes treating infections, especially those linked to healthcare settings, more difficult. These healthcare-associated infections (HAIs) often lead to longer hospital stays and higher mortality. Monitoring patterns of antibiotic use and HAIs helps identify opportunities to optimize antibiotic use, reducing the development of AMR, and introduce interventions to prevent nosocomial infections. This study aimed to estimate the prevalence of AMU and HAI and evaluate laboratory diagnostic utilization at KUTRRH.</p><h6>Methods</h6><p>A point prevalence survey was conducted between October 224, 2023. Patients in acute care inpatient wards at 8 AM on the survey date were assessed for eligibility, with sampling based on hospital size. Trained multidisciplinary teams collected data on patient characteristics, clinical information, microbiology, imaging, and antimicrobial use from medical records. Data were entered into a REDCap database.</p><h6>Findings</h6><p>A total of 149 patients were surveyed, with 38% (56/149) having at least one prescribed antibiotic. Of the 135 patients eligible for assessment for HAI, 11 (8.1%) were found to have at least one HAI, with blood stream infections at 3% (4/135), urinary tract infections at 1.5% (2/135) and pneumonia at 0.7% (1/135). Of the 34 patients who had undergone surgery, 18% (6) had surgical site infections.</p><h6>Conclusion</h6><p>Findings indicate high antibiotic use, and presence of HAIs especially surgical site infections. This underscores the need for strengthened AMS-IPC collaboration, improved feedback loops for antimicrobial audits, and enhanced use of diagnostic data to guide antibiotic therapy.</p>` },
+                { id: 93, title: "INCIDENCE RATE OF BLOODSTREAM INFECTION THIKA LEVEL 5 HOSPITAL", authors: "Joan Maina, NMRL, Brian Mugwe, TL5H", content: `<h6>Introduction</h6><p>Bloodstream infections (BSIs) cause considerable anxiety in clinical practice. These infections result in significant morbidity, mortality, and healthcare costs. Automated collection of healthcare data monitoring bloodstream infections (BSIs) could be very beneficial for their control. To determine the incidence rate of bloodstream infections at TL5H from the extracted laboratory information management system (LIMS) blood culture data (20202023).</p><h6>Methods</h6><p>A descriptive retrospective study design was employed to derive electronic data on microbiology blood culture reports, spanning the years 20202023. Data analysis was done using WHONET software to reflect the total number of blood cultures done, including the breakdown between inpatient cases. We also documented the number of the most prevalent microorganisms isolated and calculated the incidence rate.</p><h6>Results</h6><p>A total of 143 blood cultures were done during this period; 68 were from outpatients, and 75 were from the inpatient department. Of the 36 (25%) that turned out positive, 23 (64%) were inpatients, with an incidence rate of 18%. The commonly isolated species were Staphylococci (43%), Acinetobacter (7%), Klebsiella (7%), E. coli (7%), and Pseudomonas (4%).</p><h6>Conclusion</h6><p>Automated data collection can provide the foundation necessary to support better surveillance and infection control of bloodstream infections. Further studies should examine additional determinants and preventive methods, expanding on this preliminary work.</p>` },
+                { id: 47, title: "INCIDENCE, Microbial Patterns, and Outcomes of External Ventricular Drain Infections: A Three-Year Review at a Kenyan Tertiary Hospital", authors: "Clara Kesis, Aga Khan University Hospital David Odada, Aga Khan University Hospital", content: `<h6>Background</h6><p>External ventricular drains (EVDs) are critical in managing elevated intracranial pressure in patients with traumatic brain injury, hydrocephalus, and intracranial haemorrhage. However, EVD infections remain a significant complication, particularly in low-resource settings. This study reviews the incidence, microbiological patterns, antimicrobial resistance profiles, timing of infections, and clinical outcomes over two years at a tertiary referral hospital in Kenya.</p><h6>Methods</h6><p>A retrospective descriptive study was conducted using surveillance data, patient records, and infection prevention reports from June 2023 to June 2025. All patients with EVDs inserted during the study period were included. Analysis included microbiological EVD infection incidence, timing of positive cultures, causative organisms, resistance patterns, and clinical outcomes, such as length of hospital stay, morbidity, and mortality attributable to EVD infections. Ethical approval was sorted from the Aga Khan University Ethical Committee.</p><h6>Results</h6><p>Among patients with EVD procedures (59) at the Aga Khan University Hospital, Nairobi, infection rates were 15%, exceeding international benchmarks but consistent with other low- resource settings. The most frequently isolated pathogens were Staphylococcus epidermidis, coagulase-negative staphylococci. Gram-negative bacteremia made up 62% of the EVD infections. Patients with EVD infections had prolonged hospital stays, increased exposure to broad-spectrum antibiotics, higher rates of neurological complications, and elevated mortality compared to non-infected EVD patients.</p><h6>Conclusion</h6><p>EVD infections remain a major clinical challenge in neurosurgery within resource constrained healthcare systems. High infection rates and poor outcomes underscore the need for urgent interventions, including standardized EVD care protocols, consistent staff training, robust infection surveillance, and context-specific antimicrobial stewardship initiatives.</p>` },
+                { id: 75, title: "Electronic Surveillance of Carbapenem-Resistant Organisms in the ICU: A Retrospective Analysis from a Tertiary University Hospital", authors: "David Odada, Aga Khan University Hospital", content: `<h6>Background</h6><p>Intensive Care Units (ICUs) are high-risk environments for healthcare-associated infections (HAIs), particularly those caused by carbapenem-resistant organisms (CROs). Early detection and intervention are critical for limiting the spread of multidrug-resistant organisms (MDROs). This study assessed the value of electronic surveillance in identifying infection clusters and potential transmission events involving CROs in the ICU, using a retrospective approach.</p><h6>Methods</h6><p>A retrospective review of non-duplicate MDRO isolates from ICU patients between 2023 and 2024 was conducted using the hospital's Laboratory Information System (LIS) and infection control interventions. Inclusion criteria were ICU-onset infections caused by carbapenem- resistant Enterobacterales, Acinetobacter baumannii, and Pseudomonas aeruginosa, identified from any clinical specimen, including blood. Clusters were defined by overlapping detection times, species, and resistance pattern matches, and shared environments or equipment. Prevalence patterns were analysed by organism and specimen source.</p><h6>Results</h6><p>Carbapenem-resistant Klebsiella pneumoniae was the most prevalent isolate, notably from blood and tracheal aspirates. Escherichia coli was predominantly isolated from urine. Two distinct temporal clusters of carbapenem-resistant A. baumannii were identified: one involving four cases within six days in late March and another involving two cases in early February. Environmental mapping indicated spatial linkage between patient rooms, supporting the likelihood of transmission. Detection of CRO clusters was timely, less tedious, and accurate, resulting in early targeted infection control interventions that included patient isolation, enhanced hand hygiene, terminal disinfection, and reinforcement of equipment and environmental cleaning.</p><h6>Conclusion</h6><p>Electronic health records can be leveraged for HAI surveillance for early identification of CRO transmission. In settings without molecular diagnostics, timely analysis of LIS data, coupled with organism-level resistance profiling, and strict infection prevention measures, remains essential to detecting outbreaks and safeguarding ICU patients.</p>` },
+                { id: 82, title: "Microbiological Evaluation of Generic Ceftriaxone Potency Using Disc Diffusion Assay at Coast General Teaching and Referral Hospital", authors: "Kassam yusuf, CGTRH, Irene Muramba, Elijah Mtwana, Dan Ngugi", content: `<h6>Background</h6><p>The presence of poor-quality antibiotics in Kenya necessitates local quality verification. This study evaluated generic ceftriaxone (40 Kshs/vial) procured by Coast General Teaching and Referral Hospital (CGTRH) against the originator brand (Rocephin, 1,500 Kshs/vial) to assure therapeutic equivalence. To determine the concentration of generic ceftriaxone using a microbiological assay with the originator brand as the reference standard.</p><h6>Methods</h6><p>A comparative laboratory study was conducted following the 5 + 1 disc diffusion method. Five concentrations (10–30 μg/mL) of reference (Rocephin®) and test ceftriaxone were prepared. Sterile discs (6 mm) impregnated with each concentration were placed on Mueller-Hinton agar inoculated with Staphylococcus aureus (0.5 McFarland standard). Zones of inhibition were measured after 24-hour incubation at 37°C.</p><h6>Results</h6><p>Mean zone diameters for originator brand (Rocephin®):10 μg/mL: 14.2 mm; 15 μg/mL: 16.5 mm; 20 μg/mL: 18.9 mm (reference for corrections); 25 μg/mL: 19.9 mm; 30 μg/mL: 16.0 mm (excluded as non-linear). The generic ceftriaxone showed 19.0 mm inhibition (equivalent to 20 μg/mL reference). A semi-log dose-response curve (R² = 0.98, 10–25 μg/mL) confirmed linearity, with interpolated potency of 21.1 μg/mL (105.5% of label claim), complying with United States Pharmacopeia (USP) <81> standards (90–120%).</p><h6>Conclusions</h6><p>The generic ceftriaxone demonstrated potency equivalent to the originator brand. CGTRH’s use of this generic (60,000 vials/year) yields 87.5 million Kshs annual savings while maintaining quality. This method is reproducible for resource-limited hospitals.</p>` },
+                { id: 62, title: "Antimicrobial Resistance Profile of Acinetobacter species Referred to the National Microbiology Reference Laboratory between 2021-2023", authors: "George Njau, Division of National Laboratory Service National Microbiology Reference Laboratory (NMRL); Jedidah Kahura, Division of National Laboratory Services, National Microbiology Reference Laboratory Teresiah Nyaga, Division of National Laboratory Services,National Microbiology Reference Laboratory, National Microbiology Reference Laboratory; Josiah Njeru, Division of National Laboratory Services,National Microbiology Reference Laboratory Sheilla Chebore, ICAP-Kenya; Jully Okonji, Association of Public Health Laboratories", content: `<h6>Introduction</h6><p>Antimicrobial Resistance (AMR) is a growing public health threat that limits our ability to treat diseases caused by microorganisms raising health care costs and mortality. Without concerted efforts, the United Nations Interagency Coordination Group on AMR projected that AMR could cause approximately 10 million deaths annually and result in huge economic losses by 2050. Acinetobacter species infections pose challenges in intensive care units due to resistance to antibiotics. This study demonstrates the antimicrobial resistance profile of Acinetobacter species isolates collected from multiple diagnostic sites in Kenya.</p><h6>Methods</h6><p>A retrospective cross-sectional study design was adopted. Isolates received at National Microbiology Reference Laboratory included Escherichia coli, Klebsiella pneumoniae, Salmonella species, Shigella species, Streptococcus pneumoniae, Pseudomonas aeruginosa, Acinetobacter species and Staphylococcus aureus. They were received from inpatients in 12 AMR surveillance sites and subjected to culture and identification by use of MALDI-TOF instrument. Antimicrobial susceptibility testing (AST) was performed using Vitek 2 Compact instrument that provided results for tier one to tier three drugs.AST data was cleaned in Microsoft Excel 2016. Descriptive statistics were used to summarize the frequency and proportions of Acinetobacter species isolates and their resistance patterns. Resistance prevalence for each antibiotic was calculated as the percentage of resistant isolates out of the total tested. The data were analyzed using WHONET.</p><h6>Results</h6><p>76 out of 1179 isolates submitted were Acinetobacter species out of which 87% were Acinetobacter baumannii. High resistance to Ceftriaxone (90%), Ceftazidime (75%) and ciprofloxacin (61%) were observed. The prevalence of carbapenem resistant Acinetobacter sp. was found at 28%. Acinetobacter sp. exhibited high sensitivity to Amikacin (82%), Colistin (90%), Minocycline and Tigecycline (88%).</p><h6>Conclusion</h6><p>Acinetobacter species showed resistance to antibiotics used for empirical treatment. These findings will inform surveillance efforts in the country, modification of treatment guidelines for Acinetobacter species related infections and heightened infection prevention and control interventions.</p>` },
+                { id: 32, title: "Integrating One Health and Antimicrobial Resistance into Sustainable Infection Prevention and Control for Universal Health Coverage in Kenya", authors: "Lucy Walegwa Mghongo, KUTRRH", content: `<p>Antimicrobial resistance (AMR) remains a significant public health threat in Kenya, compromising effective treatment, increasing healthcare costs, and endangering lives. As the country strives toward Universal Health Coverage (UHC), integrating a One Health approach into Infection Prevention and Control (IPC) offers a strategic, cross-sectoral pathway to mitigate AMR. This integration connects human, animal, and environmental health, facilitating coordinated, sustainable IPC responses. This paper explores how Kenya is leveraging innovative IPC technologies and locally driven solutions to strengthen health system resilience. Key advancements include mobile-based AMR surveillance tools, community-fabricated personal protective equipment (PPE), solar- powered hand hygiene stations, and on-site water purification systems. These technologies have proven effective in enhancing infection control, particularly in underserved and rural health settings. Sustainable IPC approachessuch as integrating IPC into preservice training, strengthening health worker capacity, institutionalizing behavior change strategies and embedding IPC metrics in national health monitoringare critical to long-term health system strengthening. Additionally, intersectoral collaboration through the One Health platform enhances early detection and response to AMR threats, especially at the human- animal-environment interface. However, implementation challenges persist, including limited funding, fragmented supply chains, and inconsistent adherence to IPC guidelines. Addressing these requires political will, community engagement, and investment in scalable, context-sensitive innovations. By embedding sustainable IPC technologies and One Health strategies into Kenyas national AMR response, the country can significantly reduce the burden of healthcare-associated infections, preserve antimicrobial effectiveness, and accelerate progress toward UHC.</p>` },
+                { id: 10, title: "One health approach unravels worrying antimicrobial resistance patterns: a cross-sectional study in Kisii, Kenya", authors: "Briton Kavulavu, KEMRI Graduate School", content: `<h6>Background</h6><p>Antimicrobial resistance (AMR) is a significant public health challenge, particularly in Sub- Saharan Africa, where diagnostic and surveillance capacities are limited. Enterobacterales are central bearers of AMR, with environmental reservoirs facilitating transmission across the human-animal-environment interface. This study investigated the prevalence and antimicrobial susceptibility of selected Enterobacterales in human, water, animal feces, and soil samples at Kisii Teaching and Referral Hospital (KTRH).</p><h6>Methods</h6><p>Following relevant ethical approvals, a cross-sectional study, including 200 patients with gastrointestinal symptoms (diarrhea, fever, vomiting, and bloody stool), was conducted at KTRH and surrounding areas. Conventional bacteriological procedures were used for culture and identification, while AMR testing was performed using disk diffusion and modified double disk synergy methods. Conventional PCR was used for molecular characterization.</p><h6>Results</h6><p>365 samples were collected: 200 human and 55 each from water, animal feces, and soil. 343 isolates were obtained (Escherichia coli: 280/343 [81.6%], Salmonella spp.: 28/343 [8.2%], Klebsiella spp.: 25/343 [7.3%], Shigella spp.: 10/343 [2.9%]). Resistance to piperacillin- tazobactam (up to 87%), ampicillin (up to 79%), trimethoprim-sulfamethoxazole (up to 59%), and cefotaxime (up to 66.2%) was highest in human isolates, of which 45% showed ESBL production or resistance to imipenem. Resistance to chloramphenicol (71.7% vs 20.1%; p<0.001) and third-generation cephalosporins was higher among animal and environmental isolates as compared to human isolates (p<0.001). In human isolates, the most prevalent genes were blaTEM (53/187, 28.3%), blaOXA-48 (43/187, 23.0%), blaSHV (32/187, 17.1%), and blaCTXM-15 (41/187, 21.9%); in animal isolates, blaCTXM-8 (11/55, 20.0%), blaVIM (8/55, 14.5%), and blaTEM (8/55, 14.5%) were most detected; while in soil (10.9%) and water (9.1%) isolates, blaCTXM-8 was the most common.</p><h6>Conclusion</h6><p>Similar resistance patterns and genes across human, animal, and environmental isolates suggest interconnected AMR pathways. This hypothesizes potential transmission patterns, hence need for further studies and a One Health approach to AMR policies, surveillance, and intervention.</p>` },
+                { id: 15, title: "EVALUATING the impact of decentralizing blood donor replacement in four transfusing sub county Hospital in Homa Bay County", authors: "Erasic Jerry Osumba, Ministry of Health Homa Bay County Blood bank Reuben Tulel, Ministry of Health KNBTS; Joseph Adoyo, Ministry of Health Homa Bay County", content: `<h6>Background</h6><p>Blood donation services encompass donor recruitment, blood collection, and transfusion. In Kenya, county governments have increasingly taken responsibility for managing blood transfusion satellites in alignment with national efforts to improve blood availability. In Homa Bay County, these services were decentralized to four transfusing sub-county hospitals to increase access and availability.To evaluate the impact of decentralizing blood donation services to four sub-county hospitals in Homa Bay County.</p><h6>Methods</h6><p>A retrospective data review was conducted at the Homa Bay satellite blood bank covering the period December 2022 to December 2024. Data were drawn from four sub-county hospitals that submitted samples for screening to the Kisumu Regional Blood Transfusion Centre through the Homa Bay satellite. The number of donated blood was analyzed using Stata version 14, with results summarized in bar graphs and tables.</p><h6>Results</h6><p>A comparison of blood donation figures before and after decentralization revealed a substantial increase in donor participation. In 2023, 6,138 units were collected (54% of the 11,400 national annual target), of which 491 units (8%) were donor replacements at the satellite. By 2024, total donations had risen to 7,752 units (68% of the annual target). The four transfusing sub-county hospitals contributed 1,229 units (16%) through donor replacement: Rachuonyo South 444 units (6%), Rachuonyo North 348 units (4%), Ndhiwa 237 units (3%), and Suba North 200 units (3%). This reflects an increase in donor replacement from 8% in 2023 to 16% in 2024.</p><h6>Conclusion</h6><p>Decentralizing donor replacement to sub-county hospitals showed improved blood availability in Homa Bay County. Expanding this approach to the remaining five transfusing sub-county hospitals has the potential to close the access gap further and meet the national target of 11,400 units annually.</p>` },
+                { id: 60, title: "Factors that influence rise in cases of cervical cancer AMONG YOUTH and adolescence at Kendu Sub- County hospital, Rachuonyo North Sub County, Homa Bay County, Kenya.", authors: "Dr. Kevin Mimba, MOH", content: `<h6>Introduction</h6><p>In the past decades, there have been efforts to prevent cervical cancer among youth and adolescence because of rise in cases among youth and adolescence in Kenya which stands at 19.7%. Analysis of reasons for uptake of post-exposure prophylaxis (PEP) to prevent HIV infections within 72 hours after exposure to HIV showed sexual behaviors that contribute to cervical cancer among young ladies and girls at Kendu Sub County Hospital. To determine Factors that influence rise in cases of cervical cancer among youth and adolescence at Kendu Sub- County hospital from the period of February 2022 to October 2023.</p><h6>Method</h6><p>Secondary data obtained from the PEP register for February 2022 - October 2023 was analyzed using descriptive statistics methodology on age and gender to identify reason for uptake of PEP then presented using simple frequencies to establish reasons.</p><h6>Results</h6><p>Over the 36 months a 558 people were issued with PEP drugs with varied reasons. these included having unprotected sex, condom burst experience, rape cases, defilement, needle prick injuries and mixed feeding in infants. Males were at 61% and females at 39%. of the clients analyzed, 49% had unprotected sex, 30% had condom burst, Defilement was 13% and rape cases at 8%. Unprotected sex was common among the age of below 29 years at 69%, whereas condom burst experience was common among the age group of below 35 years at 75%. The male reported a significant higher number of those who engage in unprotected sex and turned up for PEP at 61% against the female counterparts at 39%.</p><h6>Conclusion</h6><p>Results show prominence risky sexual behaviors that hasten HPV transmission therefore need to interventions to cervical cancer promote HPV vaccination among youth and adolescence across all genders. It is evident that improper sexual behaviors contribute to HPV infection causing cervical cancer.</p>` },
+                { id: 98, title: "Case STUDY: MPOX Infection Prevention Control Bungoma County Referral Hospital Experience", authors: "Samson Agallo, Erick Atema, Ernest Wafula, Bungoma county referral hospital", content: `<h6>Background</h6><p>Mpox is a contagious viral disease with significant public health implications. Early identification, isolation, and strict infection prevention and control (IPC) measures are essential to limit transmission.</p><h6>Case Presentation</h6><p>A 46-year-old male businessman, with frequent travel across East and Central Africa, presented on 21/09/2024 with abdominal upset, generalized swelling, itchy rashes in the suprapubic, scrotal, groin, facial, and neck regions, and bullae containing yellow fluid. He had septic sores, fever, and anxiety. Previous treatments at multiple facilities had been unsuccessful. On admission, vitals were stable except for SpO₂ at 90%. Laboratory results showed elevated ESR (30 mm/hr), high CRP (201 mg/L), anemia (Hb 10.2 g/dl), thrombocytosis (532 × 10⁹/L), and normal renal function. Mpox was confirmed on 30/09/2024 by the National Public Health Referral Laboratories.</p><h6>Management and IPC Measures</h6><p>Treatment included IV clindamycin, ceftriaxone, floxapen, metronidazole, oral acyclovir, prednisone, analgesics, and IV fluids. The patient was admitted to an isolation room under barrier nursing. Universal standard precautions applied included hand hygiene, PPE use (N95 masks, gloves, aprons), safe waste and linen handling, restricted visitor access with PPE, and use of dedicated cleaning equipment.</p><h6>Challenges</h6><p>Healthcare workers expressed fear and anxiety due to the diseases contagious nature, with reluctance to work in the isolation ward. Psychosomatic symptoms such as rashes and itching were reported among some staff. Referral to specialized isolation centers was considered but deferred due to public health concerns.</p><h6>Conclusion</h6><p>Strict IPC adherence and coordinated care allowed safe management of a confirmed mpox case without in-hospital transmission. The patient succummed due to a known opportunistic infection he had.</p><h6>Recommendations</h6><p>Maintain strict adherence to standard and additional IPC precautions. Establish a permanent, well-equipped isolation unit. Provide continuous staff training on emerging infectious diseases. Strengthen disease surveillance and outbreak preparedness. Offer psychosocial support for healthcare workers during outbreaks.</p>` },
+                { id: 94, title: "Evaluating Drug-Resistant Tuberculosis Patterns in Mvita Sub County: Is There a Need for Post TB Treatment Prophylaxis?", authors: "Dr Karima Dawoodbhai, Department of health, Mombasa Ahmed Omar, Department of health Mombasa; Dr Saumu Wayuwa, Department of health - Mombasa", content: `<h6>Background</h6><p>Drug-resistant tuberculosis (DR-TB) poses a significant challenge to Tuberculosis (TB) control efforts, particularly in high-burden urban settings like Mvita Sub- County in Mombasa. Despite improvements in diagnosis and treatment, recurrent TB and ongoing transmission of DR-TB highlights the need to reinforce TB control measures in the post-treatment period.</p><h6>Objective</h6><p>To evaluate the patterns of drug-resistant tuberculosis in Mvita Sub-County and assess the potential need for post-treatment prophylaxis among high-risk populations.</p><h6>Methods</h6><p>A retrospective review of TB case data from 2021 to 2025 was conducted across public health facilities in Mvita Sub- County. Drug susceptibility testing (DST) results were analyzed to determine resistance patterns. Treatment outcomes and recurrence rates were assessed. Other demographic risk factors and comorbidities were also evaluated. Literature and local clinical guidelines were reviewed to evaluate the rationale and feasibility of implementing post-treatment prophylaxis.</p><h6>Results</h6><p>There was a total of 39 drug resistant TB cases recorded in Mvita subcounty during the review period. 29 (74%) showed resistance to at least one first-line anti-TB drug, with 10 (26%) meeting criteria for multidrug-resistant TB (MDR-TB). Recurrence rates were notably higher among patients with previous TB treatment history. Out of the 39 cases only 13 (33%) were primary drug resistance cases while 26(66%) were previously treated for Drug sensitive TB (DS-TB) or treatment failure cases.</p><h6>Conclusion</h6><p>The findings highlight a common occurrence of DR-TB in previously treated cases DS-TB thus suggesting a need for targeted post-treatment prophylaxis to reduce reactivation and secondary transmission. Further operational research is recommended to evaluate its implementation and impact within the local context.</p>` },
+                { id: 14, title: "HEALTHCARE Waste Management Practices in Health FACILITIES IN Kajiado County, Kenya: A Cross-Sectional Survey", authors: "Aggrey Keya, County department of health Kajiado; Eva Mopel, County department of health Kajiado; Peter Maina, United States Agency for International Development (USAID) / University of Nairobi (UoN), Fahari ya Jamii", content: `<h6>Background</h6><p>Effective healthcare waste management (HCWM) is critical for public health, safety, and environmental sustainability. Suboptimal HCWM practices pose risks of infectious disease transmission and environmental harm. This study assessed HCWM practices in health facilities across Kajiado County, Kenya.</p><h6>Methods</h6><p>A quantitative, cross-sectional survey was conducted from January to February 2025 among health facilities in Kajiado County. Data was collected via a self-administered online questionnaire targeting facility managers and healthcare workers, covering Infection Prevention and Control (IPC) infrastructure, waste handling, staff training and safety, budgets, and audit. The analysis involved descriptive statistics and Chi-squared tests for associations, with cautious interpretation where test assumptions were not met.</p><h6>Results</h6><p>A total of 135 health facilities (117 public, 14 private, 4 faith-based) participated. Most facilities (77.0%, 104/135) had an IPC focal person. However, significant gaps were identified. Only 12.6% (17/135) reported formal staff Hepatitis B vaccination (HBV) program, and 60.0% (81/135) lacked dedicated IPC budget. While 63.7% (86/135) reported general IPC training, 20.7% (28/135) reported no specific HCWM-related training. On-site waste disposal (79.3%, 107/135) primarily used burning chambers (38.5% of total facilities) or incinerators (32.6%); open burning occurred in 23.0%. Only 46.7% (63/135) conducted IPC/HCWM audits. Private facilities more frequently reported dedicated budgets and waste tracking (p<0.05 for select indicators), though interpretations involving smaller facility types warrant caution.</p><h6>Conclusion</h6><p>HCWM in Kajiado County shows a foundational strength, like widespread IPC focal person designation, but faces critical deficiencies in staff HBV vaccination, dedicated funding, HCWM-specific training, and audit. Observed disparities suggest potentially better resourcing in private facilities, though subgroup size necessitates cautious interpretation. Targeted interventions addressing infrastructure, training, resource allocation, and policy enforcement are essential to improve HCWM, safeguarding public health, worker safety, and environmental integrity in Kajiado County.</p>` },
+                { id: 6, title: "Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.", authors: "Sarah Ngare, Nyahururu Medical Training College, Laikipia, Kenya; Vane Moraa, Nyahururu Medical Training College, Laikipia, Kenya; Obadiah Kiptoo, Nyahururu Medical Training College, Laikipia, Kenya; Samuel Muigai, Nyahururu Medical Training College, Laikipia, Kenya; Simon Mong'are, Umoja Health Centre, Nairobi, Kenya.", content: `<h6>Introduction</h6><p>Hand hygiene is a crucial element to prevent cross-transmission of Health Associated Infections (HAIs) between health care workers and patients. According to WHO, more than 90% of health care workers dont adhere to recommended hand hygiene practices hence leading to increased cases of HAIs which are major causes of morbidity and mortality among health care workers and patients. Therefore, by complying with measures of hand hygiene, it can be a key intervention in helping to reduce the infections. The study aimed to assess compliance of hand hygiene practices among nurse students who were attached to the medical ward department in Nyahururu County Referral Hospital.</p><h6>Methods</h6><p>A cross-section observational study was conducted among 154 nurse students who were attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya between January 2025 and April 2025. Hand hygiene audit tool was used to assess the five critical moments (before touching a patient, before aseptic procedure, after body fluid exposure risk, after touching a patient and after touching the patients surroundings). Data collected was analyzed by use of Microsoft Excel.</p><h6>Results</h6><p>Of the 154 nurse students who were assessed, 61 (40%) were males and 93 (60%) females where their ages ranged between 20 and 25 years. Among them, 6 (4%) students complied before touching a patient, 14 (9%) before aseptic procedure, 49 (32%) after body fluid exposure risk, 74 (48%) after touching a patient and 11 (7%) complied after touching the patients surroundings.</p><h6>Conclusion</h6><p>Overall, Compliance of hand hygiene practices was highest after touching a patient at 48% while lowest before touching a patient at 4%. There is a need to enhance training, regular supervisions on the five critical moments and creating awareness on importance of hand hygiene among nurse students to improve compliance and reduce cross transmission of Health Care Associated Infections.</p>` },
+                { id: 41, title: "Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya", authors: "Everlyne Mboga", content: `<h6>Introduction</h6><p>Globally, tuberculosis (TB) remains one of the leading causes of death, with healthcare workers (HCWs) at heightened risk due to occupational hazards. Tuberculosis prevention therapy (TPT) for managing latent TB infection is increasingly important worldwide and in Kenya, aligning with the WHO's vision of 'A world free of TB' and Kenya's goal to eliminate tuberculosis by 2035. This study aimed to assess the uptake and completion of TPT among HCWs in Rangwe sub county, Homabay County, Kenya.</p><h6>Methods</h6><p>Utilizing both quantitative and qualitative approaches, the study included a sample of 119 HCWs from various health facilities. Quantitative data were gathered through face-to-face interviews using a pretested structured questionnaire, while qualitative data was obtained from key -informant interviews with the sub-county TB coordinators, as well as in-depth interviews with 21 health facility managers. Thematic analysis was used for qualitative data.</p><h6>Results</h6><p>Most of the HCWs 88 (74%) of HCWs were initiated on TPT, though only 41 (46%) completed the therapy Among those who completed the therapy, Majority were 26 (63%) were support staff, followed by 7(17%) Laboratory officers, 4(9.8%) clinical officers and 4(9.8%) were nurses. Significant factors influencing TPT uptake included health facility level at 110(93%) awareness and training on TB risk 74(63%) department 98(83%) and having a co-worker with TB 117 (99%).</p><h6>Conclusion</h6><p>Uptake and completion of TPT could be improved through capacity building and enhanced facility-level support and recommended that policymakers at all levels ensure adequate funding, emphasize TB risk perception and reinforce protective measures to increase TPT completion rate.</p>` },
+                { id: 18, title: "Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development.", authors: "Silas O. Awuor, JOOTRH-KISUMU, Pamela Anyango Opepo, JOOTRH-KISUMU", content: `<h6>Background</h6><p>During pregnancy, mothers are at high risk on bacterial infections such as urinary tract infection (UTI) hence frequent prescriptions of antibiotics are done for the management of such infection that threaten maternal and fetal health. Therefore, aggregate signal links in utero antibiotic exposure to neonatal antimicrobial resistance (AMR), raising concerns about its long-term consequences. This research examines the impact of maternal antibiotic use on neonatal AMR, focusing on microbiome disruption, resistance mechanisms, and clinical outcomes.</p><h6>Methodology</h6><p>This was a hospital-based, cross-sectional study conducted between January 2025 and June 2025. The antenatal clinic (ANC) book was used to retrieve UTI history and frequently prescribed antibiotics during pregnancy to manage infections. Laboratory tests were also conducted on the blood samples collected from the newborn baby at day one on the delivery and urine sample at delivery point.</p><h6>Result</h6><p>Overall (n=203), the prevalence of UTI was 60% (95% CI: 53.3%66.7%). The most isolated bacteria were E. coli (59%) and Klebsiella (21%). The prevalence of AMR was found to be 53% (95% CI: 46.1%59.8%). The drugs highly resistant to antimicrobials were Amikacin (88.3%), ampicillin (77.8%), and Norfloxacin (58.5%), while the least resistant drug was chloramphenicol (20%). Same resistant pattern was also observed on the 40% isolated pathogen from the newborn.</p><h6>Conclusion</h6><p>A deeper understanding of vertical transmission of antibiotic resistance from mothers to their offspring is necessary to determine the most effective strategies for reducing antibiotic resistance in early life.</p>` }
+            ];
+
+            const abstractsGrid = document.getElementById('abstractsGrid');
+            const abstractModal = new bootstrap.Modal(document.getElementById('abstractModal'));
+            
+            abstractsData.forEach(abstract => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4 d-flex align-items-stretch';
+                col.innerHTML = `
+                    <div class="abstract-card">
+                        <h3 class="abstract-card-title">${abstract.title}</h3>
+                        <p class="abstract-card-author">${abstract.authors}</p>
+                    </div>
+                `;
+                col.querySelector('.abstract-card').addEventListener('click', () => {
+                    document.getElementById('modalTitle').textContent = abstract.title;
+                    document.getElementById('modalAuthors').textContent = abstract.authors;
+                    document.getElementById('modalContent').innerHTML = abstract.content;
+                    abstractModal.show();
+                });
+                abstractsGrid.appendChild(col);
+            });
+        });
+    </script>
+</body>
+</html>
