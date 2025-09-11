@@ -5,22 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12th IPNET-K Scientific Conference 2025</title>
     
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Global CSS -->
     <style>
         :root {
-            --bs-primary: #0D698B; /* New Brand Blue */
-            --bs-secondary: #0A506B; /* Darker Brand Blue */
-            --bs-light: #E7F0F3; /* Light Brand Blue */
-            --bs-dark: #263238; /* Blue Grey */
+            --bs-primary: #0D698B; 
+            --bs-secondary: #0A506B; 
+            --bs-light: #E7F0F3; 
+            --bs-dark: #263238; 
             --font-primary: 'Montserrat', sans-serif;
             --font-secondary: 'Roboto', sans-serif;
             scroll-padding-top: 70px;
@@ -44,63 +41,103 @@
             text-align: center;
             margin-bottom: 50px;
         }
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--bs-primary);
+        }
 
+        /* Navbar Styles */
+        .navbar {
+            transition: background-color 0.4s ease, padding 0.4s ease;
+        }
         .navbar-brand img {
             max-height: 40px;
         }
+        .navbar.scrolled {
+            background-color: var(--bs-primary) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar.scrolled .nav-link, 
+        .navbar.scrolled .navbar-brand {
+            color: white !important;
+        }
+        .navbar.scrolled .nav-link:hover {
+            color: #ddd !important;
+        }
+        .navbar-dark .navbar-toggler-icon {
+             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .navbar-nav .btn {
+             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .navbar.scrolled .btn-light {
+            background-color: #fff;
+            color: var(--bs-primary);
+        }
+         .navbar.scrolled .btn-light:hover {
+            background-color: #f0f0f0;
+        }
+
 
         /* Hero Section */
         #home {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('beach.jpg') no-repeat center center;
+            background: linear-gradient(rgba(13, 105, 139, 0.4), rgba(10, 80, 107, 0.7)), url('beach.jpg') no-repeat center center;
             background-size: cover;
             color: white;
             padding: 100px 0;
             display: flex;
             align-items: center;
-            min-height: 90vh;
+            min-height: 100vh;
         }
         .hero-title {
-            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         /* Program Section */
+        #program .nav-tabs .nav-link {
+            font-weight: 600;
+        }
         .program-session {
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
-            overflow: hidden; /* To contain the title background */
+            overflow: hidden;
         }
         .program-session-title {
             background-color: var(--bs-primary);
             color: white;
             padding: 1rem 2rem;
         }
-        .program-session-title p {
-            margin-bottom: 0;
-        }
-        .program-content {
-            padding: 0 2rem 1rem 2rem;
-        }
+        .program-session-title p { margin-bottom: 0; }
+        .program-content { padding: 0 2rem 1rem 2rem; }
         .program-entry {
             display: grid;
             grid-template-columns: 100px 1fr;
             gap: 1rem;
             padding: 1.25rem 0;
-            align-items: flex-start; /* Align to top */
+            align-items: flex-start;
         }
-        .program-entry + .program-entry {
-            border-top: 1px solid #f0f0f0;
-        }
+        .program-entry + .program-entry { border-top: 1px solid #f0f0f0; }
         .program-time {
             font-weight: 700;
             color: var(--bs-primary);
             font-size: 0.9rem;
         }
-        .program-topic {
-            font-weight: 500;
-        }
+        .program-topic { font-weight: 500; }
         .program-speaker {
             color: #6c757d;
             font-style: italic;
@@ -138,7 +175,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Align to top */
+            align-items: flex-start;
         }
         .abstract-card:hover {
             transform: translateY(-5px);
@@ -172,7 +209,7 @@
         .flip-card {
             background-color: transparent;
             width: 100%;
-            min-height: 420px;
+            min-height: 450px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -180,16 +217,14 @@
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 420px;
+            min-height: 450px;
             text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-radius: .375rem;
         }
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
@@ -198,23 +233,27 @@
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             padding: 2rem;
             border-radius: .375rem;
+            overflow-y: auto;
         }
         .flip-card-front {
             background-color: white;
-            justify-content: flex-start; /* Align to top */
             padding-top: 2.5rem;
+        }
+        .flip-card-front .icon-flipper {
+            color: var(--bs-primary);
+            opacity: 0.7;
+            margin-top: auto;
+            padding-top: 1rem;
         }
         .flip-card-back {
             background-color: var(--bs-primary);
             color: white;
             transform: rotateY(180deg);
-            overflow-y: auto;
             text-align: left;
-            justify-content: flex-start;
         }
         .flip-card-front img {
             width: 120px;
@@ -234,10 +273,15 @@
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             height: 100%;
-            display: flex; /* Flexbox for alignment */
+            display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align to top */
+            justify-content: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .speaker-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .speaker-card img {
             width: 130px;
@@ -251,6 +295,7 @@
             font-weight: 500;
             color: var(--bs-primary);
             margin-top: 1rem;
+            font-size: 0.9rem;
         }
 
         /* About Section */
@@ -259,13 +304,69 @@
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 100px;
         }
         #about .sidebar h5 { color: var(--bs-primary); }
         #about .sidebar ul { padding-left: 1.2rem; }
 
+        /* Info & Venue Section */
+        #info-sidebar .list-group-item {
+            text-align: left;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background-color: #fff;
+            color: var(--bs-dark);
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+        #info-sidebar .list-group-item.active {
+            background-color: var(--bs-primary);
+            color: white;
+            border-color: var(--bs-primary);
+        }
+        #info-sidebar .list-group-item i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            width: 25px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #info .content-area {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 100%;
+        }
+        #info .accordion-button:not(.collapsed) {
+            color: white;
+            background-color: var(--bs-secondary);
+        }
+        #info .accordion-button i {
+             margin-right: 1rem;
+        }
+        .registration-hours .hour-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-radius: .375rem;
+            margin-bottom: 0.5rem;
+            background-color: var(--bs-light);
+        }
+         .registration-hours .hour-item .day {
+            font-weight: 600;
+            color: var(--bs-secondary);
+        }
+         .registration-hours .hour-item .day i {
+            margin-right: 0.5rem;
+        }
+
+
         /* Awards Section */
         #awards {
-            background-color: var(--bs-secondary);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('prideinn.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
         }
         #awards .icon {
@@ -274,12 +375,6 @@
         }
         
         /* Partners Section */
-        .partner-logo {
-            padding: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         .partner-logo img {
             max-height: 60px;
             max-width: 150px;
@@ -294,9 +389,9 @@
 
         /* FOOTER STYLES */
         .footer-section {
-            background-color: #212529; /* Dark background */
-            color: rgba(255, 255, 255, 0.85); /* Light text for readability */
-            padding: 60px 0;
+            background-color: var(--bs-secondary);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 60px 0 30px 0;
             font-family: 'Roboto', sans-serif;
         }
         .footer-section h5 {
@@ -305,28 +400,50 @@
             color: #ffffff;
             margin-bottom: 1.5rem;
             letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-section h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--bs-primary);
         }
         .footer-section .list-unstyled li {
-            padding-bottom: 0.75rem; /* Spacing between committee members */
+            padding-bottom: 0.75rem;
         }
-        .footer-section .info-item {
-            margin-bottom: 1rem;
-        }
-        .footer-section .info-item strong {
-            color: #ffffff; /* Make labels stand out */
+        .footer-section .info-item i {
+            color: #ffc107;
+            margin-right: 10px;
         }
         .footer-section a {
             color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .footer-section a:hover {
-            color: #ffffff;
-            text-decoration: underline;
+        .footer-section a:hover { color: #ffffff; }
+        .footer-section .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
-        .footer-section .partner-logo img {
-            background-color: white;
-            padding: 5px;
-            border-radius: 4px;
+        .footer-section .social-icons a:hover {
+            background-color: var(--bs-primary);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 30px;
         }
 
     </style>
@@ -334,8 +451,7 @@
 
 <body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="71">
 
-    <!-- Header & Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm" id="mainNavbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="https://ipnetkenya.org/" target="_blank"><img src="ipnet-k-logo.png" alt="IPNET-K Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
@@ -348,7 +464,7 @@
                     <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
                     <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
                     <li class="nav-item"><a class="nav-link" href="#abstracts">Abstracts</a></li>
-                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary w-100" href="https://ipnetkenya.org/register.php" target="_blank">Register Now</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-light w-100" href="https://ipnetkenya.org/register.php" target="_blank">Register Now</a></li>
                 </ul>
             </div>
         </div>
@@ -356,7 +472,6 @@
     
     <main>
 
-    <!-- HOME SECTION -->
     <section id="home">
         <div class="container text-center">
             <p class="text-uppercase">September 15th - 17th, 2025 • Mombasa, Kenya</p>
@@ -366,7 +481,6 @@
         </div>
     </section>
 
-    <!-- WELCOME MESSAGES SECTION -->
     <section id="messages" class="section-padding bg-light">
          <div class="container">
             <div class="section-title">
@@ -382,6 +496,7 @@
                                 <h5>Prof. Gunturu Revathi</h5>
                                 <p class="text-muted">IPNET-Kenya Chair</p>
                                 <p class="fw-bold mt-2">Message from the IPNET-Kenya Chair</p>
+                                <div class="icon-flipper"><i class="bi bi-arrow-right-circle"></i> Click to read</div>
                             </div>
                             <div class="flip-card-back">
                                 <h5>Message from the Chair</h5>
@@ -403,10 +518,11 @@
                                     Former, Board member: International Federation of infection control (IFIC) and Infection Control African Network (ICAN)
                                 </p>
                                 <p class="fw-bold mt-2">Message from the IPNET-Kenya founder</p>
+                                <div class="icon-flipper"><i class="bi bi-arrow-right-circle"></i> Click to read</div>
                             </div>
                             <div class="flip-card-back">
                                 <h5>Message from the Founder</h5>
-                                <p>Dear Colleagues and Friends, On behalf of the Conference organizing committee, it is my great pleasure to welcome you to the 12th IPNET-Kenya conference, to be held at Pride Inn Convention center, Kenya, on September 15th -17th, 2025. Over the past one and half decade IPNET-Kenya has grown and become the voice of infection prevention and control (IPC) in Kenya with over 400 registered members. Since the inception of IPNET-Kenya in 2009 we have been organizing conferences to support members and partners to have a forum to share their practices and experiences through science-based evidence. Society has endeavored to build capacity amongst members to utilize their data and make informed decisions, through various forums like science writing workshops. This year conference engages broad subject matter expertise from within and across the borders... Please join IPNET-KENYA in the fight against HAIs and antimicrobial resistance by improving IPC practices in Kenya and the region. Enjoy the conference and experience the wonderful sceneries of Naivasha, and many places to enjoy like Hells gate national park, Giraffe centre, Lake Naivasha Crescent Island, Kitaru, Olkaria geothermal Spa, Crater Lake and Mt Longonot & Longonot national park and many more.</p>
+                                <p>Dear Colleagues and Friends, On behalf of the Conference organizing committee, it is my great pleasure to welcome you to the 12th IPNET-Kenya conference, to be held at Pride Inn Convention center, Kenya, on September 15th -17th, 2025. Over the past one and half decade IPNET-Kenya has grown and become the voice of infection prevention and control (IPC) in Kenya with over 400 registered members. Since the inception of IPNET-Kenya in 2009 we have been organizing conferences to support members and partners to have a forum to share their practices and experiences through science-based evidence. Society has endeavored to build capacity amongst members to utilize their data and make informed decisions, through various forums like science writing workshops. This year conference engages broad subject matter expertise from within and across the borders... Please join IPNET-KENYA in the fight against HAIs and antimicrobial resistance by improving IPC prac tices in Kenya and the region. Enjoy the conference and experience the wonderful sceneries of Naivasha, and many places to enjoy like Hells gate national park, Giraffe centre, Lake Naivasha Crescent Island, Kitaru, Olkaria geothermal Spa, Crater Lake and Mt Longonot & Longonot national park and many more.</p>
                             </div>
                         </div>
                     </div>
@@ -419,6 +535,7 @@
                                 <h5>Dr. Rachel Kamau & Frankline O. Mboya</h5>
                                 <p class="text-muted">Co-Chairs, Scientific Committee</p>
                                 <p class="fw-bold mt-2">Remarks from the Scientific Committee</p>
+                                <div class="icon-flipper"><i class="bi bi-arrow-right-circle"></i> Click to read</div>
                             </div>
                             <div class="flip-card-back">
                                 <h5>Remarks from the Scientific Committee</h5>
@@ -431,7 +548,6 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about" class="section-padding">
         <div class="container">
              <div class="section-title">
@@ -468,32 +584,133 @@
         </div>
     </section>
     
-    <!-- INFO & VENUE SECTION -->
     <section id="info" class="section-padding bg-light">
-         <div class="container">
+        <div class="container">
             <div class="section-title">
-                <h2>Venue & General Information</h2>
+                <h2>General Information</h2>
             </div>
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <h3>Pride Inn Conference Centre, Mombasa</h3>
-                    <p>The conference will be held at the prestigious Pride Inn conference centre in Mombasa, Kenya. Known for its beautiful surroundings and excellent facilities, it provides the perfect backdrop for learning and networking.</p>
-                    <img src="prideinn.jpg" class="img-fluid rounded shadow-sm" alt="Pride Inn Mombasa">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="list-group" id="info-sidebar">
+                        <a href="#collapseLanguage" class="list-group-item list-group-item-action"><i class="bi bi-translate"></i> Language</a>
+                        <a href="#collapseBadge" class="list-group-item list-group-item-action"><i class="bi bi-person-badge-fill"></i> Name Badge</a>
+                        <a href="#collapseInsurance" class="list-group-item list-group-item-action"><i class="bi bi-file-earmark-lock-fill"></i> Insurance</a>
+                        <a href="#collapseSafety" class="list-group-item list-group-item-action"><i class="bi bi-shield-fill-check"></i> Safety and Security</a>
+                        <a href="#collapseDevices" class="list-group-item list-group-item-action"><i class="bi bi-phone-vibrate-fill"></i> Electronic Devices</a>
+                        <a href="#collapseRegistration" class="list-group-item list-group-item-action"><i class="bi bi-r-square-fill"></i> Registration</a>
+                        <a href="#collapseSpeakers" class="list-group-item list-group-item-action"><i class="bi bi-mic-fill"></i> Speakers Ready Room</a>
+                        <a href="#collapseExhibition" class="list-group-item list-group-item-action"><i class="bi bi-shop"></i> Exhibition</a>
+                        <a href="#collapseMisc" class="list-group-item list-group-item-action"><i class="bi bi-info-circle-fill"></i> Other Info</a>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="accordion" id="infoAccordion">
-                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#info1">Language & Badges</button></h2><div id="info1" class="accordion-collapse collapse show" data-bs-parent="#infoAccordion"><div class="accordion-body">The official language is English. No simultaneous translation will be provided. It is mandatory to always wear your name badge during the conference sessions.</div></div></div>
-                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info2">Safety & Insurance</button></h2><div id="info2" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">The organizers are not liable for any personal injuries, loss or damage of property. It is advisable for all participants to ensure the validity of their own insurance. Please comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended.</div></div></div>
-                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info3">Registration</button></h2><div id="info3" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">Onsite registration will take place outside the conference hall. The registration fee covers the program book, access to all sessions and exhibition areas, as well as morning and afternoon tea/coffee and lunch. <br><strong>Registration hours:</strong><br>Sunday 14th: 16:00-18:00<br>Monday 15th: 8:15-17:30<br>Tuesday 16th: 8:15-17:30<br>Wednesday 17th: 8:15-12:30</div></div></div>
-                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info4">Presenters & Devices</button></h2><div id="info4" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Presenters are also required to arrive 15 minutes prior to the start of their session. During educational sessions, electronic devices must be set to silent or vibrate mode.</div></div></div>
-                        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#info5">Exhibitions & More</button></h2><div id="info5" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body"><strong>Exhibition:</strong> Will be held outside the conference hall. All delegates are invited. <br><strong>Lost and found:</strong> Please return any items found to the registration desk. <br><strong>Currency:</strong> The currency will be Kenya Shillings (KES).</div></div></div>
+                <div class="col-lg-8">
+                    <div class="content-area">
+                        <div>
+                            <h5><i class="bi bi-geo-alt-fill"></i> Conference Venue</h5>
+                            <p>Pride inn convention center</p>
+                            <img src="prideinn.jpg" class="img-fluid rounded shadow-sm my-3" alt="Pride Inn Mombasa">
+                        </div>
+                        <hr>
+                        <div class="accordion" id="infoAccordion">
+                            
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguage"></button></h2>
+                                <div id="collapseLanguage" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-translate"></i> Language</h5>
+                                    <p>The official language of the conference will be English. No simultaneous translation service will be provided.</p>
+                                </div></div>
+                            </div>
+
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBadge"></button></h2>
+                                <div id="collapseBadge" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-person-badge-fill"></i> Name Badge</h5>
+                                    <p>Once you have completed the registration process, you will be provided with a name badge, an abstract book, and a conference bag. It is mandatory to always wear your badge during the conference sessions.</p>
+                                </div></div>
+                            </div>
+                             
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInsurance"></button></h2>
+                                <div id="collapseInsurance" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-file-earmark-lock-fill"></i> Insurance</h5>
+                                    <p>The organizers of the congress are not liable for any personal injuries, loss or damage of property incurred by the participants (or their accompanying persons) during or as a result of the congress. It is advisable for all participants to ensure the validity of their own insurance prior to attending the congress.</p>
+                                </div></div>
+                            </div>
+
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafety"></button></h2>
+                                <div id="collapseSafety" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-shield-fill-check"></i> Safety and Security</h5>
+                                    <p>We kindly request that you comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended at any time, whether within or outside the meeting venue. If you need to store any personal belongings, please contact the bell captain at the hotel lobby for assistance.</p>
+                                </div></div>
+                            </div>
+                            
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevices"></button></h2>
+                                <div id="collapseDevices" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-phone-vibrate-fill"></i> Cell phones, pagers, and other electronic devices</h5>
+                                    <p>During educational sessions, electronic devices must be set to silent or vibrate mode. Phone conversations are strictly prohibited within the meeting rooms.</p>
+                                </div></div>
+                            </div>
+                             
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistration"></button></h2>
+                                <div id="collapseRegistration" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-r-square-fill"></i> Registration</h5>
+                                    <p>Onsite registration will take place outside the conference hall located on the ground floor. The registration fee covers the program book, access to all sessions and exhibition areas adjacent to the conference hall, as well as morning and afternoon tea/coffee and lunch. Any updates regarding the meeting schedule will be communicated to participants through signage or announcements.</p>
+                                    <h6 class="mt-4">Registration hours:</h6>
+                                    <div class="registration-hours">
+                                        <div class="hour-item">
+                                            <div class="day"><i class="bi bi-calendar-event"></i> Sunday 14th Sep 2025</div>
+                                            <div class="time">16:00 - 18:00</div>
+                                        </div>
+                                        <div class="hour-item">
+                                            <div class="day"><i class="bi bi-calendar-event"></i> Monday 15th Sep 2025</div>
+                                            <div class="time">08:15 - 17:30</div>
+                                        </div>
+                                        <div class="hour-item">
+                                            <div class="day"><i class="bi bi-calendar-event"></i> Tuesday 16th Sep 2025</div>
+                                            <div class="time">08:15 - 17:30</div>
+                                        </div>
+                                         <div class="hour-item">
+                                            <div class="day"><i class="bi bi-calendar-event"></i> Wednesday 17th Sep 2025</div>
+                                            <div class="time">08:15 - 12:30</div>
+                                        </div>
+                                    </div>
+                                </div></div>
+                            </div>
+
+                            <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpeakers"></button></h2>
+                                <div id="collapseSpeakers" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-mic-fill"></i> Speakers ready room</h5>
+                                    <p>All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Please note that presentations on portable drives or devices will not be accepted. Presenters are also required to arrive 15 minutes prior to the start of their session at the designated meeting room to meet with the session chair.</p>
+                                </div></div>
+                            </div>
+                            
+                             <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExhibition"></button></h2>
+                                <div id="collapseExhibition" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-shop"></i> Exhibition</h5>
+                                    <p>Exhibition will be held outside the conference hall. All delegates are invited to interact with the companies and view state-of-the-art IPC-related products at the exhibition.</p>
+                                </div></div>
+                            </div>
+                             
+                             <div class="accordion-item d-none">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisc"></button></h2>
+                                <div id="collapseMisc" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
+                                    <h5><i class="bi bi-info-circle-fill"></i> Other Information</h5>
+                                    <p><strong>Lost and found:</strong> Please return any items found to the registration desk located opposite the meeting room</p>
+                                    <p><strong>Currency Information:</strong> The currency will be Kenya Shillings (KES)</p>
+                                </div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAM SECTION -->
     <section id="program" class="section-padding">
         <div class="container">
             <div class="section-title">
@@ -508,16 +725,13 @@
                 </div>
             </div>
             
-            <!-- Day Tabs -->
             <ul class="nav nav-tabs nav-fill mb-4" id="programTab" role="tablist">
-                <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day1" type="button">Day 1: Sept 15</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day2" type="button">Day 2: Sept 16</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day3" type="button">Day 3: Sept 17</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day1" type="button"><i class="bi bi-calendar3 me-2"></i>Day 1: Sept 15</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day2" type="button"><i class="bi bi-calendar3 me-2"></i>Day 2: Sept 16</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day3" type="button"><i class="bi bi-calendar3 me-2"></i>Day 3: Sept 17</button></li>
             </ul>
             
-            <!-- Tab Content -->
             <div class="tab-content" id="programTabContent">
-                <!-- DAY 1 CONTENT -->
                 <div class="tab-pane fade show active" id="day1" role="tabpanel">
                     <div class="program-session">
                         <div class="program-session-title">
@@ -576,7 +790,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- DAY 2 CONTENT -->
                 <div class="tab-pane fade" id="day2" role="tabpanel">
                     <div class="program-session">
                         <div class="program-session-title">
@@ -629,7 +842,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- DAY 3 CONTENT -->
                 <div class="tab-pane fade" id="day3" role="tabpanel">
                      <div class="program-session">
                         <div class="program-session-title">
@@ -655,7 +867,6 @@
         </div>
     </section>
     
-    <!-- GUEST SPEAKERS SECTION -->
     <section id="speakers" class="section-padding bg-light">
          <div class="container">
             <div class="section-title">
@@ -715,7 +926,6 @@
         </div>
     </section>
 
-    <!-- ABSTRACTS SECTION -->
     <section id="abstracts" class="section-padding">
         <div class="container">
             <div class="section-title">
@@ -723,28 +933,24 @@
                 <p class="lead">Explore the research presented at the conference. Click on any card to read the full abstract.</p>
             </div>
             <div class="row g-4" id="abstractsGrid">
-                <!-- Abstract cards will be injected here by JS -->
-            </div>
+                </div>
         </div>
     </section>
     
-    <!-- AWARDS SECTION -->
     <section id="awards" class="section-padding">
         <div class="container text-center">
             <div class="icon"><i class="bi bi-trophy-fill"></i></div>
             <h2 class="mt-3">Best Presentation Award</h2>
-            <p class="lead col-lg-8 mx-auto">This award is given to the best oral presentation at the conference, evaluated on Presentation Style, Research Quality, and Layout/Design. It's a unique opportunity to combine visual and oral explanations of your projects.</p>
+            <p class="lead col-lg-8 mx-auto">This award is given to the best oral presentation presented at the conference. The oral presentation will be evaluated based on Presentation Style, Research Quality, and Layout/Design. Unique opportunity to combine visual and oral explanations of your projects in the form of oral presentation.</p>
         </div>
     </section>
     
     </main>
     
-    <!-- Footer -->
     <footer class="footer-section">
         <div class="container">
             <div class="row g-5">
 
-                <!-- Column 1: Scientific Committee -->
                 <div class="col-lg-3 col-md-6">
                     <h5>Scientific Committee</h5>
                     <ul class="list-unstyled">
@@ -760,10 +966,10 @@
                         <li>Evelyne Mboga</li>
                         <li>Dr. Emanuel Tanui</li>
                         <li>Lydia Ntisiki</li>
+                        <li>Dr. Gathai Mundia</li>
                     </ul>
                 </div>
 
-                <!-- Column 2: Logistics Committee -->
                 <div class="col-lg-3 col-md-6">
                     <h5>Logistics Committee</h5>
                      <ul class="list-unstyled">
@@ -785,8 +991,7 @@
                         <li>Dr. Linus Ndegwa</li>
                     </ul>
                 </div>
-
-                <!-- Column 3: Partners & Exhibitors -->
+                
                 <div class="col-lg-3 col-md-6">
                     <h5>Partners</h5>
                     <div class="d-flex flex-wrap">
@@ -803,27 +1008,31 @@
                          <div class="partner-logo p-2"><img src="nairobi-ent.png" alt="Nairobi Enterprises Logo"></div>
                     </div>
                 </div>
-                
-                <!-- Column 4: General Information -->
+
                 <div class="col-lg-3 col-md-6">
                     <h5>General Information</h5>
-                    <div class="info-item">
-                        <strong>Venue:</strong>
-                        <p class="mb-0">Pride Inn conference centre, Mombasa, Kenya</p>
+                    <div class="info-item d-flex mb-3">
+                        <i class="bi bi-geo-alt mt-1"></i>
+                        <span>Pride Inn conference centre, Mombasa, Kenya</span>
                     </div>
-                    <div class="info-item">
-                        <strong>Language:</strong>
-                        <p class="mb-0">English</p>
+                    <div class="info-item d-flex mb-3">
+                        <i class="bi bi-translate mt-1"></i>
+                        <span><strong>Language:</strong> English</span>
                     </div>
-                    <div class="info-item">
-                        <strong>Currency:</strong>
-                        <p class="mb-0">Kenya Shillings (KES)</p>
+                    <div class="info-item d-flex mb-3">
+                        <i class="bi bi-cash-coin mt-1"></i>
+                        <span><strong>Currency:</strong> Kenya Shillings (KES)</span>
+                    </div>
+                    <h5 class="mt-4">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
 
             </div>
-            <hr class="my-4">
-             <div class="text-center">
+            <div class="footer-bottom text-center">
                  <p class="mb-0">&copy; 2025 Infection Prevention Network-Kenya (IPNET-K). All Rights Reserved.</p>
                  <p class="mb-0"><small>Website Designed by <a href="https://wa.me/254799172342" target="_blank">Curated Designs</a></small></p>
             </div>
@@ -831,7 +1040,6 @@
     </footer>
 
 
-    <!-- Abstract Modal -->
     <div class="modal fade" id="abstractModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
@@ -847,10 +1055,51 @@
         </div>
     </div>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Navbar scroll effect
+            const navbar = document.getElementById('mainNavbar');
+            if (navbar) {
+                const navButton = navbar.querySelector('.btn');
+                function updateNavStyles(isScrolled) {
+                    if (isScrolled) {
+                        navbar.classList.add('scrolled');
+                        navButton.classList.remove('btn-light');
+                        navButton.classList.add('btn-outline-light');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                        navButton.classList.add('btn-light');
+                        navButton.classList.remove('btn-outline-light');
+                    }
+                }
+                window.addEventListener('scroll', () => updateNavStyles(window.scrollY > 50));
+                updateNavStyles(window.scrollY > 50);
+            }
+
+            // Info Section Sidebar Controller
+            const infoSidebarLinks = document.querySelectorAll('#info-sidebar a');
+            const infoAccordion = document.getElementById('infoAccordion');
+            if (infoSidebarLinks.length > 0 && infoAccordion) {
+                const accordionItems = infoAccordion.querySelectorAll('.accordion-item');
+                accordionItems.forEach(item => item.classList.remove('d-none'));
+
+                infoSidebarLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        infoSidebarLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        const targetId = this.getAttribute('href');
+                        const targetCollapseEl = document.querySelector(targetId);
+                        if (targetCollapseEl) {
+                            const bsCollapse = bootstrap.Collapse.getInstance(targetCollapseEl) || new bootstrap.Collapse(targetCollapseEl, { parent: '#infoAccordion' });
+                            bsCollapse.show();
+                        }
+                    });
+                });
+            }
+
+            // Abstract data and modal functionality
             const abstractsData = [
                 { id: 30, title: "Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital Adult Hospital, Zambia", authors: "Linda Musonda, ZNHRA", content: `<h6>Background</h6><p>Antimicrobial resistance poses a significant threat to public health security globally, particularly in low-resource settings such as Zambia. Nurses, as frontline caregivers, are essential in implementing infection prevention and control strategies. This study examined the role of nursing empowerment in enhancing IPC measures at the University Teaching Hospital in Lusaka.</p><h6>Methods</h6><p>A cross-sectional study design was employed. Structured questionnaires were administered to a sample of 208 nursing staff to evaluate their knowledge, attitudes, and practices related to IPC. The nurses included IPC champions and general ward nurses. The study emphasized nurse-led surveillance, and interdisciplinary collaboration on IPC practices to combat AMR.</p><h6>Results</h6><p>The findings revealed that empowering nurses leads to improved IPC practices, enhanced leadership, and better compliance with antimicrobial stewardship protocols. The results underscore the importance of investing in continuous nursing education and leadership training as a strategy to strengthen IPC and mitigate AMR. Using the core component score the facility managed to score 640/800 going into the advanced level compared to the previous assessment done in 2023 in which the facility scored 362.5/800 representing in basic level.</p><h6>Conclusion</h6><p>Nursing empowerment is a critical enabler of effective IPC and AMR containment. The initiative underscores the pivotal role of nursing empowerment in advancing infection prevention and mitigating antimicrobial resistance.</p>` },
                 { id: 20, title: "Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya", authors: "Silas O. Awuor, JOOTRH-KISUMU", content: `<h6>Background</h6><p>Effective management of Diabetic foot ulcers (DFU) requires timely treatment of infections with appropriate antibiotics based on culture and susceptibility results. This study profiled the prevalent bacteria in Diabetic foot infection (DFI), their antimicrobial susceptibility patterns, and associated resistance genes.</p><h6>Methodology</h6><p>A multi-center cross sectional study was conducted from November 2024-May 2025, involving 117 patients with infected DFU, attending selected referral hospitals (JOOTRH and KCRH). Wound swabs were then pre-enriched prior to inoculation onto Blood, MacConkey and Chocolate Agar to isolate aerobic microorganisms. Bacteria identification was based on Gram stain and conventional biochemical tests. Antibiotic susceptibility testing was performed using Kirby-Bauer disk diffusion method. Methicillin-resistant Staphylococcus aureus (MRSA) and extended-spectrum beta-lactamase-producing Enterobacterales (ESBL-PE) were identified phenotypically. mecA gene in selected MRSA, and blaCTX-M-1 and blaSHV-1 in ESBL-PE were detected using Uniplex PCR and electrophoresed using 1.5% agarose gel. Data was analyzed using MS. Excel version 15 and Stata version 15 (Stata Corp).</p><h6>Results</h6><p>Poly-microbial infections were detected in 23.8% of patients. Gram-positive bacteria accounted for 55.6% (80/144) of isolates. Staphylococcus aureus (36.1% (52/144)) and Proteus spp (13.9% (20/144)) were the most prevalent Gram-positive and Gram-negative bacteria, respectively. Notably, 98.6% (142/144) of the isolates were multidrug-resistant organisms (MDR). Staphylococcus aureus sensitivity was highest for Gentamycin and Ciprofloxacin (48% each) and lowest for Cefoxitin (2%). Proteus spp sensitivity was highest for Imipenem (87%) and lowest for Tetracycline, Ampicillin and Amoxiclav (0%). mecA gene was identified in 56% (5/9) of MRSA. Among the selected MDR Gram-negative isolates, 60% had blaCTX-M-1, 20 % had blaSHV and both blaCTX-M-1 and blaSHV in one Klebsiella pneumoniae.</p><h6>Conclusion</h6><p>The high prevalence of MDR bacteria in DFI underscores culture and sensitivity testing guided treatment. Detection of resistance genes calls for sustained surveillance efforts, stringent infection prevention and control and alternative therapy exploration.</p>` },
@@ -890,28 +1139,30 @@
                 { id: 6, title: "Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.", authors: "Sarah Ngare, Nyahururu Medical Training College, Laikipia, Kenya; Vane Moraa, Nyahururu Medical Training College, Laikipia, Kenya; Obadiah Kiptoo, Nyahururu Medical Training College, Laikipia, Kenya; Samuel Muigai, Nyahururu Medical Training College, Laikipia, Kenya; Simon Mong'are, Umoja Health Centre, Nairobi, Kenya.", content: `<h6>Introduction</h6><p>Hand hygiene is a crucial element to prevent cross-transmission of Health Associated Infections (HAIs) between health care workers and patients. According to WHO, more than 90% of health care workers dont adhere to recommended hand hygiene practices hence leading to increased cases of HAIs which are major causes of morbidity and mortality among health care workers and patients. Therefore, by complying with measures of hand hygiene, it can be a key intervention in helping to reduce the infections. The study aimed to assess compliance of hand hygiene practices among nurse students who were attached to the medical ward department in Nyahururu County Referral Hospital.</p><h6>Methods</h6><p>A cross-section observational study was conducted among 154 nurse students who were attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya between January 2025 and April 2025. Hand hygiene audit tool was used to assess the five critical moments (before touching a patient, before aseptic procedure, after body fluid exposure risk, after touching a patient and after touching the patients surroundings). Data collected was analyzed by use of Microsoft Excel.</p><h6>Results</h6><p>Of the 154 nurse students who were assessed, 61 (40%) were males and 93 (60%) females where their ages ranged between 20 and 25 years. Among them, 6 (4%) students complied before touching a patient, 14 (9%) before aseptic procedure, 49 (32%) after body fluid exposure risk, 74 (48%) after touching a patient and 11 (7%) complied after touching the patients surroundings.</p><h6>Conclusion</h6><p>Overall, Compliance of hand hygiene practices was highest after touching a patient at 48% while lowest before touching a patient at 4%. There is a need to enhance training, regular supervisions on the five critical moments and creating awareness on importance of hand hygiene among nurse students to improve compliance and reduce cross transmission of Health Care Associated Infections.</p>` },
                 { id: 41, title: "Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya", authors: "Everlyne Mboga", content: `<h6>Introduction</h6><p>Globally, tuberculosis (TB) remains one of the leading causes of death, with healthcare workers (HCWs) at heightened risk due to occupational hazards. Tuberculosis prevention therapy (TPT) for managing latent TB infection is increasingly important worldwide and in Kenya, aligning with the WHO's vision of 'A world free of TB' and Kenya's goal to eliminate tuberculosis by 2035. This study aimed to assess the uptake and completion of TPT among HCWs in Rangwe sub county, Homabay County, Kenya.</p><h6>Methods</h6><p>Utilizing both quantitative and qualitative approaches, the study included a sample of 119 HCWs from various health facilities. Quantitative data were gathered through face-to-face interviews using a pretested structured questionnaire, while qualitative data was obtained from key -informant interviews with the sub-county TB coordinators, as well as in-depth interviews with 21 health facility managers. Thematic analysis was used for qualitative data.</p><h6>Results</h6><p>Most of the HCWs 88 (74%) of HCWs were initiated on TPT, though only 41 (46%) completed the therapy Among those who completed the therapy, Majority were 26 (63%) were support staff, followed by 7(17%) Laboratory officers, 4(9.8%) clinical officers and 4(9.8%) were nurses. Significant factors influencing TPT uptake included health facility level at 110(93%) awareness and training on TB risk 74(63%) department 98(83%) and having a co-worker with TB 117 (99%).</p><h6>Conclusion</h6><p>Uptake and completion of TPT could be improved through capacity building and enhanced facility-level support and recommended that policymakers at all levels ensure adequate funding, emphasize TB risk perception and reinforce protective measures to increase TPT completion rate.</p>` },
                 { id: 18, title: "Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development.", authors: "Silas O. Awuor, JOOTRH-KISUMU, Pamela Anyango Opepo, JOOTRH-KISUMU", content: `<h6>Background</h6><p>During pregnancy, mothers are at high risk on bacterial infections such as urinary tract infection (UTI) hence frequent prescriptions of antibiotics are done for the management of such infection that threaten maternal and fetal health. Therefore, aggregate signal links in utero antibiotic exposure to neonatal antimicrobial resistance (AMR), raising concerns about its long-term consequences. This research examines the impact of maternal antibiotic use on neonatal AMR, focusing on microbiome disruption, resistance mechanisms, and clinical outcomes.</p><h6>Methodology</h6><p>This was a hospital-based, cross-sectional study conducted between January 2025 and June 2025. The antenatal clinic (ANC) book was used to retrieve UTI history and frequently prescribed antibiotics during pregnancy to manage infections. Laboratory tests were also conducted on the blood samples collected from the newborn baby at day one on the delivery and urine sample at delivery point.</p><h6>Result</h6><p>Overall (n=203), the prevalence of UTI was 60% (95% CI: 53.3%66.7%). The most isolated bacteria were E. coli (59%) and Klebsiella (21%). The prevalence of AMR was found to be 53% (95% CI: 46.1%59.8%). The drugs highly resistant to antimicrobials were Amikacin (88.3%), ampicillin (77.8%), and Norfloxacin (58.5%), while the least resistant drug was chloramphenicol (20%). Same resistant pattern was also observed on the 40% isolated pathogen from the newborn.</p><h6>Conclusion</h6><p>A deeper understanding of vertical transmission of antibiotic resistance from mothers to their offspring is necessary to determine the most effective strategies for reducing antibiotic resistance in early life.</p>` }
+            // ... ALL OTHER ABSTRACTS WOULD BE ADDED HERE IN THE SAME FORMAT
             ];
 
             const abstractsGrid = document.getElementById('abstractsGrid');
-            const abstractModal = new bootstrap.Modal(document.getElementById('abstractModal'));
-            
-            abstractsData.forEach(abstract => {
-                const col = document.createElement('div');
-                col.className = 'col-md-6 col-lg-4 d-flex align-items-stretch';
-                col.innerHTML = `
-                    <div class="abstract-card">
-                        <h3 class="abstract-card-title">${abstract.title}</h3>
-                        <p class="abstract-card-author">${abstract.authors}</p>
-                    </div>
-                `;
-                col.querySelector('.abstract-card').addEventListener('click', () => {
-                    document.getElementById('modalTitle').textContent = abstract.title;
-                    document.getElementById('modalAuthors').textContent = abstract.authors;
-                    document.getElementById('modalContent').innerHTML = abstract.content;
-                    abstractModal.show();
+            if (abstractsGrid) {
+                const abstractModal = new bootstrap.Modal(document.getElementById('abstractModal'));
+                abstractsData.forEach(abstract => {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-6 col-lg-4 d-flex align-items-stretch';
+                    col.innerHTML = `
+                        <div class="abstract-card">
+                            <h3 class="abstract-card-title">${abstract.title}</h3>
+                            <p class="abstract-card-author">${abstract.authors}</p>
+                        </div>
+                    `;
+                    col.querySelector('.abstract-card').addEventListener('click', () => {
+                        document.getElementById('modalTitle').textContent = abstract.title;
+                        document.getElementById('modalAuthors').textContent = abstract.authors;
+                        document.getElementById('modalContent').innerHTML = abstract.content;
+                        abstractModal.show();
+                    });
+                    abstractsGrid.appendChild(col);
                 });
-                abstractsGrid.appendChild(col);
-            });
+            }
         });
     </script>
 </body>
