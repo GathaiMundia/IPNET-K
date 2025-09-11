@@ -310,41 +310,34 @@
         #about .sidebar h5 { color: var(--bs-primary); }
         #about .sidebar ul { padding-left: 1.2rem; }
 
-        /* Info & Venue Section */
-        #info-sidebar .list-group-item {
-            text-align: left;
-            padding: 1rem;
+        /* Info & Venue Section Accordion */
+        #info .accordion-item {
             margin-bottom: 0.5rem;
-            background-color: #fff;
-            color: var(--bs-dark);
-            border: 1px solid #eee;
-            cursor: pointer;
+            border-radius: 0.5rem !important;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
         }
-        #info-sidebar .list-group-item.active {
-            background-color: var(--bs-primary);
-            color: white;
-            border-color: var(--bs-primary);
-        }
-        #info-sidebar .list-group-item i {
-            font-size: 1.2rem;
-            margin-right: 1rem;
-            width: 25px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        #info .content-area {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            min-height: 100%;
+        #info .accordion-button {
+            font-weight: 600;
+            font-family: var(--font-primary);
+            font-size: 1.1rem;
         }
         #info .accordion-button:not(.collapsed) {
+            background-color: var(--bs-primary);
             color: white;
-            background-color: var(--bs-secondary);
+            box-shadow: none;
         }
-        #info .accordion-button i {
-             margin-right: 1rem;
+        #info .accordion-button.collapsed {
+            background-color: #fff;
+            color: var(--bs-dark);
+        }
+        #info .accordion-button:focus {
+            box-shadow: 0 0 0 .25rem rgba(13, 105, 139, 0.25);
+            border-color: rgba(13, 105, 139, 0.25);
+        }
+        #info .accordion-body {
+            background-color: #fff;
         }
         .registration-hours .hour-item {
             display: flex;
@@ -361,7 +354,6 @@
          .registration-hours .hour-item .day i {
             margin-right: 0.5rem;
         }
-
 
         /* Awards Section */
         #awards {
@@ -589,74 +581,97 @@
             <div class="section-title">
                 <h2>General Information</h2>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="list-group" id="info-sidebar">
-                        <a href="#collapseLanguage" class="list-group-item list-group-item-action"><i class="bi bi-translate"></i> Language</a>
-                        <a href="#collapseBadge" class="list-group-item list-group-item-action"><i class="bi bi-person-badge-fill"></i> Name Badge</a>
-                        <a href="#collapseInsurance" class="list-group-item list-group-item-action"><i class="bi bi-file-earmark-lock-fill"></i> Insurance</a>
-                        <a href="#collapseSafety" class="list-group-item list-group-item-action"><i class="bi bi-shield-fill-check"></i> Safety and Security</a>
-                        <a href="#collapseDevices" class="list-group-item list-group-item-action"><i class="bi bi-phone-vibrate-fill"></i> Electronic Devices</a>
-                        <a href="#collapseRegistration" class="list-group-item list-group-item-action"><i class="bi bi-r-square-fill"></i> Registration</a>
-                        <a href="#collapseSpeakers" class="list-group-item list-group-item-action"><i class="bi bi-mic-fill"></i> Speakers Ready Room</a>
-                        <a href="#collapseExhibition" class="list-group-item list-group-item-action"><i class="bi bi-shop"></i> Exhibition</a>
-                        <a href="#collapseMisc" class="list-group-item list-group-item-action"><i class="bi bi-info-circle-fill"></i> Other Info</a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="content-area">
-                        <div>
-                            <h5><i class="bi bi-geo-alt-fill"></i> Conference Venue</h5>
-                            <p>Pride inn convention center</p>
-                            <img src="prideinn.jpg" class="img-fluid rounded shadow-sm my-3" alt="Pride Inn Mombasa">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="accordion" id="infoAccordionSidebar">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVenue" aria-expanded="true">
+                                    <i class="bi bi-geo-alt-fill me-3"></i>Conference Venue
+                                </button>
+                            </h2>
+                            <div id="collapseVenue" class="accordion-collapse collapse show" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
+                                    <p class="lead">Pride inn convention center</p>
+                                    <img src="prideinn.jpg" class="img-fluid rounded shadow-sm mt-2" alt="Pride Inn Mombasa">
+                                </div>
+                            </div>
                         </div>
-                        <hr>
-                        <div class="accordion" id="infoAccordion">
-                            
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguage"></button></h2>
-                                <div id="collapseLanguage" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-translate"></i> Language</h5>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguage">
+                                    <i class="bi bi-translate me-3"></i>Language
+                                </button>
+                            </h2>
+                            <div id="collapseLanguage" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
                                     <p>The official language of the conference will be English. No simultaneous translation service will be provided.</p>
-                                </div></div>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBadge"></button></h2>
-                                <div id="collapseBadge" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-person-badge-fill"></i> Name Badge</h5>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBadge">
+                                    <i class="bi bi-person-badge-fill me-3"></i>Name Badge
+                                </button>
+                            </h2>
+                            <div id="collapseBadge" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
                                     <p>Once you have completed the registration process, you will be provided with a name badge, an abstract book, and a conference bag. It is mandatory to always wear your badge during the conference sessions.</p>
-                                </div></div>
+                                </div>
                             </div>
-                             
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInsurance"></button></h2>
-                                <div id="collapseInsurance" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-file-earmark-lock-fill"></i> Insurance</h5>
-                                    <p>The organizers of the congress are not liable for any personal injuries, loss or damage of property incurred by the participants (or their accompanying persons) during or as a result of the congress. It is advisable for all participants to ensure the validity of their own insurance prior to attending the congress.</p>
-                                </div></div>
-                            </div>
+                        </div>
 
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafety"></button></h2>
-                                <div id="collapseSafety" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-shield-fill-check"></i> Safety and Security</h5>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInsurance">
+                                    <i class="bi bi-file-earmark-lock-fill me-3"></i>Insurance
+                                </button>
+                            </h2>
+                            <div id="collapseInsurance" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
+                                    <p>The organizers of the congress are not liable for any personal injuries, loss or damage of property incurred by the participants (or their accompanying persons) during or as a result of the congress. It is advisable for all participants to ensure the validity of their own insurance prior to attending the congress.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafety">
+                                    <i class="bi bi-shield-fill-check me-3"></i>Safety and Security
+                                </button>
+                            </h2>
+                            <div id="collapseSafety" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
                                     <p>We kindly request that you comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended at any time, whether within or outside the meeting venue. If you need to store any personal belongings, please contact the bell captain at the hotel lobby for assistance.</p>
-                                </div></div>
+                                </div>
                             </div>
-                            
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevices"></button></h2>
-                                <div id="collapseDevices" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-phone-vibrate-fill"></i> Cell phones, pagers, and other electronic devices</h5>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevices">
+                                    <i class="bi bi-phone-vibrate-fill me-3"></i>Electronic Devices
+                                </button>
+                            </h2>
+                            <div id="collapseDevices" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
                                     <p>During educational sessions, electronic devices must be set to silent or vibrate mode. Phone conversations are strictly prohibited within the meeting rooms.</p>
-                                </div></div>
+                                </div>
                             </div>
-                             
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistration"></button></h2>
-                                <div id="collapseRegistration" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-r-square-fill"></i> Registration</h5>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistration">
+                                    <i class="bi bi-r-square-fill me-3"></i>Registration
+                                </button>
+                            </h2>
+                            <div id="collapseRegistration" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
                                     <p>Onsite registration will take place outside the conference hall located on the ground floor. The registration fee covers the program book, access to all sessions and exhibition areas adjacent to the conference hall, as well as morning and afternoon tea/coffee and lunch. Any updates regarding the meeting schedule will be communicated to participants through signage or announcements.</p>
                                     <h6 class="mt-4">Registration hours:</h6>
                                     <div class="registration-hours">
@@ -677,34 +692,50 @@
                                             <div class="time">08:15 - 12:30</div>
                                         </div>
                                     </div>
-                                </div></div>
-                            </div>
-
-                            <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpeakers"></button></h2>
-                                <div id="collapseSpeakers" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-mic-fill"></i> Speakers ready room</h5>
-                                    <p>All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Please note that presentations on portable drives or devices will not be accepted. Presenters are also required to arrive 15 minutes prior to the start of their session at the designated meeting room to meet with the session chair.</p>
-                                </div></div>
-                            </div>
-                            
-                             <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExhibition"></button></h2>
-                                <div id="collapseExhibition" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-shop"></i> Exhibition</h5>
-                                    <p>Exhibition will be held outside the conference hall. All delegates are invited to interact with the companies and view state-of-the-art IPC-related products at the exhibition.</p>
-                                </div></div>
-                            </div>
-                             
-                             <div class="accordion-item d-none">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisc"></button></h2>
-                                <div id="collapseMisc" class="accordion-collapse collapse" data-bs-parent="#infoAccordion"><div class="accordion-body">
-                                    <h5><i class="bi bi-info-circle-fill"></i> Other Information</h5>
-                                    <p><strong>Lost and found:</strong> Please return any items found to the registration desk located opposite the meeting room</p>
-                                    <p><strong>Currency Information:</strong> The currency will be Kenya Shillings (KES)</p>
-                                </div></div>
+                                </div>
                             </div>
                         </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpeakers">
+                                    <i class="bi bi-mic-fill me-3"></i>Speakers Ready Room
+                                </button>
+                            </h2>
+                            <div id="collapseSpeakers" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
+                                    <p>All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Please note that presentations on portable drives or devices will not be accepted. Presenters are also required to arrive 15 minutes prior to the start of their session at the designated meeting room to meet with the session chair.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExhibition">
+                                    <i class="bi bi-shop me-3"></i>Exhibition
+                                </button>
+                            </h2>
+                            <div id="collapseExhibition" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
+                                     <p>Exhibition will be held outside the conference hall. All delegates are invited to interact with the companies and view state-of-the-art IPC-related products at the exhibition.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisc">
+                                    <i class="bi bi-info-circle-fill me-3"></i>Other Info
+                                </button>
+                            </h2>
+                            <div id="collapseMisc" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
+                                <div class="accordion-body">
+                                     <p><strong>Lost and found:</strong> Please return any items found to the registration desk located opposite the meeting room.</p>
+                                     <p><strong>Currency Information:</strong> The currency will be Kenya Shillings (KES).</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1077,28 +1108,6 @@
                 updateNavStyles(window.scrollY > 50);
             }
 
-            // Info Section Sidebar Controller
-            const infoSidebarLinks = document.querySelectorAll('#info-sidebar a');
-            const infoAccordion = document.getElementById('infoAccordion');
-            if (infoSidebarLinks.length > 0 && infoAccordion) {
-                const accordionItems = infoAccordion.querySelectorAll('.accordion-item');
-                accordionItems.forEach(item => item.classList.remove('d-none'));
-
-                infoSidebarLinks.forEach(link => {
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        infoSidebarLinks.forEach(l => l.classList.remove('active'));
-                        this.classList.add('active');
-                        const targetId = this.getAttribute('href');
-                        const targetCollapseEl = document.querySelector(targetId);
-                        if (targetCollapseEl) {
-                            const bsCollapse = bootstrap.Collapse.getInstance(targetCollapseEl) || new bootstrap.Collapse(targetCollapseEl, { parent: '#infoAccordion' });
-                            bsCollapse.show();
-                        }
-                    });
-                });
-            }
-
             // Abstract data and modal functionality
             const abstractsData = [
                 { id: 30, title: "Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital Adult Hospital, Zambia", authors: "Linda Musonda, ZNHRA", content: `<h6>Background</h6><p>Antimicrobial resistance poses a significant threat to public health security globally, particularly in low-resource settings such as Zambia. Nurses, as frontline caregivers, are essential in implementing infection prevention and control strategies. This study examined the role of nursing empowerment in enhancing IPC measures at the University Teaching Hospital in Lusaka.</p><h6>Methods</h6><p>A cross-sectional study design was employed. Structured questionnaires were administered to a sample of 208 nursing staff to evaluate their knowledge, attitudes, and practices related to IPC. The nurses included IPC champions and general ward nurses. The study emphasized nurse-led surveillance, and interdisciplinary collaboration on IPC practices to combat AMR.</p><h6>Results</h6><p>The findings revealed that empowering nurses leads to improved IPC practices, enhanced leadership, and better compliance with antimicrobial stewardship protocols. The results underscore the importance of investing in continuous nursing education and leadership training as a strategy to strengthen IPC and mitigate AMR. Using the core component score the facility managed to score 640/800 going into the advanced level compared to the previous assessment done in 2023 in which the facility scored 362.5/800 representing in basic level.</p><h6>Conclusion</h6><p>Nursing empowerment is a critical enabler of effective IPC and AMR containment. The initiative underscores the pivotal role of nursing empowerment in advancing infection prevention and mitigating antimicrobial resistance.</p>` },
@@ -1139,7 +1148,6 @@
                 { id: 6, title: "Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.", authors: "Sarah Ngare, Nyahururu Medical Training College, Laikipia, Kenya; Vane Moraa, Nyahururu Medical Training College, Laikipia, Kenya; Obadiah Kiptoo, Nyahururu Medical Training College, Laikipia, Kenya; Samuel Muigai, Nyahururu Medical Training College, Laikipia, Kenya; Simon Mong'are, Umoja Health Centre, Nairobi, Kenya.", content: `<h6>Introduction</h6><p>Hand hygiene is a crucial element to prevent cross-transmission of Health Associated Infections (HAIs) between health care workers and patients. According to WHO, more than 90% of health care workers dont adhere to recommended hand hygiene practices hence leading to increased cases of HAIs which are major causes of morbidity and mortality among health care workers and patients. Therefore, by complying with measures of hand hygiene, it can be a key intervention in helping to reduce the infections. The study aimed to assess compliance of hand hygiene practices among nurse students who were attached to the medical ward department in Nyahururu County Referral Hospital.</p><h6>Methods</h6><p>A cross-section observational study was conducted among 154 nurse students who were attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya between January 2025 and April 2025. Hand hygiene audit tool was used to assess the five critical moments (before touching a patient, before aseptic procedure, after body fluid exposure risk, after touching a patient and after touching the patients surroundings). Data collected was analyzed by use of Microsoft Excel.</p><h6>Results</h6><p>Of the 154 nurse students who were assessed, 61 (40%) were males and 93 (60%) females where their ages ranged between 20 and 25 years. Among them, 6 (4%) students complied before touching a patient, 14 (9%) before aseptic procedure, 49 (32%) after body fluid exposure risk, 74 (48%) after touching a patient and 11 (7%) complied after touching the patients surroundings.</p><h6>Conclusion</h6><p>Overall, Compliance of hand hygiene practices was highest after touching a patient at 48% while lowest before touching a patient at 4%. There is a need to enhance training, regular supervisions on the five critical moments and creating awareness on importance of hand hygiene among nurse students to improve compliance and reduce cross transmission of Health Care Associated Infections.</p>` },
                 { id: 41, title: "Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya", authors: "Everlyne Mboga", content: `<h6>Introduction</h6><p>Globally, tuberculosis (TB) remains one of the leading causes of death, with healthcare workers (HCWs) at heightened risk due to occupational hazards. Tuberculosis prevention therapy (TPT) for managing latent TB infection is increasingly important worldwide and in Kenya, aligning with the WHO's vision of 'A world free of TB' and Kenya's goal to eliminate tuberculosis by 2035. This study aimed to assess the uptake and completion of TPT among HCWs in Rangwe sub county, Homabay County, Kenya.</p><h6>Methods</h6><p>Utilizing both quantitative and qualitative approaches, the study included a sample of 119 HCWs from various health facilities. Quantitative data were gathered through face-to-face interviews using a pretested structured questionnaire, while qualitative data was obtained from key -informant interviews with the sub-county TB coordinators, as well as in-depth interviews with 21 health facility managers. Thematic analysis was used for qualitative data.</p><h6>Results</h6><p>Most of the HCWs 88 (74%) of HCWs were initiated on TPT, though only 41 (46%) completed the therapy Among those who completed the therapy, Majority were 26 (63%) were support staff, followed by 7(17%) Laboratory officers, 4(9.8%) clinical officers and 4(9.8%) were nurses. Significant factors influencing TPT uptake included health facility level at 110(93%) awareness and training on TB risk 74(63%) department 98(83%) and having a co-worker with TB 117 (99%).</p><h6>Conclusion</h6><p>Uptake and completion of TPT could be improved through capacity building and enhanced facility-level support and recommended that policymakers at all levels ensure adequate funding, emphasize TB risk perception and reinforce protective measures to increase TPT completion rate.</p>` },
                 { id: 18, title: "Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development.", authors: "Silas O. Awuor, JOOTRH-KISUMU, Pamela Anyango Opepo, JOOTRH-KISUMU", content: `<h6>Background</h6><p>During pregnancy, mothers are at high risk on bacterial infections such as urinary tract infection (UTI) hence frequent prescriptions of antibiotics are done for the management of such infection that threaten maternal and fetal health. Therefore, aggregate signal links in utero antibiotic exposure to neonatal antimicrobial resistance (AMR), raising concerns about its long-term consequences. This research examines the impact of maternal antibiotic use on neonatal AMR, focusing on microbiome disruption, resistance mechanisms, and clinical outcomes.</p><h6>Methodology</h6><p>This was a hospital-based, cross-sectional study conducted between January 2025 and June 2025. The antenatal clinic (ANC) book was used to retrieve UTI history and frequently prescribed antibiotics during pregnancy to manage infections. Laboratory tests were also conducted on the blood samples collected from the newborn baby at day one on the delivery and urine sample at delivery point.</p><h6>Result</h6><p>Overall (n=203), the prevalence of UTI was 60% (95% CI: 53.3%66.7%). The most isolated bacteria were E. coli (59%) and Klebsiella (21%). The prevalence of AMR was found to be 53% (95% CI: 46.1%59.8%). The drugs highly resistant to antimicrobials were Amikacin (88.3%), ampicillin (77.8%), and Norfloxacin (58.5%), while the least resistant drug was chloramphenicol (20%). Same resistant pattern was also observed on the 40% isolated pathogen from the newborn.</p><h6>Conclusion</h6><p>A deeper understanding of vertical transmission of antibiotic resistance from mothers to their offspring is necessary to determine the most effective strategies for reducing antibiotic resistance in early life.</p>` }
-            // ... ALL OTHER ABSTRACTS WOULD BE ADDED HERE IN THE SAME FORMAT
             ];
 
             const abstractsGrid = document.getElementById('abstractsGrid');
