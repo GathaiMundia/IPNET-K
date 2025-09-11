@@ -264,6 +264,15 @@
             border: 4px solid var(--bs-light);
         }
         .flip-card-back p { font-size: 0.85rem; }
+        
+        /* Specific fix for Linus card to prevent scrollbar */
+        #linus-card .flip-card-front {
+            justify-content: center;
+        }
+        #linus-card .text-muted {
+            font-size: 0.7rem; 
+            line-height: 1.4;
+        }
 
         /* Speaker Cards */
         .speaker-card {
@@ -298,50 +307,30 @@
             font-size: 0.9rem;
         }
 
-        /* About Section */
-        #about .sidebar {
+        /* Info & Venue Section */
+        #info .info-sidebar .list-group-item {
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        #info .info-sidebar .list-group-item.active {
+            background-color: var(--bs-primary);
+            color: white;
+            border-color: var(--bs-primary);
+        }
+        #info .info-sidebar .list-group-item i {
+            margin-right: 0.75rem;
+        }
+        #info .info-content {
             background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 100px;
-        }
-        #about .sidebar h5 { color: var(--bs-primary); }
-        #about .sidebar ul { padding-left: 1.2rem; }
-
-        /* Info & Venue Section Accordion */
-        #info .accordion-item {
-            margin-bottom: 0.5rem;
-            border-radius: 0.5rem !important;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        #info .accordion-button {
-            font-weight: 600;
-            font-family: var(--font-primary);
-            font-size: 1.1rem;
-        }
-        #info .accordion-button:not(.collapsed) {
-            background-color: var(--bs-primary);
-            color: white;
-            box-shadow: none;
-        }
-        #info .accordion-button.collapsed {
-            background-color: #fff;
-            color: var(--bs-dark);
-        }
-        #info .accordion-button:focus {
-            box-shadow: 0 0 0 .25rem rgba(13, 105, 139, 0.25);
-            border-color: rgba(13, 105, 139, 0.25);
-        }
-        #info .accordion-body {
-            background-color: #fff;
         }
         .registration-hours .hour-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 0.75rem 1rem;
             border-radius: .375rem;
             margin-bottom: 0.5rem;
@@ -354,7 +343,7 @@
          .registration-hours .hour-item .day i {
             margin-right: 0.5rem;
         }
-
+        
         /* Awards Section */
         #awards {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('prideinn.jpg') no-repeat center center fixed;
@@ -466,7 +455,7 @@
 
     <section id="home">
         <div class="container text-center">
-            <p class="text-uppercase">September 15th - 17th, 2025 • Mombasa, Kenya</p>
+            <p class="text-uppercase">September 15th - 17th, 2025 • Pride Inn Convention Centre, Mombasa, Kenya</p>
             <h1 class="hero-title">12th Infection Prevention and Control (IPC) Scientific Conference</h1>
             <p class="lead mt-3 fst-italic">"Building Resilience Through Integrated Approaches to Infection Prevention and Control."</p>
             <a href="https://ipnetkenya.org/register.php" class="btn btn-light btn-lg mt-4" target="_blank">Register Now</a>
@@ -497,13 +486,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div id="linus-card" class="col-md-6 col-lg-4 d-flex align-items-stretch">
                     <div class="flip-card" onclick="this.querySelector('.flip-card-inner').style.transform = this.querySelector('.flip-card-inner').style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)'">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <img src="linus.jpg" alt="Ndegwa Linus">
                                 <h5>Ndegwa Linus, MPHE, PhD</h5>
-                                <p class="text-muted" style="font-size: 0.75rem;">
+                                <p class="text-muted">
                                     Team lead, Health quality promotion, Division of Global Health Protection (DGHP), U.S. Centers for Disease Control and Prevention, Kenya<br>
                                     Founder, Infection prevention network-Kenya (IPNET-K)<br>
                                     Board member Alliance for the Prudent Use of Antibiotics (APUA) of international Society of Antimicrobial Chemotherapy (ISAC)<br>
@@ -545,32 +534,20 @@
              <div class="section-title">
                 <h2>About IPNET-Kenya</h2>
             </div>
-            <div class="row g-5">
-                <div class="col-lg-8">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
                     <h4>Background</h4>
                     <p>Infection Prevention and Control Network, Kenya (IPNET-K) is the leading society for healthcare professionals with an interest in Infection Prevention and Control (IPC) and Antimicrobial Resistance (AMR). For more than 10 years, IPNET- K has been capacity building, advocating and championing for patient safety by actively ensuring that IPC and AMR are core/priority programs at all levels of healthcare as well as at the medical training institutions. It has a membership of health professionals (doctors, nurses, pharmacists, dentists, laboratory scientists, public health officers, epidemiologists, IPC practitioners etc) from all levels of healthcare who serve IPNET-K as educators and consultants in IPC/AMR. Its members are also involvedin providing technical support to the Ministry of Health IPC and AMR programs. An increasing number of members are IPC focal persons at the county and hospital level where they direct programs on AMR and IPC.</p>
-                    <h4>Mission</h4>
+                    
+                    <h4 class="mt-4">Mission</h4>
                     <p>The association/ Society mission is to promote patient and staff safety in the healthcare settings by promoting infection control measures and advance the field of healthcare epidemiology.</p>
-                </div>
-                <div class="col-lg-4">
-                    <div class="sidebar">
-                        <h5>Objectives</h5>
-                        <ul>
-                            <li>To raise the scale of awareness of IPC issues nationally and regionally.</li>
-                            <li>To educate stakeholders on best practices of IPC.</li>
-                            <li>To provide a forum for regular exchange of information on IPC issues.</li>
-                            <li>To prepare and circulate SOPs for IPC issues, to meet JCI standards.</li>
-                            <li>Recognition and certification of IPC professionals.</li>
-                            <li>To facilitate the creation of an IPC database.</li>
-                            <li>Mentor, train and promote professional development in healthcare epidemiology.</li>
-                        </ul>
-                        <h5 class="mt-4">Membership</h5>
-                        <p><strong>Individual:</strong> persons working in or related to infection prevention and control.</p>
-                        <p><strong>Corporates:</strong> employed in a business or industry related to the field of healthcare.</p>
-                        <p><strong>Students:</strong> enrolled in a institution of higher learning in a related field.</p>
-                        <p><strong>Emeritus:</strong> a current member in good standing who has fully retired.</p>
-                        <p><strong>Patron firms:</strong> companies with an interest in healthcare epidemiology.</p>
-                    </div>
+
+                    <h4 class="mt-4">Membership</h4>
+                    <p><strong>Individual:</strong> persons working in or related to infection prevention and control.</p>
+                    <p><strong>Corporates:</strong> employed in a business or industry related to the field of healthcare.</p>
+                    <p><strong>Students:</strong> enrolled in a institution of higher learning in a related field.</p>
+                    <p><strong>Emeritus:</strong> a current member in good standing who has fully retired.</p>
+                    <p><strong>Patron firms:</strong> companies with an interest in healthcare epidemiology.</p>
                 </div>
             </div>
         </div>
@@ -581,161 +558,74 @@
             <div class="section-title">
                 <h2>General Information</h2>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="accordion" id="infoAccordionSidebar">
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVenue" aria-expanded="true">
-                                    <i class="bi bi-geo-alt-fill me-3"></i>Conference Venue
-                                </button>
-                            </h2>
-                            <div id="collapseVenue" class="accordion-collapse collapse show" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p class="lead">Pride inn convention center</p>
-                                    <img src="prideinn.jpg" class="img-fluid rounded shadow-sm mt-2" alt="Pride Inn Mombasa">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="list-group info-sidebar">
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-language"><i class="bi bi-translate"></i> Language</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-badge"><i class="bi bi-person-badge-fill"></i> Name Badge</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-insurance"><i class="bi bi-file-earmark-lock-fill"></i> Insurance</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-safety"><i class="bi bi-shield-fill-check"></i> Safety and Security</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-devices"><i class="bi bi-phone-vibrate-fill"></i> Electronic Devices</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-registration"><i class="bi bi-r-square-fill"></i> Registration</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-speakers"><i class="bi bi-mic-fill"></i> Speakers Ready Room</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-exhibition"><i class="bi bi-shop"></i> Exhibition</button>
+                        <button class="list-group-item list-group-item-action" data-bs-target="#info-content-misc"><i class="bi bi-info-circle-fill"></i> Other Info</button>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="info-content">
+                        <div>
+                            <h5><i class="bi bi-geo-alt-fill"></i> Conference Venue</h5>
+                            <p>Pride inn convention center</p>
+                            <img src="prideinn.jpg" class="img-fluid rounded shadow-sm my-3" alt="Pride Inn Mombasa">
+                        </div>
+                        <hr>
+                        <div id="info-collapsible-content">
+                            <div class="collapse" id="info-content-language">
+                                <h5><i class="bi bi-translate"></i> Language</h5>
+                                <p>The official language of the conference will be English. No simultaneous translation service will be provided.</p>
+                            </div>
+                            <div class="collapse" id="info-content-badge">
+                                <h5><i class="bi bi-person-badge-fill"></i> Name Badge</h5>
+                                <p>Once you have completed the registration process, you will be provided with a name badge, an abstract book, and a conference bag. It is mandatory to always wear your badge during the conference sessions.</p>
+                            </div>
+                            <div class="collapse" id="info-content-insurance">
+                                <h5><i class="bi bi-file-earmark-lock-fill"></i> Insurance</h5>
+                                <p>The organizers of the congress are not liable for any personal injuries, loss or damage of property incurred by the participants (or their accompanying persons) during or as a result of the congress. It is advisable for all participants to ensure the validity of their own insurance prior to attending the congress.</p>
+                            </div>
+                            <div class="collapse" id="info-content-safety">
+                                <h5><i class="bi bi-shield-fill-check"></i> Safety and Security</h5>
+                                <p>We kindly request that you comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended at any time, whether within or outside the meeting venue. If you need to store any personal belongings, please contact the bell captain at the hotel lobby for assistance.</p>
+                            </div>
+                            <div class="collapse" id="info-content-devices">
+                                <h5><i class="bi bi-phone-vibrate-fill"></i> Electronic Devices</h5>
+                                <p>During educational sessions, electronic devices must be set to silent or vibrate mode. Phone conversations are strictly prohibited within the meeting rooms.</p>
+                            </div>
+                            <div class="collapse" id="info-content-registration">
+                                <h5><i class="bi bi-r-square-fill"></i> Registration</h5>
+                                <p>Onsite registration will take place outside the conference hall located on the ground floor. The registration fee covers the program book, access to all sessions and exhibition areas adjacent to the conference hall, as well as morning and afternoon tea/coffee and lunch. Any updates regarding the meeting schedule will be communicated to participants through signage or announcements.</p>
+                                <h6 class="mt-4">Registration hours:</h6>
+                                <div class="registration-hours">
+                                    <div class="hour-item"><div class="day"><i class="bi bi-calendar-event"></i> Sunday 14th Sep 2025</div><div class="time">16:00 - 18:00</div></div>
+                                    <div class="hour-item"><div class="day"><i class="bi bi-calendar-event"></i> Monday 15th Sep 2025</div><div class="time">08:15 - 17:30</div></div>
+                                    <div class="hour-item"><div class="day"><i class="bi bi-calendar-event"></i> Tuesday 16th Sep 2025</div><div class="time">08:15 - 17:30</div></div>
+                                    <div class="hour-item"><div class="day"><i class="bi bi-calendar-event"></i> Wednesday 17th Sep 2025</div><div class="time">08:15 - 12:30</div></div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLanguage">
-                                    <i class="bi bi-translate me-3"></i>Language
-                                </button>
-                            </h2>
-                            <div id="collapseLanguage" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>The official language of the conference will be English. No simultaneous translation service will be provided.</p>
-                                </div>
+                            <div class="collapse" id="info-content-speakers">
+                                <h5><i class="bi bi-mic-fill"></i> Speakers Ready Room</h5>
+                                <p>All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Please note that presentations on portable drives or devices will not be accepted. Presenters are also required to arrive 15 minutes prior to the start of their session at the designated meeting room to meet with the session chair.</p>
+                            </div>
+                            <div class="collapse" id="info-content-exhibition">
+                                <h5><i class="bi bi-shop"></i> Exhibition</h5>
+                                <p>Exhibition will be held outside the conference hall. All delegates are invited to interact with the companies and view state-of-the-art IPC-related products at the exhibition.</p>
+                            </div>
+                            <div class="collapse" id="info-content-misc">
+                                <h5><i class="bi bi-info-circle-fill"></i> Other Info</h5>
+                                <p><strong>Lost and found:</strong> Please return any items found to the registration desk located opposite the meeting room.</p>
+                                <p><strong>Currency Information:</strong> The currency will be Kenya Shillings (KES).</p>
                             </div>
                         </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBadge">
-                                    <i class="bi bi-person-badge-fill me-3"></i>Name Badge
-                                </button>
-                            </h2>
-                            <div id="collapseBadge" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>Once you have completed the registration process, you will be provided with a name badge, an abstract book, and a conference bag. It is mandatory to always wear your badge during the conference sessions.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInsurance">
-                                    <i class="bi bi-file-earmark-lock-fill me-3"></i>Insurance
-                                </button>
-                            </h2>
-                            <div id="collapseInsurance" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>The organizers of the congress are not liable for any personal injuries, loss or damage of property incurred by the participants (or their accompanying persons) during or as a result of the congress. It is advisable for all participants to ensure the validity of their own insurance prior to attending the congress.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafety">
-                                    <i class="bi bi-shield-fill-check me-3"></i>Safety and Security
-                                </button>
-                            </h2>
-                            <div id="collapseSafety" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>We kindly request that you comply with the Covid-19 guidelines set by the Ministry of Health and avoid leaving any personal belongings unattended at any time, whether within or outside the meeting venue. If you need to store any personal belongings, please contact the bell captain at the hotel lobby for assistance.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevices">
-                                    <i class="bi bi-phone-vibrate-fill me-3"></i>Electronic Devices
-                                </button>
-                            </h2>
-                            <div id="collapseDevices" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>During educational sessions, electronic devices must be set to silent or vibrate mode. Phone conversations are strictly prohibited within the meeting rooms.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegistration">
-                                    <i class="bi bi-r-square-fill me-3"></i>Registration
-                                </button>
-                            </h2>
-                            <div id="collapseRegistration" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>Onsite registration will take place outside the conference hall located on the ground floor. The registration fee covers the program book, access to all sessions and exhibition areas adjacent to the conference hall, as well as morning and afternoon tea/coffee and lunch. Any updates regarding the meeting schedule will be communicated to participants through signage or announcements.</p>
-                                    <h6 class="mt-4">Registration hours:</h6>
-                                    <div class="registration-hours">
-                                        <div class="hour-item">
-                                            <div class="day"><i class="bi bi-calendar-event"></i> Sunday 14th Sep 2025</div>
-                                            <div class="time">16:00 - 18:00</div>
-                                        </div>
-                                        <div class="hour-item">
-                                            <div class="day"><i class="bi bi-calendar-event"></i> Monday 15th Sep 2025</div>
-                                            <div class="time">08:15 - 17:30</div>
-                                        </div>
-                                        <div class="hour-item">
-                                            <div class="day"><i class="bi bi-calendar-event"></i> Tuesday 16th Sep 2025</div>
-                                            <div class="time">08:15 - 17:30</div>
-                                        </div>
-                                         <div class="hour-item">
-                                            <div class="day"><i class="bi bi-calendar-event"></i> Wednesday 17th Sep 2025</div>
-                                            <div class="time">08:15 - 12:30</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpeakers">
-                                    <i class="bi bi-mic-fill me-3"></i>Speakers Ready Room
-                                </button>
-                            </h2>
-                            <div id="collapseSpeakers" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                    <p>All presenters must submit their presentations as a PowerPoint file through the IPNET abstract submission portal by 14th September 2025. Please note that presentations on portable drives or devices will not be accepted. Presenters are also required to arrive 15 minutes prior to the start of their session at the designated meeting room to meet with the session chair.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExhibition">
-                                    <i class="bi bi-shop me-3"></i>Exhibition
-                                </button>
-                            </h2>
-                            <div id="collapseExhibition" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                     <p>Exhibition will be held outside the conference hall. All delegates are invited to interact with the companies and view state-of-the-art IPC-related products at the exhibition.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMisc">
-                                    <i class="bi bi-info-circle-fill me-3"></i>Other Info
-                                </button>
-                            </h2>
-                            <div id="collapseMisc" class="accordion-collapse collapse" data-bs-parent="#infoAccordionSidebar">
-                                <div class="accordion-body">
-                                     <p><strong>Lost and found:</strong> Please return any items found to the registration desk located opposite the meeting room.</p>
-                                     <p><strong>Currency Information:</strong> The currency will be Kenya Shillings (KES).</p>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -1108,9 +998,37 @@
                 updateNavStyles(window.scrollY > 50);
             }
 
+            // Info Section Sidebar Controller
+            const infoSidebarButtons = document.querySelectorAll('.info-sidebar .list-group-item');
+            const collapsibleContent = document.querySelectorAll('#info-collapsible-content .collapse');
+            const collapseInstances = Array.from(collapsibleContent).map(el => new bootstrap.Collapse(el, { toggle: false }));
+
+            infoSidebarButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Toggle active state on buttons
+                    infoSidebarButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const target = document.querySelector(this.dataset.bsTarget);
+                    
+                    // Hide all other collapsible elements
+                    collapseInstances.forEach(collapse => {
+                        if (collapse._element !== target) {
+                            collapse.hide();
+                        }
+                    });
+
+                    // Show the target element
+                    const targetCollapse = bootstrap.Collapse.getInstance(target);
+                    if (targetCollapse) {
+                        targetCollapse.show();
+                    }
+                });
+            });
+
+
             // Abstract data and modal functionality
-            const abstractsData = [
-                { id: 30, title: "Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital Adult Hospital, Zambia", authors: "Linda Musonda, ZNHRA", content: `<h6>Background</h6><p>Antimicrobial resistance poses a significant threat to public health security globally, particularly in low-resource settings such as Zambia. Nurses, as frontline caregivers, are essential in implementing infection prevention and control strategies. This study examined the role of nursing empowerment in enhancing IPC measures at the University Teaching Hospital in Lusaka.</p><h6>Methods</h6><p>A cross-sectional study design was employed. Structured questionnaires were administered to a sample of 208 nursing staff to evaluate their knowledge, attitudes, and practices related to IPC. The nurses included IPC champions and general ward nurses. The study emphasized nurse-led surveillance, and interdisciplinary collaboration on IPC practices to combat AMR.</p><h6>Results</h6><p>The findings revealed that empowering nurses leads to improved IPC practices, enhanced leadership, and better compliance with antimicrobial stewardship protocols. The results underscore the importance of investing in continuous nursing education and leadership training as a strategy to strengthen IPC and mitigate AMR. Using the core component score the facility managed to score 640/800 going into the advanced level compared to the previous assessment done in 2023 in which the facility scored 362.5/800 representing in basic level.</p><h6>Conclusion</h6><p>Nursing empowerment is a critical enabler of effective IPC and AMR containment. The initiative underscores the pivotal role of nursing empowerment in advancing infection prevention and mitigating antimicrobial resistance.</p>` },
+            const abstractsData = [{ id: 30, title: "Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital Adult Hospital, Zambia", authors: "Linda Musonda, ZNHRA", content: `<h6>Background</h6><p>Antimicrobial resistance poses a significant threat to public health security globally, particularly in low-resource settings such as Zambia. Nurses, as frontline caregivers, are essential in implementing infection prevention and control strategies. This study examined the role of nursing empowerment in enhancing IPC measures at the University Teaching Hospital in Lusaka.</p><h6>Methods</h6><p>A cross-sectional study design was employed. Structured questionnaires were administered to a sample of 208 nursing staff to evaluate their knowledge, attitudes, and practices related to IPC. The nurses included IPC champions and general ward nurses. The study emphasized nurse-led surveillance, and interdisciplinary collaboration on IPC practices to combat AMR.</p><h6>Results</h6><p>The findings revealed that empowering nurses leads to improved IPC practices, enhanced leadership, and better compliance with antimicrobial stewardship protocols. The results underscore the importance of investing in continuous nursing education and leadership training as a strategy to strengthen IPC and mitigate AMR. Using the core component score the facility managed to score 640/800 going into the advanced level compared to the previous assessment done in 2023 in which the facility scored 362.5/800 representing in basic level.</p><h6>Conclusion</h6><p>Nursing empowerment is a critical enabler of effective IPC and AMR containment. The initiative underscores the pivotal role of nursing empowerment in advancing infection prevention and mitigating antimicrobial resistance.</p>` },
                 { id: 20, title: "Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya", authors: "Silas O. Awuor, JOOTRH-KISUMU", content: `<h6>Background</h6><p>Effective management of Diabetic foot ulcers (DFU) requires timely treatment of infections with appropriate antibiotics based on culture and susceptibility results. This study profiled the prevalent bacteria in Diabetic foot infection (DFI), their antimicrobial susceptibility patterns, and associated resistance genes.</p><h6>Methodology</h6><p>A multi-center cross sectional study was conducted from November 2024-May 2025, involving 117 patients with infected DFU, attending selected referral hospitals (JOOTRH and KCRH). Wound swabs were then pre-enriched prior to inoculation onto Blood, MacConkey and Chocolate Agar to isolate aerobic microorganisms. Bacteria identification was based on Gram stain and conventional biochemical tests. Antibiotic susceptibility testing was performed using Kirby-Bauer disk diffusion method. Methicillin-resistant Staphylococcus aureus (MRSA) and extended-spectrum beta-lactamase-producing Enterobacterales (ESBL-PE) were identified phenotypically. mecA gene in selected MRSA, and blaCTX-M-1 and blaSHV-1 in ESBL-PE were detected using Uniplex PCR and electrophoresed using 1.5% agarose gel. Data was analyzed using MS. Excel version 15 and Stata version 15 (Stata Corp).</p><h6>Results</h6><p>Poly-microbial infections were detected in 23.8% of patients. Gram-positive bacteria accounted for 55.6% (80/144) of isolates. Staphylococcus aureus (36.1% (52/144)) and Proteus spp (13.9% (20/144)) were the most prevalent Gram-positive and Gram-negative bacteria, respectively. Notably, 98.6% (142/144) of the isolates were multidrug-resistant organisms (MDR). Staphylococcus aureus sensitivity was highest for Gentamycin and Ciprofloxacin (48% each) and lowest for Cefoxitin (2%). Proteus spp sensitivity was highest for Imipenem (87%) and lowest for Tetracycline, Ampicillin and Amoxiclav (0%). mecA gene was identified in 56% (5/9) of MRSA. Among the selected MDR Gram-negative isolates, 60% had blaCTX-M-1, 20 % had blaSHV and both blaCTX-M-1 and blaSHV in one Klebsiella pneumoniae.</p><h6>Conclusion</h6><p>The high prevalence of MDR bacteria in DFI underscores culture and sensitivity testing guided treatment. Detection of resistance genes calls for sustained surveillance efforts, stringent infection prevention and control and alternative therapy exploration.</p>` },
                 { id: 38, title: "Improved Microbiology Lab Utilization: A Strategy to Integrate Antimicrobial Resistance Surveillance into Infection Prevention and Control Practice", authors: "Lucy Ochola, Machakos Level 5 Hospital", content: `<h6>Introduction</h6><p>The escalating prevalence of drug-resistant infections necessitates an integrated approach, combining infection prevention and control (IPC) strategies with judicious antimicrobial stewardship (AMS) practices. Diagnostic stewardship facilitates targeted antimicrobial therapy and mitigates antimicrobial resistance (AMR) spread by identification of causative organisms. Blood culture diagnostics, in particular, enhance AMR surveillance systems thus improving infection prevention and control measures. To assess the impact of an integrated AMS intervention in improving blood culture collection practices and its potential impact on reducing antimicrobial resistance rates.</p><h6>Methodology</h6><p>A quasi-experimental design evaluated the effectiveness of an antimicrobial stewardship intervention on blood culture uptake over a 6-month pre- and post-intervention period at a County Referral Hospital. The intervention focused on staff sensitization in departments managing suspected bloodstream infections, including the ICU, Casualty, Newborn Unit, and units with immunosuppressed patients, with a designated phlebotomist for sample collection. Outcomes measured included changes in blood sample collection rates and a detailed description of AMR surveillance data, with all data collected and analyzed using Excel</p><h6>Results</h6><p>Blood culture samples increased from 239 samples (April-September 2024) to 468 samples (January-June 2025), a 95.8% rise. Positive blood cultures increased from 12 to 191 samples. Coagulase-negative staphylococci were most frequently identified, decreasing from 67% (8/12) to 51.31% (98/191) of positive cultures in pre- and post-intervention periods. Post-intervention, common isolates included E. coli (8.38%-16/191), A. baumannii (4.19%-8/191), and K. pneumoniae (3.14%-6/191), compared to pre-intervention where K. pneumoniae was prevalent (50%-2/4). Three Candida isolates were identified post- intervention, with none pre-intervention. Most bacterial isolates post-intervention showed resistant profiles based on antimicrobial susceptibility testing, requiring infection. prevention and control measures including environmental cleaning and standard precautions.</p><h6>Conclusion</h6><p>Integration of AMR surveillance via increased blood culture collection is an effective strategy to enhance IPC interventions. These supports integrating AMR surveillance in IPC interventions to contain resistant isolates through enhanced surveillance strategies.</p>` },
                 { id: 48, title: "Baseline Assessment of Antimicrobial Stewardship Practices at Nakuru County Referral and Teaching Hospital, Kenya", authors: "Lydia Momanyi, Nakuru County Referral & Teaching Hospital Simon Wangia, Nakuru County Referral & Teaching Hospital Professor Mirfin Mpundu, REACT Africa", content: `<h6>INTRODUCTION</h6><p>Antimicrobial resistance is a major public health concern globally, driven by antibiotic misuse in healthcare, agriculture, and over-the-counter sales. Hospitals with weak antimicrobial stewardship (AMS) programs contribute significantly, often relying on empirical prescribing inadequate microbiological testing, and poor adherence to treatment guidelines. The Antibiotic Stewardship Programme through Innovation, Research, and Education (ASPIRE) aims to address this crisis through a phased approach, starting with a baseline assessment of AMS practices at Nakuru County Referral and Teaching Hospital.</p><h6>METHODS</h6><p>A mixed-methods approach was used, including retrospective patient file reviews, healthcare worker knowledge-attitude-practice (KAP) surveys, costing analysis, WHO AMS functionality assessment, and qualitative interviews. Data was digitized and collected via the DHIS2 platform.</p><h6>RESULTS</h6><p>AMS functionality was low (31%), with leadership commitment scoring j28% due to fragmented governance and underfunding. Empirical prescribing dominated, with ceftriaxone most frequently prescribed (29.6%). Surgical prophylaxis was the top indication (35.1%). Microbiological testing was rare (5.3%), with blood cultures requested most (95%) due to an ongoing study. Adherence to treatment guidelines was inconsistent, with only 19.820% of cases undergoing microbiological confirmation before therapy. Antibiotic de- escalation was primarily driven by unknown reasons (78% of cases) rather than laboratory data (4%), indicating gaps in documentation at the facility. Staff showed fair AMS knowledge (mean scores: 6.7/10). Misuse or incorrect administration affected 208 patients, with a total cost of $7,223.05 for the period under review (approx. $34.77 per patient).</p><h6>CONCLUSION</h6><p>Significant AMS gaps exist weak leadership, empirical prescribing, low diagnostic use, and inconsistent guideline adherence, all fueling AMR and unnecessary costs. Despite fair staff knowledge, implementation is poor. Urgent action is requiredstronger governance, investment in diagnostics, and consistent monitoringto optimize antibiotic use and improve outcomes.</p>` },
