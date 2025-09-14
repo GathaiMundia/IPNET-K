@@ -110,20 +110,20 @@
         #program .nav-tabs .nav-link {
             font-weight: 600;
         }
-        .program-session {
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-        .program-session-title {
+        #program .accordion-button {
             background-color: var(--bs-primary);
             color: white;
-            padding: 1rem 2rem;
+            font-size: 1.1rem;
         }
-        .program-session-title p { margin-bottom: 0; }
-        .program-content { padding: 0 2rem 1rem 2rem; }
+        #program .accordion-button:not(.collapsed) {
+            background-color: var(--bs-secondary);
+        }
+        #program .accordion-button:focus {
+            box-shadow: none;
+        }
+         #program .accordion-button::after {
+            filter: brightness(0) invert(1);
+        }
         .program-entry {
             display: grid;
             grid-template-columns: 100px 1fr;
@@ -147,8 +147,8 @@
         .program-entry.break {
             text-align: center;
             background-color: var(--bs-light);
-            margin: 1rem -2rem;
-            padding: 1rem 2rem;
+            margin: 1rem -1.25rem;
+            padding: 1rem 1.25rem;
             font-weight: 600;
             color: var(--bs-secondary);
             display: block;
@@ -291,14 +291,6 @@
         .speaker-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .speaker-card img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 4px solid var(--bs-primary);
         }
         .speaker-card .topic {
             font-weight: 500;
@@ -547,7 +539,6 @@
                                 <img src="linus.jpg" alt="Ndegwa Linus">
                                 <h5>Ndegwa Linus, MPHE, PhD</h5>
                                 <p class="text-muted">
-                                    Team lead, Health quality promotion, Division of Global Health Protection (DGHP), U.S. Centers for Disease Control and Prevention, Kenya<br>
                                     Founder, Infection prevention network-Kenya (IPNET-K)<br>
                                     Board member Alliance for the Prudent Use of Antibiotics (APUA) of international Society of Antimicrobial Chemotherapy (ISAC)<br>
                                     Former, Board member: International Federation of infection control (IFIC) and Infection Control African Network (ICAN)
@@ -787,154 +778,181 @@
     </section>
 
     <section id="program" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>Conference Program</h2>
-                <p class="lead">Explore the schedule of sessions, presentations, and events.</p>
+    <div class="container">
+        <div class="section-title">
+            <h2>Conference Program</h2>
+            <p class="lead">Explore the schedule of sessions, presentations, and events.</p>
+        </div>
+        
+        <div class="program-session">
+            <div class="program-session-title">
+                <h4 class="mb-0">Conference Opening Ceremony</h4>
+                <p class="text-white-50">Sunday 14th September 2025 | 16:00 - 19:30</p>
             </div>
-            
-            <div class="program-session">
-                <div class="program-session-title">
-                    <h4 class="mb-0">Conference Opening Ceremony</h4>
-                    <p class="text-white-50">Sunday 14th September 2025 | 16:00 - 19:30</p>
+        </div>
+        
+        <ul class="nav nav-tabs nav-fill mb-4" id="programTab" role="tablist">
+            <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day1" type="button"><i class="bi bi-calendar3 me-2"></i>Day 1: Sept 15</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day2" type="button"><i class="bi bi-calendar3 me-2"></i>Day 2: Sept 16</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day3" type="button"><i class="bi bi-calendar3 me-2"></i>Day 3: Sept 17</button></li>
+        </ul>
+        
+        <div class="tab-content" id="programTabContent">
+            <div class="tab-pane fade show active" id="day1" role="tabpanel">
+                <div class="accordion" id="day1Accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay1Session1">
+                                Session 1: Antimicrobial resistant (AMR) <small class="ms-auto text-white-50 pe-3">Chair: Frankline Mboya / Stephen Maina</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay1Session1" class="accordion-collapse collapse show" data-bs-parent="#day1Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Evelyn Wesangula-ESA</div></div>
+                                <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Recent Developments in Medical Device related IPC practices</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
+                                <div class="program-entry"><div class="program-time">9:10-9:20</div><div class="program-topic">AMR Surveillance Information System Challenges</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Josiah Mwenda, UoN</div></div>
+                                <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital –Adult Hospital, Zambia</div><div class="program-speaker">Linda Musonda</div></div>
+                                <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Evaluation of Antimicrobial Stewardship and Microbiological Surveillance at JOOTRH Pediatric Hospital. Strengthening a Culture of Culturing.</div><div class="program-speaker">Silas O. Awuor</div></div>
+                                <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Improved Microbiology Lab Utilization: A Strategy to Integrate Antimicrobial Resistance Surveillance into Infection Prevention and Control Practice</div><div class="program-speaker">Lucy Ochola</div></div>
+                                <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at Nakuru County Referral and Teaching Hospital, Kenya</div><div class="program-speaker">Lydia Momanyi</div></div>
+                                <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Molecular Characterization of β-Lactamase and Carbapenemase-Producing Enterobacterales in Children Under Five in Kibera, Nairobi Kenya</div><div class="program-speaker">Beatrice Oduor</div></div>
+                                <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                                <div class="program-entry break">10:30-11:00 | Health Break: Poster viewing/ Exhibition</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay1Session2">
+                                Session 2: Antimicrobial resistant (AMR) and Infection control <small class="ms-auto text-white-50 pe-3">Chair: Veronica Kamau</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay1Session2" class="accordion-collapse collapse" data-bs-parent="#day1Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Antibiotic susceptibility patterns of bacterial communities in urine at Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
+                                <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at AAR Hospital (PRIVATE FACILITY), Kenya: Findings from the ASPIRE Project</div><div class="program-speaker">Dr Diana Kariuki</div></div>
+                                <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Hand Hygiene Knowledge, Attitudes, and Practices Among Clinical-Year Medical Students in a Kenyan Level 5 Hospital</div><div class="program-speaker">Mercy Chepkoech</div></div>
+                                <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Reducing turnaround time (TAT) for social health insuarance fund (SHIF) discharge process at Coast general teaching and referral hospital (CGTRH)</div><div class="program-speaker">Ann Mumbua</div></div>
+                                <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Assessment of Infection Prevention and Control Practices at Mother Amadea Mission Hospital Annex, Mikindani Estate, Mombasa City</div><div class="program-speaker">Achiando William Anyiko</div></div>
+                                <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Innovation of Dashboard Using Spreadsheets in Monitoring of Infection Control Indicators</div><div class="program-speaker">Ann Kamuyu</div></div>
+                                <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Beyond donor funding, sustaining Infection Prevention and Control program through domestic resource mobilization; the case of Rachuonyo East Sub-County Hospital</div><div class="program-speaker">Gabriel Kotewas</div></div>
+                                <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya</div><div class="program-speaker">Everlyne Mboga</div></div>
+                                <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Enhancing hand hygiene compliance at Valley Hospital using the World Health Organization multimodal strategy</div><div class="program-speaker">Bonface T. Douglas</div></div>
+                                <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Strengthening Outbreak Preparedness and Response Through Strategic IPC Program Financing: A Multi-Regional Analysis from Ethiopia</div><div class="program-speaker">Dr Robel W. Tefera</div></div>
+                                <div class="program-entry"><div class="program-time">12:40-12:50</div><div class="program-topic">The Use of Contact Precautions to Prevent Transmission of Multidrug-Resistant Organisms: Emerging evidence</div><div class="program-speaker">David Odada</div></div>
+                                <div class="program-entry"><div class="program-time">12:50-13:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                                <div class="program-entry break">13:00-14:00 | Lunch Break</div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay1Session3">
+                                Session 3: Tuberculosis and Infection control <small class="ms-auto text-white-50 pe-3">Chair: Dr. Josphat Tonui</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay1Session3" class="accordion-collapse collapse" data-bs-parent="#day1Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">14:00-14:30</div><div class="program-topic">Collaborative Leadership and Culture Change in Delivering Infection Prevention</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr Linus Ndegwa, US CDC</div></div>
+                                <div class="program-entry"><div class="program-time">14:30-15:00</div><div class="program-topic">The role of ECHO in integrating AMR into IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
+                                <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Screening for tuberculosis among clients who accessed HIV Testing Services at Umoja Health Centre, Nairobi, Kenya: a cross-section observational study.</div><div class="program-speaker">Simon Mongare</div></div>
+                                <div class="program-entry"><div class="program-time">15:10-15:20</div><div class="program-topic">Tuberculosis Preventive Therapy efficacy among People Living with HIV (PLHIV) accessing Comprehensive Care Services at Umoja Health Centre, Nairobi, Kenya.</div><div class="program-speaker">Mwajuma Abdullahi Ramadhan</div></div>
+                                <div class="program-entry"><div class="program-time">15:20-15:30</div><div class="program-topic">Early detection of tuberculosis patients to reduce antimicrobial resistance in Homabay county, Kenya.</div><div class="program-speaker">Joan Maina</div></div>
+                                <div class="program-entry"><div class="program-time">15:30-15:40</div><div class="program-topic">OCCUPATIONAL HEALTH RISKS OF WOOD SMOKE EXPOSURE IN HOSPITAL KITCHEN: IMPLICATIONS FOR RESPIRATORY DISEASES AND INFECTION CONTROL</div><div class="program-speaker">Mary Carphew Awuor</div></div>
+                                <div class="program-entry"><div class="program-time">15:40-15:50</div><div class="program-topic">Leveraging on Program quality and Efficiency to increase case Identification and combat Tuberculosis transmission at Matata Hospital, HomaBay County</div><div class="program-speaker">Brian Korir</div></div>
+                                <div class="program-entry"><div class="program-time">15:50-16:00</div><div class="program-topic">A Healthier Future Starts in the Classroom: Integrating Infection Prevention, Antimicrobial Resistance, and One Health in Schools</div><div class="program-speaker">David Frederick Akello</div></div>
+                                <div class="program-entry"><div class="program-time">16:00-16:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <ul class="nav nav-tabs nav-fill mb-4" id="programTab" role="tablist">
-                <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#day1" type="button"><i class="bi bi-calendar3 me-2"></i>Day 1: Sept 15</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day2" type="button"><i class="bi bi-calendar3 me-2"></i>Day 2: Sept 16</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#day3" type="button"><i class="bi bi-calendar3 me-2"></i>Day 3: Sept 17</button></li>
-            </ul>
-            
-            <div class="tab-content" id="programTabContent">
-                <div class="tab-pane fade show active" id="day1" role="tabpanel">
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 1: Antimicrobial resistant (AMR)</h4>
-                            <p class="text-white-50">Chair: Frankline Mboya / Stephen Maina</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Evelyn Wesangula-ESA</div></div>
-                            <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Recent Developments in Medical Device related IPC practices</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
-                            <div class="program-entry"><div class="program-time">9:10-9:20</div><div class="program-topic">AMR Surveillance Information System Challenges</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Josiah Mwenda, UoN</div></div>
-                            <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Strengthening Infection Prevention through Nursing Empowerment: Combating Antimicrobial Resistance at the University Teaching Hospital –Adult Hospital, Zambia</div><div class="program-speaker">Linda Musonda</div></div>
-                            <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya</div><div class="program-speaker">Silas O. Awuor</div></div>
-                            <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Improved Microbiology Lab Utilization: A Strategy to Integrate Antimicrobial Resistance Surveillance into Infection Prevention and Control Practice</div><div class="program-speaker">Lucy Ochola</div></div>
-                            <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at Nakuru County Referral and Teaching Hospital, Kenya</div><div class="program-speaker">Lydia Momanyi</div></div>
-                            <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Molecular Characterization of β-Lactamase and Carbapenemase-Producing Enterobacterales in Children Under Five in Kibera, Nairobi Kenya</div><div class="program-speaker">Beatrice Oduor</div></div>
-                            <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
-                            <div class="program-entry break">10:30-11:00 | Health Break: Poster viewing/ Exhibition</div>
+            <div class="tab-pane fade" id="day2" role="tabpanel">
+                <div class="accordion" id="day2Accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay2Session4">
+                                Session 4: Healthcare associated infections <small class="ms-auto text-white-50 pe-3">Chair: Eric Kitangala</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay2Session4" class="accordion-collapse collapse show" data-bs-parent="#day2Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">8:30-9:00</div><div class="program-topic">Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Flavia Nakayima, University of Arizona</div></div>
+                                <div class="program-entry"><div class="program-time">9:00-9:30</div><div class="program-topic">Industry Insight into Infection Prevention and Control and AMR</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Sigei</div></div>
+                                <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Ethiopia's First National Healthcare Associated Infections Point Prevalence Survey</div><div class="program-speaker">Robel W Tefera</div></div>
+                                <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Point Prevalence Survey on Antibiotic Use and Hospital Acquired Infections conducted at KUTRRH</div><div class="program-speaker">Caroline Mwangi</div></div>
+                                <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Incidence rate of bloodstream infection Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
+                                <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Incidence, Microbial Patterns, and Outcomes of External Ventricular Drain Infections: A Three-Year Review at a Kenyan Tertiary Hospital</div><div class="program-speaker">Clara Kesis</div></div>
+                                <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Electronic Surveillance of Carbapenem-Resistant Organisms in the ICU: A Retrospective Analysis from a Tertiary University Hospital</div><div class="program-speaker">David Odada</div></div>
+                                <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Microbiological Evaluation of Generic Ceftriaxone Potency Using Disc Diffusion Assay at Coast General Teaching and Referral Hospital</div><div class="program-speaker">Kassam yusuf</div></div>
+                                <div class="program-entry"><div class="program-time">10:30-10:40</div><div class="program-topic">Antimicrobial Resistance Profile of Acinetobacter species Referred to the National Microbiology Reference Laboratory between 2021-2023</div><div class="program-speaker">George Njau</div></div>
+                                <div class="program-entry"><div class="program-time">10:40-11:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 2: Antimicrobial resistant (AMR) and Infection control</h4>
-                            <p class="text-white-50">Chair: Veronica Kamau</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Antibiotic susceptibility patterns of bacterial communities in urine at Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
-                            <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">Baseline Assessment of Antimicrobial Stewardship Practices at AAR Hospital (PRIVATE FACILITY), Kenya: Findings from the ASPIRE Project</div><div class="program-speaker">Dr Diana Kariuki</div></div>
-                            <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Hand Hygiene Knowledge, Attitudes, and Practices Among Clinical-Year Medical Students in a Kenyan Level 5 Hospital</div><div class="program-speaker">Mercy Chepkoech</div></div>
-                            <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Reducing turnaround time (TAT) for social health insuarance fund (SHIF) discharge process at Coast general teaching and referral hospital (CGTRH)</div><div class="program-speaker">Ann Mumbua</div></div>
-                            <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Assessment of Infection Prevention and Control Practices at Mother Amadea Mission Hospital Annex, Mikindani Estate, Mombasa City</div><div class="program-speaker">Achiando William Anyiko</div></div>
-                            <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Innovation of Dashboard Using Spreadsheets in Monitoring of Infection Control Indicators</div><div class="program-speaker">Ann Kamuyu</div></div>
-                            <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Beyond donor funding, sustaining Infection Prevention and Control program through domestic resource mobilization; the case of Rachuonyo East Sub-County Hospital</div><div class="program-speaker">Gabriel Kotewas</div></div>
-                            <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Assessing Uptake and Completion of Tuberculosis Prevention Therapy Among Healthcare Workers in Rangwe Sub County, Homabay County, Kenya</div><div class="program-speaker">Everlyne Mboga</div></div>
-                            <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Enhancing hand hygiene compliance at Valley Hospital using the World Health Organization multimodal strategy</div><div class="program-speaker">Bonface T. Douglas</div></div>
-                            <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Strengthening Outbreak Preparedness and Response Through Strategic IPC Program Financing: A Multi-Regional Analysis from Ethiopia</div><div class="program-speaker">Dr Robel W. Tefera</div></div>
-                            <div class="program-entry"><div class="program-time">12:40-12:50</div><div class="program-topic">The Use of Contact Precautions to Prevent Transmission of Multidrug-Resistant Organisms: Emerging evidence</div><div class="program-speaker">David Odada</div></div>
-                            <div class="program-entry"><div class="program-time">12:50-13:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
-                            <div class="program-entry break">13:00-14:00 | Lunch Break</div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay2Session5">
+                                Session 5: Integrating Antimicrobial resistance (AMR) in IPC intervention <small class="ms-auto text-white-50 pe-3">Chair: Dr. Rachel Kamau</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay2Session5" class="accordion-collapse collapse" data-bs-parent="#day2Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Integrating One Health and Antimicrobial Resistance into Sustainable Infection Prevention and Control for Universal Health Coverage in Kenya</div><div class="program-speaker">Lucy Walegwa Mghongo</div></div>
+                                <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">One health approach unravels worrying antimicrobial resistance patterns: a cross-sectional study in Kisii, Kenya</div><div class="program-speaker">Briton Kavulavu</div></div>
+                                <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Detection of colonization of patients admitted at JM Kariuki County Hospital in Nyandarua County, Kenya</div><div class="program-speaker">Emma Wanjenga</div></div>
+                                <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Evaluating the impact of decentralizing blood donor replacement in four transfusing sub county Hospital in Homa Bay County</div><div class="program-speaker">Erasic Jerry Osumba</div></div>
+                                <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Factors that influence rise in cases of cervical cancer among youth and adolescence at Kendu Sub- County hospital, Rachuonyo North Sub County, Homa Bay County, Kenya</div><div class="program-speaker">Dr Kevin Mimba</div></div>
+                                <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Case Study: MPOX Infection Prevention Control Bungoma County Referral Hospital Experience</div><div class="program-speaker">Samson Agallo</div></div>
+                                <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Evaluating Drug-Resistant Tuberculosis Patterns in Mvita Sub County: Is There a Need for Post TB Treatment Prophylaxis?</div><div class="program-speaker">Dr Karima Dawoodbha</div></div>
+                                <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Prevalence of advanced HIV disease (AHD) among people living with HIV (PLHIV) attending Umoja health center, Nairobi, Kenya</div><div class="program-speaker">Angeline Ngano</div></div>
+                                <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.</div><div class="program-speaker">Sarah Ngare</div></div>
+                                <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                                <div class="program-entry break">12:40-13:40 | Lunch Break</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 3: Tuberculosis and Infection control</h4>
-                            <p class="text-white-50">Chair: Dr. Josphat Tonui</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">14:00-14:30</div><div class="program-topic">Collaborative Leadership and Culture Change in Delivering Infection Prevention</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr Linus Ndegwa, US CDC</div></div>
-                            <div class="program-entry"><div class="program-time">14:30-15:00</div><div class="program-topic">The role of ECHO in integrating AMR into IPC</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Prof. Revathi Gunturu, AKUH</div></div>
-                            <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Screening for tuberculosis among clients who accessed HIV Testing Services at Umoja Health Centre, Nairobi, Kenya: a cross-section observational study.</div><div class="program-speaker">Simon Mongare</div></div>
-                            <div class="program-entry"><div class="program-time">15:10-15:20</div><div class="program-topic">Tuberculosis Preventive Therapy efficacy among People Living with HIV (PLHIV) accessing Comprehensive Care Services at Umoja Health Centre, Nairobi, Kenya.</div><div class="program-speaker">Mwajuma Abdullahi Ramadhan</div></div>
-                            <div class="program-entry"><div class="program-time">15:20-15:30</div><div class="program-topic">Early detection of tuberculosis patients to reduce antimicrobial resistance in Homabay county, Kenya.</div><div class="program-speaker">Joan Maina</div></div>
-                            <div class="program-entry"><div class="program-time">15:30-15:40</div><div class="program-topic">OCCUPATIONAL HEALTH RISKS OF WOOD SMOKE EXPOSURE IN HOSPITAL KITCHEN: IMPLICATIONS FOR RESPIRATORY DISEASES AND INFECTION CONTROL</div><div class="program-speaker">Mary Carphew Awuor</div></div>
-                            <div class="program-entry"><div class="program-time">15:40-15:50</div><div class="program-topic">Leveraging on Program quality and Efficiency to increase case Identification and combat Tuberculosis transmission at Matata Hospital, HomaBay County</div><div class="program-speaker">Brian Korir</div></div>
-                            <div class="program-entry"><div class="program-time">15:50-16:00</div><div class="program-topic">A Healthier Future Starts in the Classroom: Integrating Infection Prevention, Antimicrobial Resistance, and One Health in Schools</div><div class="program-speaker">David Frederick Akello</div></div>
-                            <div class="program-entry"><div class="program-time">16:00-16:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay2Session6">
+                                Session 6: General <small class="ms-auto text-white-50 pe-3">Chair: Loyce Kihungi</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay2Session6" class="accordion-collapse collapse" data-bs-parent="#day2Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">13:40-13:50</div><div class="program-topic">Status of Implementation of Infection Prevention and Control Core Components in Selected Facilities in Kenya</div><div class="program-speaker">Mary Ndinda</div></div>
+                                <div class="program-entry"><div class="program-time">13:50-14:00</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Michael Ruitururi</div></div>
+                                <div class="program-entry"><div class="program-time">14:00-14:10</div><div class="program-topic">Antimicrobial Resistance Profiles and Detection of mecA, blaCTX-M-1, and blaSHV genes in Bacteria among Diabetic Foot Ulcer Patients from Kisumu County, Kenya</div><div class="program-speaker">Silas O. Awuor</div></div>
+                                <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
+                                <div class="program-entry"><div class="program-time">15:10-16:30</div><div class="program-topic">Poster rounds and exhibition</div><div class="program-speaker"></div></div>
+                                <div class="program-entry"><div class="program-time">16:30-17:10</div><div class="program-topic">Coffee and end of day 2</div><div class="program-speaker">Jennifer Njuhigu</div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="day2" role="tabpanel">
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 4: Healthcare associated infections</h4>
-                            <p class="text-white-50">Chair: Eric Kitangala</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">8:30-9:00</div><div class="program-topic">Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Flavia Nakayima, University of Arizona</div></div>
-                            <div class="program-entry"><div class="program-time">9:00-9:30</div><div class="program-topic">Industry Insight into Infection Prevention and Control and AMR</div><div class="program-speaker"><strong>Guest Speaker:</strong><br>Dr. Sigei</div></div>
-                            <div class="program-entry"><div class="program-time">9:30-9:40</div><div class="program-topic">Ethiopia's First National Healthcare Associated Infections Point Prevalence Survey</div><div class="program-speaker">Robel W Tefera</div></div>
-                            <div class="program-entry"><div class="program-time">9:40-9:50</div><div class="program-topic">Point Prevalence Survey on Antibiotic Use and Hospital Acquired Infections conducted at KUTRRH</div><div class="program-speaker">Caroline Mwangi</div></div>
-                            <div class="program-entry"><div class="program-time">9:50-10:00</div><div class="program-topic">Incidence rate of bloodstream infection Thika level 5 hospital</div><div class="program-speaker">Joan Maina</div></div>
-                            <div class="program-entry"><div class="program-time">10:00-10:10</div><div class="program-topic">Incidence, Microbial Patterns, and Outcomes of External Ventricular Drain Infections: A Three-Year Review at a Kenyan Tertiary Hospital</div><div class="program-speaker">Clara Kesis</div></div>
-                            <div class="program-entry"><div class="program-time">10:10-10:20</div><div class="program-topic">Electronic Surveillance of Carbapenem-Resistant Organisms in the ICU: A Retrospective Analysis from a Tertiary University Hospital</div><div class="program-speaker">David Odada</div></div>
-                            <div class="program-entry"><div class="program-time">10:20-10:30</div><div class="program-topic">Microbiological Evaluation of Generic Ceftriaxone Potency Using Disc Diffusion Assay at Coast General Teaching and Referral Hospital</div><div class="program-speaker">Kassam yusuf</div></div>
-                            <div class="program-entry"><div class="program-time">10:30-10:40</div><div class="program-topic">Antimicrobial Resistance Profile of Acinetobacter species Referred to the National Microbiology Reference Laboratory between 2021-2023</div><div class="program-speaker">George Njau</div></div>
-                            <div class="program-entry"><div class="program-time">10:40-11:00</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
-                        </div>
-                    </div>
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 5: Integrating Antimicrobial resistance (AMR) in IPC intervention</h4>
-                            <p class="text-white-50">Chair: Dr. Rachel Kamau</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">11:00-11:10</div><div class="program-topic">Integrating One Health and Antimicrobial Resistance into Sustainable Infection Prevention and Control for Universal Health Coverage in Kenya</div><div class="program-speaker">Lucy Walegwa Mghongo</div></div>
-                            <div class="program-entry"><div class="program-time">11:10-11:20</div><div class="program-topic">One health approach unravels worrying antimicrobial resistance patterns: a cross-sectional study in Kisii, Kenya</div><div class="program-speaker">Briton Kavulavu</div></div>
-                            <div class="program-entry"><div class="program-time">11:20-11:30</div><div class="program-topic">Detection of colonization of patients admitted at JM Kariuki County Hospital in Nyandarua County, Kenya</div><div class="program-speaker">Emma Wanjenga</div></div>
-                            <div class="program-entry"><div class="program-time">11:30-11:40</div><div class="program-topic">Evaluating the impact of decentralizing blood donor replacement in four transfusing sub county Hospital in Homa Bay County</div><div class="program-speaker">Erasic Jerry Osumba</div></div>
-                            <div class="program-entry"><div class="program-time">11:40-11:50</div><div class="program-topic">Factors that influence rise in cases of cervical cancer among youth and adolescence at Kendu Sub- County hospital, Rachuonyo North Sub County, Homa Bay County, Kenya</div><div class="program-speaker">Dr Kevin Mimba</div></div>
-                            <div class="program-entry"><div class="program-time">11:50-12:00</div><div class="program-topic">Case Study: MPOX Infection Prevention Control Bungoma County Referral Hospital Experience</div><div class="program-speaker">Samson Agallo</div></div>
-                            <div class="program-entry"><div class="program-time">12:00-12:10</div><div class="program-topic">Evaluating Drug-Resistant Tuberculosis Patterns in Mvita Sub County: Is There a Need for Post TB Treatment Prophylaxis?</div><div class="program-speaker">Dr Karima Dawoodbha</div></div>
-                            <div class="program-entry"><div class="program-time">12:10-12:20</div><div class="program-topic">Prevalence of advanced HIV disease (AHD) among people living with HIV (PLHIV) attending Umoja health center, Nairobi, Kenya</div><div class="program-speaker">Angeline Ngano</div></div>
-                            <div class="program-entry"><div class="program-time">12:20-12:30</div><div class="program-topic">Compliance of hand hygiene practices among nurse students attached at medical ward department in Nyahururu County Referral Hospital, Laikipia, Kenya.</div><div class="program-speaker">Sarah Ngare</div></div>
-                            <div class="program-entry"><div class="program-time">12:30-12:40</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
-                            <div class="program-entry break">12:40-13:40 | Lunch Break</div>
-                        </div>
-                    </div>
-                    <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 6: Closing Ceremony Day 2</h4>
-                            <p class="text-white-50">Chair: Loyce Kihungi</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">13:40-13:50</div><div class="program-topic">Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development</div><div class="program-speaker">Silas O. Awuor</div></div>
-                            <div class="program-entry"><div class="program-time">13:50-15:00</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Michael Ruitururi</div></div>
-                            <div class="program-entry"><div class="program-time">15:00-15:10</div><div class="program-topic">Discussions</div><div class="program-speaker"></div></div>
-                            <div class="program-entry"><div class="program-time">15:10-16:30</div><div class="program-topic">Poster rounds and exhibition</div><div class="program-speaker"></div></div>
-                            <div class="program-entry"><div class="program-time">16:30-15:10</div><div class="program-topic">Coffee and end of day 2</div><div class="program-speaker">Jennifer Njuhigu</div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="day3" role="tabpanel">
-                     <div class="program-session">
-                        <div class="program-session-title">
-                            <h4 class="mb-0">Session 7: World Patient Safety Day & Closing Ceremony</h4>
-                            <p class="text-white-50">Chair: Loyce Kihungi</p>
-                        </div>
-                        <div class="program-content">
-                            <div class="program-entry"><div class="program-time">8:30-9:00</div><div class="program-topic">World Patient Safety Day, 17 September 2025: "Safe care for every newborn and every child" celebration</div><div class="program-speaker"></div></div>
-                            <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development</div><div class="program-speaker">Silas O. Awuor</div></div>
-                            <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Michael Ruitururi</div></div>
-                            <div class="program-entry"><div class="program-time">8:50-9:50</div><div class="program-topic">Sharing of experiences from the county on patient safety</div><div class="program-speaker">Nyeri County</div></div>
-                            <div class="program-entry break">9:50-10:20 | Health Break: Poster viewing/ Exhibition</div>
-                            <div class="program-entry"><div class="program-time">10:20-11:00</div><div class="program-topic">National Action Plan on patient safety</div><div class="program-speaker">Dr.Irungu, KNPHI</div></div>
-                            <div class="program-entry"><div class="program-time">11:00-11:30</div><div class="program-topic">Conference Evaluation Findings</div><div class="program-speaker">Dr. Linus Ndegwa</div></div>
-                            <div class="program-entry"><div class="program-time">11:30-12:00</div><div class="program-topic">Awards Presentation</div><div class="program-speaker">Guest</div></div>
-                            <div class="program-entry"><div class="program-time">12:00-12:20</div><div class="program-topic">Vote of Thanks and official closing</div><div class="program-speaker">Jennifer Njuhigu</div></div>
-                            <div class="program-entry break">12:20 | End of the Conference & Lunch Break</div>
-                            <div class="program-entry break">15:20 | Departure</div>
+            </div>
+            <div class="tab-pane fade" id="day3" role="tabpanel">
+                 <div class="accordion" id="day3Accordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay3Session7">
+                                Session 7: World Patient Safety Day & Closing Ceremony <small class="ms-auto text-white-50 pe-3">Chair: Loyce Kihungi</small>
+                            </button>
+                        </h2>
+                        <div id="collapseDay3Session7" class="accordion-collapse collapse show" data-bs-parent="#day3Accordion">
+                            <div class="accordion-body">
+                                <div class="program-entry"><div class="program-time">8:30-11:00</div><div class="program-topic">World Patient Safety Day, 17 September 2025: "Safe care for every newborn and every child" celebration</div><div class="program-speaker"></div></div>
+                                <div class="program-entry"><div class="program-time">8:30-8:50</div><div class="program-topic">Misuse of Antibiotic during Pregnancy as a Neonatal Risk towards Antimicrobial Resistance Development</div><div class="program-speaker">Silas O. Awuor</div></div>
+                                <div class="program-entry"><div class="program-time">8:50-9:10</div><div class="program-topic">Hand Hygiene Practices Among Health Care Workers In JMKMCRH, May 2025</div><div class="program-speaker">Msa Paediatrician</div></div>
+                                <div class="program-entry"><div class="program-time">8:50-9:50</div><div class="program-topic">Sharing of experiences from the county on patient safety</div><div class="program-speaker">Nyeri County</div></div>
+                                 <div class="program-entry"><div class="program-time">9:50-10:20</div><div class="program-topic">National Action Plan on patient safety</div><div class="program-speaker">Dr.Irungu, KNPHI</div></div>
+                                <div class="program-entry break">10:20-11:00 | Health Break: Poster viewing/ Exhibition</div>
+                                <div class="program-entry"><div class="program-time">11:00-11:30</div><div class="program-topic">Conference Evaluation Findings</div><div class="program-speaker">Dr. Linus Ndegwa</div></div>
+                                <div class="program-entry"><div class="program-time">11:30-12:00</div><div class="program-topic">Awards Presentation</div><div class="program-speaker">Guest</div></div>
+                                <div class="program-entry"><div class="program-time">12:00-12:20</div><div class="program-topic">Vote of Thanks and official closing</div><div class="program-speaker">Jennifer Njuhigu</div></div>
+                                <div class="program-entry break">12:20 | End of the Conference & Lunch Break</div>
+                                <div class="program-entry break">15:20 | Departure</div>
+                            </div>
                         </div>
                      </div>
                 </div>
@@ -943,63 +961,57 @@
     </section>
     
     <section id="speakers" class="section-padding bg-light">
-         <div class="container">
-            <div class="section-title">
-                <h2>Guest Speakers</h2>
-                <p class="lead">Learn from leading experts in the field of Infection Prevention and Control.</p>
+     <div class="container">
+        <div class="section-title">
+            <h2>Guest Speakers</h2>
+            <p class="lead">Learn from leading experts in the field of Infection Prevention and Control.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Dr. Evelyn Wesangula</h5>
+                    <p class="text-muted">ESA</p>
+                    <p class="topic">"Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC"</p>
+                </div>
             </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="evelyn.jpg" alt="Dr. Evelyn Wesangula">
-                        <h5 class="mt-3 mb-1">Dr. Evelyn Wesangula</h5>
-                        <p class="text-muted">ESA</p>
-                        <p class="topic">"Health Emergencies Preparedness, Response and Resilience -Focus on AMR and IPC"</p>
-                    </div>
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Prof. Revathi Gunturu</h5>
+                    <p class="text-muted">AKUH</p>
+                    <p class="topic">"Recent Developments in Medical Device related IPC practices" & "The role of ECHO in integrating AMR into IPC"</p>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="revathi.jpg" alt="Prof. Revathi Gunturu">
-                        <h5 class="mt-3 mb-1">Prof. Revathi Gunturu</h5>
-                        <p class="text-muted">AKUH</p>
-                        <p class="topic">"Recent Developments in Medical Device related IPC practices" & "The role of ECHO in integrating AMR into IPC"</p>
-                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Josiah Mwenda</h5>
+                    <p class="text-muted">UoN</p>
+                    <p class="topic">"AMR Surveillance Information System Challenges"</p>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="josiah.jpg" alt="Josiah Mwenda">
-                        <h5 class="mt-3 mb-1">Josiah Mwenda</h5>
-                        <p class="text-muted">UoN</p>
-                        <p class="topic">"AMR Surveillance Information System Challenges"</p>
-                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Dr. Linus Ndegwa</h5>
+                    <p class="text-muted">IPNET Kenya</p>
+                    <p class="topic">"Collaborative Leadership and Culture Change in Delivering Infection Prevention"</p>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="linus.jpg" alt="Dr. Linus Ndegwa">
-                        <h5 class="mt-3 mb-1">Dr. Linus Ndegwa</h5>
-                        <p class="text-muted">US CDC</p>
-                        <p class="topic">"Collaborative Leadership and Culture Change in Delivering Infection Prevention"</p>
-                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Dr. Flavia Nakayima</h5>
+                    <p class="text-muted">University of Arizona</p>
+                    <p class="topic">"Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital"</p>
                 </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="flavia.jpg" alt="Dr. Flavia Nakayima">
-                        <h5 class="mt-3 mb-1">Dr. Flavia Nakayima</h5>
-                        <p class="text-muted">University of Arizona</p>
-                        <p class="topic">"Catheter-Associated Urinary Tract Infections Incidence Estimates Influenced by Documentation Completeness in an East African Regional Referral Hospital"</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
-                    <div class="speaker-card">
-                        <img src="sigei.jpg" alt="Dr. Sigei">
-                        <h5 class="mt-3 mb-1">Dr. Sigei</h5>
-                        <p class="text-muted">Industry</p>
-                        <p class="topic">"Industry Insight into Infection Prevention and Control and AMR"</p>
-                    </div>
+            </div>
+            <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                <div class="speaker-card">
+                    <h5 class="mt-3 mb-1">Dr. Sigei</h5>
+                    <p class="text-muted">Industry</p>
+                    <p class="topic">"Industry Insight into Infection Prevention and Control and AMR"</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="abstracts" class="section-padding">
         <div class="container">
@@ -1025,88 +1037,7 @@
     <footer class="footer-section">
         <div class="container">
             <div class="row g-5">
-
-                <div class="col-lg-3 col-md-6">
-                    <h5>Scientific Committee</h5>
-                    <ul class="list-unstyled">
-                        <li>Dr. Rachel Kamau - Chair</li>
-                        <li>Frankline O. Mboya</li>
-                        <li>Prof. Gunturu Revathi</li>
-                        <li>Dr. Linus Ndegwa</li>
-                        <li>Dr. Ernest Makokha</li>
-                        <li>Dr. Evelyn Wesangula</li>
-                        <li>Dr. George Agogo</li>
-                        <li>Dr. Paul Musingila</li>
-                        <li>Dr. Josphat Tonui</li>
-                        <li>Evelyne Mboga</li>
-                        <li>Dr. Emanuel Tanui</li>
-                        <li>Lydia Ntisiki</li>
-                        <li>Dr. Gathai Mundia</li>
-                    </ul>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <h5>Logistics Committee</h5>
-                     <ul class="list-unstyled">
-                        <li>Veronica Nyawira - Chairing</li>
-                        <li>Erick Kitangala</li>
-                        <li>Stephen Macharia</li>
-                        <li>Mary Ndinda</li>
-                        <li>Erastus Nondi</li>
-                        <li>Loyce Kihungi</li>
-                        <li>Florence Wachira</li>
-                        <li>Felister Kiberenge</li>
-                        <li>Jennifer Njuhigu</li>
-                        <li>Cynthia Adhiambo</li>
-                        <li>Lydia Ntisiki</li>
-                        <li>Timmons Sigo</li>
-                        <li>Dr. Nkatha Gitonga</li>
-                        <li>Dr Rachel Kamau</li>
-                        <li>Dr Irene Muramba</li>
-                        <li>Dr. Linus Ndegwa</li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <h5>Partners</h5>
-                    <div class="d-flex flex-wrap">
-                        <div class="partner-logo p-2"><img src="moh.png" alt="Ministry of Health Logo"></div>
-                        <div class="partner-logo p-2"><img src="mombasa.png" alt="Mombasa County Logo"></div>
-                        <div class="partner-logo p-2"><img src="cdc.png" alt="CDC Logo"></div>
-                        <div class="partner-logo p-2"><img src="ecsach.png" alt="ECSA-HC Logo"></div>
-                        <div class="partner-logo p-2"><img src="reactafrica.jpg" alt="REACT Africa Logo"></div>
-                    </div>
-                    <h5 class="mt-4">Exhibitors</h5>
-                    <div class="d-flex flex-wrap">
-                         <div class="partner-logo p-2"><img src="anios.png" alt="Anios Logo"></div>
-                         <div class="partner-logo p-2"><img src="kemri.jpg" alt="KEMRI Logo"></div>
-                         <div class="partner-logo p-2"><img src="nairobi-ent.png" alt="Nairobi Enterprises Logo"></div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <h5>General Information</h5>
-                    <div class="info-item d-flex mb-3">
-                        <i class="bi bi-geo-alt mt-1"></i>
-                        <span>Pride Inn conference centre, Mombasa, Kenya</span>
-                    </div>
-                    <div class="info-item d-flex mb-3">
-                        <i class="bi bi-translate mt-1"></i>
-                        <span><strong>Language:</strong> English</span>
-                    </div>
-                    <div class="info-item d-flex mb-3">
-                        <i class="bi bi-cash-coin mt-1"></i>
-                        <span><strong>Currency:</strong> Kenya Shillings (KES)</span>
-                    </div>
-                    <h5 class="mt-4">Follow Us</h5>
-                    <div class="social-icons">
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-
-            </div>
             <div class="footer-bottom text-center">
                  <p class="mb-0">&copy; 2025 Infection Prevention Network-Kenya (IPNET-K). All Rights Reserved.</p>
                  <p class="mb-0"><small>Website Designed by <a href="https://wa.me/254799172342" target="_blank">Curated Designs</a></small></p>
